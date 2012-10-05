@@ -1,0 +1,56 @@
+\documentclass[a4paper]{scrartcl}
+
+\usepackage[ngerman]{babel}
+\usepackage[utf8]{inputenc} 
+\usepackage{amsmath}
+\usepackage{amssymb}
+
+\selectlanguage{ngerman}
+
+\usepackage[pdftex]{graphicx}
+
+\usepackage{empheq}
+
+\usepackage{todonotes}
+
+\usepackage[a4paper,left=2.5cm,right=2.5cm,top=2.5cm,bottom=2.5cm]{geometry} 
+
+%befehl damit tag in align umgebung mit klammer über zwei zeilen möglich ist
+\newcommand{\smarttag}[1]
+{
+ \tag*{\makebox(80,0){\rule[4ex]{0pt}{1ex}$\bigg.\bigg\}${#1}}}
+}
+\newcommand{\Smarttag}[1]
+{
+ \tag*{\makebox(80,0){\rule[10ex]{0pt}{1ex}$\Bigg.\Bigg\}${#1}}}
+}
+
+%werden wir sicher öfter brauchen
+\newcommand{\Fhat}{
+\hat{\mathbb{F}}
+}
+\newcommand{\F}{
+\mathbb{F}
+}
+\newcommand{\Fhatfunc}[1]{$\Fhat$\,(#1) }
+
+% workaround damit zeilenumbruch nach paragraph erfolgt
+\newcommand{\example}[1]{\paragraph{#1}$\;$ \\ }
+
+
+\begin{document}
+\title{Technische Numerik \\ Mitschrift}
+\author{A. Schwarzl, C. Sirk}
+\maketitle
+
+\tableofcontents
+
+\include{einfuehrung}
+\include{approximation}
+\include{integration}
+\include{lineare_algebra}
+\include{nichtlineare_gleichungen}
+\include{dgl}
+
+
+\end{document}

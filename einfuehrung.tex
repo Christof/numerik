@@ -1,0 +1,108 @@
+\section{Einführung - 3.10.2012}
+
+Numerische Mathematik befasst sich mit der näherungsweisen Lösung von Problemstellungen (mit dem Computer).
+%\begin{itemize}
+  %\item Formulierung
+  %\item Entwicklung
+  %\item Untersuchung
+  %\item Implementierung
+    %von Verfahren und Algorithmen
+%\end{itemize}
+\begin{equation*} 
+  \left.
+  \begin{aligned} 
+   & \text{Formulierung} \\ 
+   & \text{Entwicklung} \\ 
+	 & \text{Untersuchung} \\
+ 	 & \text{Implementierung} \\
+  \end{aligned} 
+  \right\} 
+  \text{von Verfahren und Algorithmen} 
+\end{equation*} 
+Von der Problemstellung zur Näherungslösung:
+
+  \begin{empheq}{alignat*=3} 
+   & \text{physikalisches, chemisches, ... Problem bzw. Modell} & \smarttag{Modellfehler} \\ 
+   & \text{mathematisches Modell (z.B. DGL)} & \smarttag{Diskretisierungsfehler} \\ 
+	 & \text{numerisches Näherungsverfahren (endlich} & \Smarttag{Verfahrensfehler}\\
+	 & \text{ dim. Ersatzproblem)} \\
+ 	 & \text{Algorithmen für Ersatzprobleme} & \smarttag{Impl.-fehler z.B. Rundungsfehler}\\
+	 & \text{Implementierungsfehler} & \\
+  \end{empheq} 
+\textbf{ZIEL}: (möglichst) genau, möglichst schnell, mit möglichst geringem Aufwand (z.B. Speicher)
+
+\subsection{Gleitpunktzahlen $\Fhat$}
+\begin{align*}
+		\Fhat = \F \cup \F_d \hspace{0.5cm} \text{mit} \hspace{0.5cm} & \F && \text{normalisierte Gleitpunktzahlen}\\
+		 &\F_d && \text{denormalisierte Gleitpunktzahlen} 
+\end{align*}
+\subsubsection{Normalisierte GPZ}
+
+\begin{align*}
+x = \sigma\,\cdot\,M\,\cdot\,\,b^e \hspace{0.5cm} \text{mit} \hspace{0.5cm} & \sigma && \text{Vorzeichen}\\
+& M && \text{Mantisse} \\
+& b && \text{Basis} \\
+& e && \text{Exponent}
+\end{align*}
+
+\begin{align*}
+M = \sum^t_{k=1} d_k b^{-k} \hspace{0.5cm} \text{mit} \hspace{0.5cm} & d_1,\cdots,d_t\, \in\,\{0,1,\cdots,b-1\} && \text{Ziffern der Mantisse}\\
+& t && \text{Mantissenlänge} \\
+& && d_1 \neq 0 \text{(Normalisierung)} \\
+& e_{min} \leq e \leq e_{max} && \text{Exponentenbereich}
+\end{align*}
+
+Schreibweise:
+\begin{equation*}
+x = \sigma\,(0.d_1d_2d_3\,\cdots\,d_t)b^e
+\end{equation*}
+
+\subsubsection{Denormalisierte GPZen}
+\missingfigure{zahlenstrahl}
+
+\begin{align*}
+x_d = \sigma\,M\,b^{e_{min}} &\\
+M = \sum^t_{k=2} d_k b^{-k} \hspace{0.5cm} \text{mit} \hspace{0.5cm} & d_2,\cdots,d_t\, \in\,\{0,1,\cdots,b-1\} \\
+& \text{keine Normierung} 
+\end{align*}
+
+\subsubsection{Gleitpunktzahlsystem}
+\Fhatfunc{b,t,$e_{min}$,$e_{max}$}
+
+\example{Beispiel: "`Doppeltes Grundformat"' ("`double"' in C, Java, MATLAB)}
+
+\Fhatfunc{2,53,-1021,1024} Im PC als 64bit $\rightarrow$ 52 + 1 da erstes bit ungleich 0 sein muss, 11 Stellen für Exponenten / Umschaltung zu denorm. GPZ. Symbolische Ausdrücke ("`Inf"',"'NaN"',...) 
+kleinste/größte pos Zahl:
+\begin{align*}
+	& x_{min}(\F) =  2^{-1022}\,\approx\, 2,23\cdot\,10^{-308} \\
+	& x_{max}(\F) \approx 1,8\,\cdot\,10^{308} \\
+	& x_{min}(\Fhat) \approx 5\cdot\,10^{-324} 
+\end{align*}
+
+\subsection{Rundung}
+Die Abbildung $rd: \mathbb{R} \rightarrow \Fhat, x\,\mapsto\,rd(x)$ heißt Rundung, wenn $|rd(x)-x|=min|y-x|, y\in\,\F$. 
+\todo{realtiver Fehler unterbringen}
+\begin{empheq}[innerbox=\fbox,right=\Leftarrow{\text{gilt nur für normalisierte Zahlen}}]{align*}
+\text{Für} \hspace{1cm} x_{min}(\F)&\leq\,|x|\,\leq\,x_{max}\,(\F) \hspace{1cm}\text{gilt:}\\
+\frac{|rd(x)-x|}{x}&\leq \frac{1}{2}\,b^{-t+1} \eqqcolon eps \leftarrow \text{Maschinengenauigkeit}
+\end{empheq}
+
+Es sei $\frac{rd(x)-x}{x}=\sigma\,\Rightarrow\,rd(x)=x(1+\delta)$
+es gilt:
+\begin{empheq}[innerbox=\fbox]{align*}
+rd(x)=x(1+\delta) & \hspace{1cm} |\delta|\leq\,eps
+\end{empheq}
+
+\example{Maschinengenauigkeit für "`double"'}
+\Fhatfunc{2,53,-1021,1024}
+\begin{equation*}
+eps = \frac{1}{2}\,2^{-53+1}\approx\,1,1\cdot\,10^{-16}
+\end{equation*}
+Maschinenepsilon 
+\begin{equation*}
+E_M=2 eps = b^{-t+1}
+\end{equation*}
+
+$E_M$ ist der Abstand zwischen 1 und der nächstgrößeren GPZ
+
+\subsubsection{Gleitpunktarithmetik}
