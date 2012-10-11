@@ -110,23 +110,25 @@ Schon elementare Operationen von GPZen führen zu Resultaten, die nicht im $\Fha
 liegen, zB $\frac{1}{3} \not \in \Fhat$. \\
 Maschinenoperationen: $\oplus$, $\ominus$, $\odot$, $\oslash$ \\
 Standard für die Genauigkeit von Maschinenoperationen (IEEE 754): \\
-$ x \circ y = rd(x \box y) $ für $ x, y \in \Fhat, 
-x_{min}(\F) \leq | x \circ y | \leq x_{max}(\F)$ \\
-%TODO center:
-\begin{center}
-  $\Updownarrow$ \\
-\end{center}
-$ x \circ y = (x \box y)(1 + \delta) $ mit $ |\delta | \leq eps$
+
+\begin{empheq}[innerbox=\fbox]{align*}
+ x \circ y &= rd(x \Box y)   \\ 
+\text{für} \hspace{0.5cm} x, y \in \Fhat, x_{min}(\F) &\leq | x \circ y | \leq x_{max}(\F)\\
+  & \Updownarrow \\
+ x \circ y & = (x \Box y)(1 + \delta) \hspace{0.5cm} \text{mit} \hspace{0.5cm} |\delta | \leq eps
+\end{empheq}
 
 \subsubsection{Fehlerverstärkung bei elementaren Rechenoperationen}
 Fragestellung: Wie wirken sich fehlerbehaftete Eingangsdaten bei elementaren
 Rechenoperation aus? Kann es zu einer wesentlichen Fehlerverstärkung kommen?
-Ja, es kommt aber darafu an.
+Ja, es kommt aber darauf an.
 \example{Bsp:}
 $ f(x)=\frac{1 - \cos(x)}{x^2} $ für $x=1.2 \cdot 10^{-5} $
 Angenommen wir runden $\cos(x)$ auf 10 Stellen genau \\
-$ \cos(x) \approx 0.999 999 999 9 =: c $ \\
-$ \frac{1 - c}{x^2} = \frac{10^{-10}}{1.44 \cdot 10^{-10}} = 0.6944\dots $ \\
+\begin{align*}
+ \cos(x) &\approx 0.999 999 999 9 =: c \\
+ \frac{1 - c}{x^2} &= \frac{10^{-10}}{1.44 \cdot 10^{-10}} = 0.6944\dots 
+\end{align*}
 Mit Hilfe der Taylorreihe lässt sich zeigen, dass $ f(x) \in [0, \frac{1}{2}) $. \\
 relativer Fehler $ \geq \frac{0.69 - 0.5}{0.5} = 38\% $ \\
 
@@ -135,23 +137,27 @@ Seien $ a, b \in \mathbb{R} $ gegeben und
 $ \tilde{a} = rd(a) = a (1 + \delta_{a}) $ mit $ | \delta_{a} | \leq eps $ sowie
 $ \tilde{b} = rd(b) = b (1 + \delta_{b}) $ mit $ | \delta_{b} | \leq eps $ \\
 Relative Fehler\\
-$ | \frac{\tilde{a} + \tilde{b} - (a + b)}{a + b} | =
-| \frac{a\delta_{a} + b\delta_{b}}{a + b} | \leq eps \frac{|a| + |b|}{|a + b|} $ \\
+\begin{equation*}
+\left| \frac{\tilde{a} + \tilde{b} - (a + b)}{a + b} \right| =
+\left| \frac{a\delta_{a} + b\delta_{b}}{a + b} \right| \leq eps \frac{|a| + |b|}{|a + b|} 
+\end{equation*}
 Ist $ |a + b| \ll |a| + |b| $ dann kann der relative Fehler groß werden.
 D.h. bei der Subtraktion zweier annähernd gleich großer Zahlen, können
-sich Eingangsfehler erheblich verstärken. $\Rightarrow$ Auslöschung
-signifikanter Stellen
+sich Eingangsfehler erheblich verstärken. $\Rightarrow$ \large{\textcolor{rot}{\textbf{AUSLÖSCHUNG
+signifikanter Stellen}}}
 
-\para{Fehlerverstärkung bie Multiplikation}
+\para{Fehlerverstärkung bei Multiplikation}
 Seien $ a, b \in \mathbb{R} $ gegeben und
 $ \tilde{a} = rd(a) = \frac{a}{1 + \delta_{a}} $ mit $ | \delta_{a} | \leq eps $ sowie
 $ \tilde{b} = rd(b) = \frac{b}{1 + \delta_{b}} $ mit $ | \delta_{b} | \leq eps $ \\
-Relative Fehler\\
-$ | \frac{\tilde{a}\tilde{b} - a b}{a b} | =
-| \frac{\frac{ab}{(1 + \delta_{a})(1 + \delta_{b})} - ab}{ab}| =
-| \frac{ab - ab(1 + \delta_{a})(1 + \delta_{b})}{ab(1 + \delta_{a})(1 + \delta_{b})} | =
-| \frac{ab(\delta_{a} + \delta_{b} + \delta_{a}\delta_{b})}{ab(1 + \delta_{a})(1 + \delta_{b})} | \leq
-\frac{3eps}{1 - 3eps} \leq 4eps $ \\
+Relative Fehler
+\begin{equation*}
+\left| \frac{\tilde{a}\tilde{b} - a b}{a b} \right| =
+\left| \frac{\frac{ab}{(1 + \delta_{a})(1 + \delta_{b})} - ab}{ab}\right| =
+\left| \frac{ab - ab(1 + \delta_{a})(1 + \delta_{b})}{ab(1 + \delta_{a})(1 + \delta_{b})} \right| =
+\left| \frac{ab(\delta_{a} + \delta_{b} + \delta_{a}\delta_{b})}{ab(1 + \delta_{a})(1 + \delta_{b})} \right| \leq
+\frac{3eps}{1 - 3eps} \leq 4eps 
+\end{equation*}
 $\Rightarrow$ Multiplikation führt nicht zu einer wesentlichen Fehlerverstärkung.
-Dasselbe lässt sich für die Division zeigen.
+Dasselbe lässt sich auch für die Division zeigen.
 

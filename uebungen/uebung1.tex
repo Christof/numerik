@@ -1,52 +1,55 @@
 \subsection{Übung 1}
 \subsubsection{Beispiel 1}
+
 $ \Fhat := (10,6,-9,9) $ \\
 Kerngrößen:\\
-$ x_{min}(\F) = 0.1 \cdot 10^{-9} = 10^{-10} $ \\
-$ x_{min}(\Fhat) = 0.000001 \cdot 10^{-9} = 10^{-15} $ \\
-$ x_{max}(\F) = 0.999999 \cdot 10^{9} $ \\
-$ eps = \frac{1}{2} b^{-t + 1} = \frac{1}{2} 10^{-5} $ \\
-$ \epsilon_{M} = 2eps = 10^{-5} $ \\
+\begin{align*}
+ x_{min}(\F) &= 0.1 \cdot 10^{-9} = 10^{-10}\\
+ x_{min}(\Fhat) &= 0.000001 \cdot 10^{-9} = 10^{-15}  \\
+ x_{max}(\F) &= 0.999999 \cdot 10^{9}  \\
+ eps &= \frac{1}{2} b^{-t + 1} = \frac{1}{2} 10^{-5}  \\
+ \epsilon_{M} &= 2eps = 10^{-5}  \\
 \\
-$ \pi = 3.14159265\cdots $ \\
-$ rd(\pi) = \tilde{\pi} = 0.314159 \cdot 10^1 $ \\
+ \pi &= 3.14159265\cdots  \\
+ rd(\pi) &= \tilde{\pi} = 0.314159 \cdot 10^1  \\
+\end{align*}
 relativer Fehler: $ | \frac{\tilde{\pi} - \pi}{\pi} | = 8.45 \cdot 10^{-7} $
 
 \subsubsection{Beispiel 2}
-$ \Fhat := (10,4,-9,9) $ \\
-$ eps = \frac{1}{2} 10^{-3} $ \\
-$ c_1 = \sqrt{2(1-\cos(\phi))} $ \\
-$ c_2 = 2 \sin(\frac{\phi}{2}) $ \\
-$ c_2 = 0.023270531\cdots $ \\
-$ \phi= \frac{4}{3} \;TODOabstand \tilde{\phi} = 0.1333 \cdot 10 = 1.333 $ \\
+\begin{align*}
+ \Fhat &:= (10,4,-9,9)  \\
+ eps &= \frac{1}{2} 10^{-3}  \\
+ c_1 &= \sqrt{2(1-\cos(\phi))}  \\
+ c_2 &= 2 \sin(\frac{\phi}{2})  \\
+ c_2 &= 0.023270531\cdots  \\
+ \phi&= \frac{4}{3} \hspace{1cm} \tilde{\phi} = 0.1333 \cdot 10 = 1.333 \\
+\\
+ \tilde{c_1}:  \\
+ rd({\cos}(\tilde{\phi})) &= 0.9997  \\
+ rd(1 - 0.9997) &= 0.0003  \\
+ rd(2 \cdot 0.0003) &= 0.0006  \\
+ rd(\sqrt{0.0006}) &= 0.02449 = \tilde{c_1}  \\
+\end{align*}
+relativer Fehler: $ | \frac{\tilde{c_1} - c_2}{c_2} | = 5.24\% $s \\
 
-$ \tilde{c_1}: $ \\
-$ rd({\cos}(\tilde{\phi})) = 0.9997 $ \\
-$ rd(1 - 0.9997) = 0.0003 $ \\
-$ rd(2 \cdot 0.0003) = 0.0006 $ \\
-$ rd(\sqrt{0.0006}) = 0.02449 = \tilde{c_1} $ \\
-relativer Fehler: $ | \frac{\tilde{c_1} - c_2}{c_2} | = 5.24\% $ \\
-
-$ \tilde{c_2}: $ \\
-\begin{equation*}
-\begin{split}
-  rd(\frac{\tilde{\phi}}{2}) = 0.6665 \\
-  rd(\sin(0.6665)) = 0.01163 \\
-  rd(2 \cdot 0.01163) = 0.02326 = \tilde{c_2} \\
-\end{split}
-\end{equation*}
+$ \tilde{c_2}: $ 
+\begin{align*}
+  rd\left(\frac{\tilde{\phi}}{2}\right) &= 0.6665 \\
+  rd(\sin(0.6665)) &= 0.01163 \\
+  rd(2 \cdot 0.01163) &= 0.02326 = \tilde{c_2} \\
+\end{align*}
 relativer Fehler: $ | \frac{\tilde{c_2} - c_2}{c_2} | = 0.04525\% $ \\
 
 \subsubsection{Beispiel 3}
 $ rd(x) = \tilde{x} = x(1 + \delta) $ \\
 relativer Fehler: \\
 \begin{equation*}
-| \frac{\frac{1}{ln(x + 1) + x} - \frac{1}{ln(\tilde{x} + 1) + \tilde{x}} }{\frac{1}{ln(x + 1) + x}} | =
-| 1 - \frac{\frac{1}{ln(\tilde{x} + 1) + \tilde{x}} }{\frac{1}{ln(x + 1) + x}} | =
-| 1 - \frac{ln(1 + x) +x}{ln(\tilde(x)) + \tilde{x}} | := | h(\tilde{x}) |
+\left| \frac{\frac{1}{ln(x + 1) + x} - \frac{1}{ln(\tilde{x} + 1) + \tilde{x}} }{\frac{1}{ln(x + 1) + x}} \right| =
+\left| 1 - \frac{\frac{1}{ln(\tilde{x} + 1) + \tilde{x}} }{\frac{1}{ln(x + 1) + x}} \right| =
+\left| 1 - \frac{ln(1 + x) +x}{ln(\tilde{x}) + \tilde{x}} \right| := | h(\tilde{x}) |
 \end{equation*}
 $ h(\tilde{x}) $ ist streng monoton $ \Rightarrow $ Extremstellen nur bei 
-$ \tilde{x} = 1.05 $ und $ \tilde{x} = 0.95x $ zu erwarten. \\
+$ \tilde{x} = 1.05x $ und $ \tilde{x} = 0.95x $ zu erwarten. \\
 \begin{equation*}
 \begin{split}
   h_1 = 1 - \frac{ln(1 + x) + x}{ln(1 + 1.05x) + 1.05x} \\
