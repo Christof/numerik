@@ -167,26 +167,26 @@ Verwendung zur:
   \item Beschreibung des asymptotischen Verhaltens von Funktionen
   \item Effizienzverhalten von Algorithmen
 \end{itemize}
-Definition: Seien $f,y: \mathbb{R} \to \mathbb{R}$
+Definition: Seien $f,g: \mathbb{R} \to \mathbb{R}$
 \begin{enumerate}[(a)]
   \item $f(x) = \LandauO(g(x))$ für $x \to a :\Leftrightarrow$
-    Es gilt $c > 0$ und $\delta > 0$, so dass für alle $x \in \{|y - a| < \delta\}: |f(x)| \leq c|g(x)| $
+    Es gilt $c > 0$ und $\delta > 0$, so dass für alle $x \in \{|y - a| < \delta\}: |f(x)| \leq c|g(x)| \Leftrightarrow$ in etwa ähnliches Verhalten
   \item $f(x) = \LandauO(g(x))$ für $x \to \infty :\Leftrightarrow$
-    Es gilt $c > 0$ und $x_0 > 0$, so dass für alle $x > x_0:\,|f(x)| \leq c|g(x)|$
-  \item $f(x) = \Landauo(g(x))$ für $x \to \box (\in \mathbb{R} \cup \{\pm \infty\} :\Leftrightarrow
-    \lim_{x \to \box}{|\frac{f(x)}{g(x)}|} = 0$
+    Es gilt $c > 0$ und ein $x_0 > 0$, so dass für alle $x > x_0:\,|f(x)| \leq c|g(x)| \Leftrightarrow$ $f(x)$ wächst nicht schneller als $g(x)$
+  \item $f(x) = \Landauo(g(x))$ für $x \to \Box (\in \mathbb{R} \cup \{\pm \infty\} :\Leftrightarrow
+    \lim_{x \to \Box}{|\frac{f(x)}{g(x)}|} = 0$
 \end{enumerate}
 
 \example{Beispiel:}
 \begin{align*}
-  \frac{x + 1}{x} = \LandauO(\frac{1}{x}) \text{ für } x \to \infty \text{ , denn }
-  \frac{1}{x} + \frac{1}{x^2} \leq \frac{1}{x} + \frac{1}{x} = 2 \frac{1}{x} \text{ für } x \geq 1 = x_0
+  \frac{x + 1}{x^2} &= \LandauO(\frac{1}{x}) \text{ für } x \to \infty \text{ , denn } \\
+  \frac{1}{x} + \frac{1}{x^2} &\leq \frac{1}{x} + \frac{1}{x} = \underbrace{2}_c \frac{1}{x} \text{ für } x \geq \underbrace{1}_{x_0}
 \end{align*}
 \begin{align*}
   x^{\alpha} = \Landauo(x^{\alpha + 1}) \text{ für } x \to \infty \text{ , denn }
-  \frac{x^{\alpha}}{x^{\alpha + 1}} = \frac{1}{x} \to 0
+  \frac{x^{\alpha}}{x^{\alpha + 1}} = \frac{1}{x} \xrightarrow[x\to\,\infty]{}0
 \end{align*}
-Vorsicht: Das Gleichheitszeichen ist bei Verwendung der Landau-Symbole rein symbolisch
+\textcolor{rot}{VORSICHT}: Das Gleichheitszeichen ist bei Verwendung der Landau-Symbole rein symbolisch
 zu verstehen: Symmetrie $[a = b \Leftrightarrow b = a]$ und Transitivität 
 $[a = b \wedge b = c \Rightarrow a = c]$ gelten i.A. nicht. \\
 z.B.: $x = \LandauO(x^2)$ für $x \to \infty$ aber $x^2 \neq \LandauO(x)$ für $x \to \infty$
@@ -199,15 +199,15 @@ unterscheidet man:
   \item Stabilität des Algorithmus (zur Lösung des Problems)
 \end{itemize}
 \para{Kondition eines Problems}
-Mathemathisches Problem sei durch eine Funktion beschrieben: $H:X \to Y$ \\ Input
-$x \mapsto H(x)$ Resultat\\
+Mathemathisches Problem sei durch eine Funktion beschrieben: $H:X \to Y$ \\ 
+$\underbrace{x}_{\textrm{Input}} \mapsto \underbrace{H(x)}_{\textrm{Resultat}}$\\
 Fehlberbehafteter Input $x + \Delta x$ mit $\Delta x$ als Fehler
 \begin{align*}
   \frac{|| H(x + \Delta x) - H(x)||}{|| H(x) ||} = ?
 \end{align*}
 \para{Satz von Taylor (Taylorreihenentwicklung):}
 \begin{enumerate}[(a)]
-  \item Sei $f: I \in \mathbb{R} \to \mathbb{R}\,$ (n + 1) mal stetig differenzierbar, dann gilt für
+  \item Sei $f: I \in \mathbb{R} \to \mathbb{R}\,$ (n + 1)-mal stetig differenzierbar, dann gilt für
     $x, \Delta x \in I$: \\
     $f(x + \Delta x) = f(x) + \Delta x f^{\prime}(x) + 
     \frac{(\Delta x)^2}{2!}f^{\prime\prime}(x) + \cdots + 
@@ -216,7 +216,7 @@ Fehlberbehafteter Input $x + \Delta x$ mit $\Delta x$ als Fehler
     wobei $x \leq \zeta(x)\leq x + \Delta x$
   \item Sei $f: \mathbb{R}^n \to \mathbb{R}^m\,$ 2 mal stetig differenzierbar \\
     $f(x + \Delta x) = f(x) + \Delta x f^{\prime} + R(x, \Delta x) $ \\
-    wobei $||R(x, \Delta x)|| = \LandauO(||\Delta x||^2)$ für $||\Delta x \to 0$
+    wobei $||R(x, \Delta x)|| = \LandauO(||\Delta x||^2)$ für $||\Delta\,x|| \to 0$
 \end{enumerate}
 
 \para{Absoluter Fehler:}
@@ -225,29 +225,29 @@ $\Delta H(x) \cong H^{\prime} \Delta x$
 
 \para{Relative Fehler (1D Fall):}
 \begin{align*}
-  \delta H(x) := \frac{\Delta H(x)}{H(x)} \mathrel{\widehat{=}} 
+  \delta H(x) := \frac{\Delta H(x)}{H(x)} \mathrel{\widetilde{=}} 
   \frac{H^{\prime} \Delta x}{H(x)} =
   \frac{x H^{\prime}(x)}{H(x)} \cdot \frac{\Delta x}{x}
 \end{align*}
 Verstärkerfunktion $=: \kappa(H, x) = | \frac{x H^{\prime}(x)}{H(x)} |$ \\
 relative Eingangsfehler $:= \delta x = \frac{\Delta x}{x}$
-\begin{align*}
-  |\delta H(x)|  \cong \kappa(H, x) |\Delta x|
-\end{align*}
+\begin{empheq}[innerbox=\fbox]{align*}
+  |\delta H(x)|  \cong \kappa(H, x) |\delta x|
+\end{empheq}
 $\kappa(H, x)$ wird (relative) Kondition(szahl) des Problems $H$ für den Input $x$
 genannt. (Mehrdimensionaler Fall: Analoge Definition; verwende Normen statt Beträge) \\
-Ein Problem heißt gut konditioniert, falss die Konditionszahl klein (nahe bei 1) ist
+Ein Problem heißt \underline{gut konditioniert}, falss die Konditionszahl klein (nahe bei 1) ist
 (für die infragekommenden Inputs).
 
 \example{Beispiel:}
-Die Nullstellen der quadratischen Gleichung $\lambda^2 - 2x\lambda + 1 = 0$ sind
-für $x > 1$ gegeben durch $\lambda_1 = x +\sqrt{x^2 - 1} \;\;\; \lambda_2 = x - \sqrt{x^2 - 1}$ \\
+Die Nullstellen der quadratischen Gleichung $\lambda^2 - 2x\lambda + 1 = 0$ sind für $x > 1$ gegeben durch 
+$\lambda_1 = x +\sqrt{x^2 - 1} \;\;\; \lambda_2 = x - \sqrt{x^2 - 1}$ \\
 Konditionszahl für $\lambda_2 = H(x)$
 \begin{align*}
-  \kappa(H, x) = |\frac{x H^{\prime}(x)}{h(x)}| = 
-  |\frac{x[1 - \frac{1}{2}(x^2 - 1)^{-\frac{1}{2}} 2x]}{x - \sqrt{x^2 - 1}} | =
-  |\frac{\frac{x(\sqrt{x^2 - 1} - x)}{\sqrt{x^2 - 1}}}{x - \sqrt{x^2 - 1}}| =
-  |- \frac{x}{\sqrt{x^2 - 1}}|
+  \kappa(H, x) = \left|\frac{x H^{\prime}(x)}{h(x)}\right| = 
+  \left|\frac{x[1 - \frac{1}{2}(x^2 - 1)^{-\frac{1}{2}} 2x]}{x - \sqrt{x^2 - 1}} \right| =
+  \left|\frac{\frac{x(\sqrt{x^2 - 1} - x)}{\sqrt{x^2 - 1}}}{x - \sqrt{x^2 - 1}}\right| =
+  \left|- \frac{x}{\sqrt{x^2 - 1}}\right|
 \end{align*}
 Fallunterscheidung:
 \begin{enumerate}[(i)]
@@ -262,8 +262,8 @@ Berechnung der Lösung für i)
 \end{enumerate}
 
 \para{Stabilität eines Algorithmus}
-Dafür gibt es verschidene uneinheitliche Konzepte und Definitionen. \\
-Komperative Erklärung: \\
+Dafür gibt es verschiedene uneinheitliche Konzepte und Definitionen. \\
+\underline{Komperative Erklärung}: \\
 Algorithmus I zur Lösung eines Problemes ist stabiler als Algorithmus II,
 wenn der Gesamteinfluss der Rundungsfehler bei Algorithmus I kleiner als
 bei Algorithmus II ist.
