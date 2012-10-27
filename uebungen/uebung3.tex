@@ -1,0 +1,144 @@
+\subsection{Übung 3}
+\subsubsection{Beispiel 7}
+$f(x)=x^2-cos(x) \quad p_3 \in \Pi_3$\\\\
+\begin{tabular}{cll}
+Stützstellen& $x_0=-1$ & $f_0=-0.4597$ \\
+& $x_1=0$ & $f_1=-1$ \\
+& $x_2=1$ & $f_2=0.4597$ \\
+& $x_3=2$ & $f_3=4.4161$ \\
+\end{tabular}
+Lagrange-Polynome: $L_i(x)=\sum\limits_{j=0,j\neq\,i}^{n}{\frac{x-x_j}{x_i-x_j}}$\\
+
+\begin{align*}
+L_0(x)=\frac{(x-x_1)(x-x_2)(x-x_3)}{(x_0-x_1)(x_0-x_2)(x_0-x_3)}=\frac{(x-0)(x-1)(x-2)}{(-1-0)(-1-1)(-1-2)}={\frac{x(x-1)(x-2)}{-6}}\\
+\vspace{0.5cm}\\
+L_1(x)=\frac{(x-x_0)(x-x_2)(x-x_3)}{(x_1-x_0)(x_1-x_2)(x_1-x_3)}=\frac{(x+1)(x-1)(x-2)}{(0+1)(0-1)(0-2)}={\frac{(x+1)(x-1)(x-2)}{2}}\\
+\vspace{0.5cm}\\
+L_2(x)=\frac{(x-x_0)(x-x_1)(x-x_3)}{(x_2-x_0)(x_2-x_1)(x_2-x_3)}=\frac{(x+1)(x-0)(x-2)}{(1+1)(1-0)(1-2)}={\frac{x(x+1)(x-2)}{-2}}\\
+\vspace{0.5cm}\\
+L_3(x)=\frac{(x-x_0)(x-x_1)(x-x_2)}{(x_3-x_0)(x_3-x_1)(x_3-x_2)}=\frac{(x+1)(x-0)(x-1)}{(2+1)(2-0)(2-1)}={\frac{x(x+1)(x-1)}{6}}
+\end{align*}
+
+\begin{align*}
+p_n(x)=\sum\limits_{k=0}^{n}{f_k\,L_k(x)}&=f_0\left(\frac{x(x-1)(x-2)}{-6}\right)+f_1\left(\frac{(x+1)(x-1)(x-2)}{2}\right)\\&+f_2\left(\frac{x(x+1)(x-2)}{-2}\right)+f_3\left(\frac{x(x+1)(x-1)}{6}\right)\\
+&=f_0\left(\frac{x^3-3x^2+2x}{-6}\right)+f_1\left(\frac{x^3-2x^2-x+2}{2}\right)\\&+f_2\left(\frac{x^3-x^2-2x}{-2}\right)+f_3\left(\frac{x^3-x}{6}\right)\\
+&=\left(-\frac{f_0}{6}+\frac{f_1}{2}-\frac{f_2}{2}+\frac{f_3}{6}\right)x^3+\left(\frac{f_0}{2}-f_1+\frac{f_2}{2}\right)x^2+\left(-\frac{f_0}{3}-\frac{f_1}{2}+f_2-\frac{f_3}{6}\right)x\\
+&=-0.0704x^3+1.4597x^2+0.0704x-1
+\end{align*}
+maximaler punktweise Fehler\\
+\begin{align*}
+\Delta=p_3 - f_x = -0.0704x^3+1.4597x^2+0.0704x-1 -x^2 + cos(x)\\
+\Delta\,=-0.0704x^3+0.4597x^2+0.0704x+cos(x)-1\\
+\frac{d\Delta}{dx}=-0.2112x^2+0.9194x+0.0704-sin(x) = 0\\
+\text{max. punktweise Fehler:} \quad (-0.62;0.0363)
+\end{align*}
+
+\subsubsection{Beispiel 8}
+a) $d-x+1=0 \quad d\neq\,-1$
+$H: x = d+1$
+\begin{align*}
+dH(d)&= \frac{dH'(d)}{H(d)}\cdot\,\frac{\delta\,d}{d}\\
+ &= \underbrace{\frac{d(1)}{d+1}\cdot\,\frac{\delta\,d}{d}}_{|.|\eqqcolon\,\kappa(H,d)}
+\end{align*}
+
+\begin{align*}
+\kappa(H,d)=\left|\frac{d}{d+1}\right|
+\end{align*}
+wenn $d>>1: \kappa\,(H,d)\approx\,1\,\rightarrow$gut konditioniert \\
+ $d<<: \kappa\,(H,d)\approx\,1\,\rightarrow$ \\
+ $d+\epsilon=-1:\epsilon << \kappa\,(H,d)>>,\rightarrow$ schlecht \\
+
+\todo{graph einfügen?}
+
+b) $x-b^d=d\quad b>0$\\
+$f(b,d): x = b^d$\\
+\vspace{0.5cm}\\
+$\frac{df}{d(b,d)}=\left(\frac{df}{db},\frac{df}{dd}\right)=(db^{(d-1)},b^d\,log(b))$
+
+\begin{align*}
+\kappa &=\frac{||\frac{df}{d(b,d)}f(b,d)||_2\cdot\,||(b,d)||_2}{|f(b,d)|} \\
+&= \frac{\sqrt{d^2b^{(2(d-1)}+(b^d\,log(b))^2}\cdot\,\sqrt{b^2+d^2}}{|b^d|}\\
+&= \sqrt{(d^2b^{-2}+log^2(b))(b^2+d^2)}
+\end{align*}
+$d=0\,\rightarrow b\cdot\,log(b)$\\
+$b\,\rightarrow\,0\quad$schlecht
+
+\subsubsection{Beispiel 9}
+a) Vorwärtseinsetzen
+
+$p_n(x) = a_0\,N_0(x) + \cdots + a_n\,N_n(x), \quad p_n(x_i)=f_i$
+
+\begin{align*}
+a_0 &= f_0 \\
+a_1 &= \frac{f_1 - a_0}{x_1 - x_0} \\
+a_2 &= \frac{f_2-a_0-a_1(x_2-x_0)}{(x_2-x_0)(x_2-x_1)} \\
+a_3 &= \frac{f_3-a_0-a_1(x_3-x_0)-a_2(x_3-x_0)(x_3-x_1)}{(x_3-x_0)(x_3-x_1)(x_3-x_2)} \\
+a_4 &= \frac{f_4-a_0-a_1(x_4-x_0)-a_2(x_4-x_0)(x_4-x_1)-a_3(x_4-x_0)(x_4-x_1)(x_4-x_2)}{(x_4-x_0)(x_4-x_1)(x_4-x_2)(x_4-x_3)} \\
+\end{align*}
+
+Aufwand für k-ten Koeffizienten: \\
+\begin{tabular}{cccc}
+ & Zähler & Nenner & Gesamt\\\hline
+Additionen & $\sum\limits_{j=1}^{k}{j}$ & k & $k + \frac{k}{2}(k+1)$ \\\hline
+Multiplikationen & $\sum\limits_{j=1}^{k-1}{j}$ & k-1 & $k-1 + \frac{k}{2}(k-1)$\\\hline
+Divisionen &  &  & 1 \\\hline
+& & & $2k+k^2$ \\\hline\hline
+\end{tabular}\\
+\vspace{0.5cm}\\
+Gesamtaufwand: $\sum\limits_{k=0}^{n}{2k+k^2} = \frac{n^3}{3}+\frac{3n^2}{2}+\frac{7n}{6}$ 
+
+b) div. Differenzen
+
+$p_n(x)=f[x_0]N_0(x)+f[x_0,x_1]N_1(x)+\cdots\,+f[x_0,x_n]N_n(x)$
+\begin{align*}
+f_0 &= f[x_0] \\
+f_1 &= f[x_0,x_1] = \frac{f[x_1]-f[x_0]}{x_1-x_0} \\
+f_2 &= f[x_0,x_2] = \frac{f[x_1,x_2]-f[x_0,x_1]}{x_2-x_0} \\
+f_3 &= f[x_0,x_3] = \frac{f[x_1,x_3]-f[x_0,x_2]}{x_3-x_0} 
+\end{align*}
+
+Aufwand für k-ten Koeffizienten: \\\\
+\begin{tabular}{ccc}
+ & Aufwand & Gesamt\\\hline
+Additionen & $\sum\limits_{k=0}^{n}{2k}$ & $\frac{2n}{2}(n+1)$ \\\hline
+Divisionen & $\sum\limits_{k=0}^{n}{k}$ & $\frac{n}{2}(n+1)$ \\\hline
+& &  $3\frac{n}{2}(n+1)$ \\\hline\hline
+\end{tabular}\\
+\vspace{0.5cm}\\
+c) Auswertung Newton naiv
+
+\begin{align*}
+p_n(x) &= a_0N_0(x) + a_1\,N_1(x) + \cdots + a_n\,N_n(x) \\
+ &= a_0 + a_1(x-x_0) +a_2(x-x_0)(x-x_1)+\cdots + a_n(x-x_0)\cdots\,(x-x_{n-1})
+\end{align*}
+
+\begin{tabular}{ccc}
+ & Aufwand\\\hline
+Additionen & $n+\sum\limits_{k=1}^{n}{k}=n+\frac{n}{2}(n+1)$ \\\hline
+Multiplikationen & $\sum\limits_{k=1}^{n}{k}=\frac{n}{2}(n+1)$ \\\hline
+Gesamt & $2n + n^2$ \\\hline\hline
+\end{tabular}
+\vspace{0.5cm}\\
+d) Horner Schema
+\begin{align*}
+p_n(x) &= a_0 + (x-x_0)(a_1 + (x-x_1)(a_2 + \cdots (a_{n-1} + (x-x_n)(a_n))\cdots)
+\end{align*}
+
+\begin{tabular}{ccc}
+ & Aufwand\\\hline
+Additionen & $n+n = 2n$ \\\hline
+Multiplikationen & $n$ \\\hline
+Gesamt & $3n$ \\\hline\hline
+\end{tabular}
+\vspace{0.5cm}\\
+e) Lagrange Auswertung
+\begin{align*}
+p_n(x) &= f_0\,L_0(x)+f_1\,L_1(x)+\cdots\,+f_n\,L_n(x)
+\end{align*}
+$L_i(x)=\prod\limits_{j=0,j\neq\,i}^{n}{\frac{x-x_j}{x_i-x_j}}$\\
+\begin{tabular}{ccc}
+ & Aufwand\\\hline
+Additionen & $n+n(2n) = n+2n^2$ \\\hline
+Multiplikationen & $n + n(\underbrace{2(n-1)}_{Prod.}\,+\underbrace{1}_{Div.}=n+n(2n-1) = n+2n^2-n$ \\\hline
+Gesamt & $4n^2+n$ \\\hline\hline
+\end{tabular}

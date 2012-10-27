@@ -53,7 +53,7 @@ Beweis:
     $\Rightarrow L_i$ hat n Nullstellen: $x_0, x_1, \cdots, x_{i-1}, x_{i+1}, \cdots, x_n$
 		\begin{align*}    
 		L_i \in \Pi_n \Rightarrow L_i(x) = a(x-x_0)(x-x_1)\cdots(x-x_{i-1})(x-x_{i+1})\cdots(x-x_n)\\
-    L_i(x_i) \overset{!}{=} 1 \Rightarrow
+    L_i(x_i) \mustbe 1 \Rightarrow
       a = \frac{1}{(x_i-x_0)(x_i-x_1)\cdots(x_i-x_{i-1})(x_i-x_{i+1})\cdots(x_i-x_n)}\\
     \end{align*}
 		\begin{empheq}[innerbox=\fbox,right=\Leftarrow{\text{LAGRANGE-POLYNOME}}]{align*}
@@ -67,3 +67,178 @@ Beweis:
     \end{equation*}
     $p_n(x_i) = 0 + 0 + \cdots + f_i\underbrace{L_i(x_i)}_{1} + 0 + \cdots = f_i$\\
 \end{enumerate}
+
+% 17.10.2012
+Wh. Polynominterpolation
+
+\begin{align*}
+\text{geg.} \hspace{0.5cm} & (x_0,f_0),\cdots\,,(x_n,f_n) \\
+\text{ges.} \hspace{0.5cm} & p_n \in \Pi_n:p_n(x_i)=f_i & \Rightarrow p_n(x) = f_0\,L_0+\cdots\,+f_n\,L_n(x) \hspace{1cm} (2.2)\\
+& & L_i(x)=\prod\limits_{i=0,i\neq\,j}^n \frac{x-x_j}{x_i-x_j}
+\end{align*}
+
+\begin{equation*} 
+  L_i(x_k)
+	\left\{  
+  \begin{aligned} 
+   & i=k: 1 \\ 
+   & i\neq\,k: 0\\
+  \end{aligned} 
+	\right.
+\end{equation*} 
+
+(2.2) nennt man Lagrange-Darstellung des Interpolationspolynoms [theoretisch von Interesse]
+
+\subsubsection{Effiziente Berechnung und Auswertung des IPs (Newton-Darstellung)}
+\underline{Nachteile der Lagrange-Darstellung:}
+
+\begin{itemize}
+	\item Hinzunahme neuer Daten ($x_{n+1},f_{n+1}) \Rightarrow$ komplett neue Berechnung notwendig
+	\item Auswertung des IPs ist nicht effizient $L_i$
+\end{itemize}
+
+\para{Definition}
+Zu $x_0,\cdots\,x_n$ sind die Newton-Basispolynome definiert durch:\\
+
+\begin{align*}
+&N_0 \equiv 1\\
+&N_1(x) = (x-x_0)\\
+&N_2(x) = (x-x_0)(x-x_1)=N_1(x)(x-x_1)\\
+&\vdots \\
+&N_n(x) = (x-x_0)(x-x_1)\cdots\,(x-x_{n-1})=N_{n-1}(x)(x-x_{n-1})
+\end{align*}
+$N_0,\cdots\,,N_n$ bilden eine Basis von $\Pi_n$ (lässt sich einfach zeigen).\\
+Ansatz: für Polynominterpolation $(x_0,f_0)\cdots\,(x_n,f_n)$:\\
+Suche: $a_0,\cdots\,,a_n$ so dass 
+
+\begin{align*}
+p_n(x)&=a_0\,N_0(x) + \cdots\, + a_n\,N_n(x) \quad \text{und} \\
+p_n(x_i)&= f_i \quad \text{für} \quad i=0\cdots\,n \\
+f_0 &\mustbe p_n(x_0) = a_0\,\underbrace{N_0(x_0)}_{1} + \underbrace{a_1\,\underbrace{N_1(x_0)}_{(x_0-x_0)} + \cdots + a_n\,N_n(x_0)}_{=0} \\
+& \Rightarrow a_0 = f_0 \\
+f_1 &\mustbe p_n(x_1) = a_0\cdot\,1 + a_1\,(x_1-x_0) + \underbrace{a_2\,(x_1-x_0)(x_1-x_1)}_{=0} + 0  \\
+& a_1 = \frac{f_1-a_0}{x_1-x_0}\\
+f_n &\mustbe p_n(x_n) = a_0\,N_0(x_n) + \cdots + a_n\,N_n(x_n) \\
+& a_0,\cdots\,,a_n \quad \text{lassen sich durch Vorwärtseinsetzen bestimmen}
+\end{align*}\\
+
+\underline{Effizienter Algorithmus:} Dividierte Differenzen
+\para{Definition}
+Zu $(x_0,f_0),\cdots\,,(x_n,f_n)$ mit $x_i\neq\,x_j$ für $i\neq\,j$ sind die div. Differenzen definiert durch
+\begin{align*}
+f[x_i] &= f_i \quad i=0\cdots\,n\\
+f[x_i,x_{i+1},\cdots\,,x_{i+m}] &:= \frac{f[x_{i+1},\cdots\,,x_{i+m}]-f[x_{i},\cdots\,,x_{i+m-1}]}{x_{i+m}-x_i}
+\end{align*}
+
+\para{Satz}
+Sei $p_n\in\,\Pi_n$ das IP zu $(x_0,f_0)\cdots\,(x_n,f_n)$ dann gilt:
+\begin{equation*}
+p_n(x) = f[x_0]\,N_0(x)+f[x_0,x_1]\,N_1(x)+\cdots\,+f[x_0,x_n]\,N_n(x)
+\end{equation*}
+Beweis erfordert mehr als "`Einsetzen"'. \\
+\underline{Schema zur Berechnung:}
+
+\begin{tabular}{c|l}
+$x_0$ & $f_0 = f[x_0] \searrow$ \\
+$x_1$ & $f_1 = f[x_1] \rightarrow f[x_0,x_1]  \searrow$ \\
+$x_2$ & $f_2 = f[x_2] \rightarrow f[x_1,x_2] \rightarrow f[x_0,x_1,x_2]$\\
+$\vdots$ &  \\
+$x_{n-1}$ & $f_{n-1} = f[x_{n-1}] \rightarrow \cdots \rightarrow f[x_0,\cdots\,,x_{n-1}] \searrow$\\
+$x_n$ & $f_n = f[x_n] \rightarrow \cdots \rightarrow f[x_1,\cdots\,,x_n] \rightarrow f[x_0,\cdots\,,x_n]$ \\
+\end{tabular}
+
+\para{Einschub: Vollständige Induktion (Beweistechnik)}
+Um zu beweisen, dass Aussage A für alle natürlichen Zahlen $n\geq\,n_0$ gilt, reicht es zu zeigen:
+
+\begin{enumerate}
+	\item A gilt für $n_0$ [Induktionsanfang, IA] 
+	\item Aus der Gültigkeit von A für eine Zahl $n$, folgt eine Gültigkeit von A für $n+1$ [Induktionsschritt, $A(n)\Rightarrow A(n+1)$, IS]
+\end{enumerate}
+
+Beispiel: Gauß'sche Summenformel\\
+$\sum\limits_{i=1}^{n}{i}=?$\\\\
+a) Gauß Lösung\\
+\begin{center}
+\begin{tabular}{c|c|c|c|c}
+	1 & 2 & 3 & $\cdots$ & n \\
+	n & n-1 & n-2 & $\cdots$ & 1 \\\hline
+  n+1 & n+1 & n+1 & $\cdots$ & n+1
+\end{tabular}
+$\Rightarrow\,\sum\limits_{i=1}^{n}{i}=\frac{n}{2}(n+1)$ (*)\\
+\end{center}
+b) Vollständige Induktion
+
+\begin{enumerate}
+	\item IA $n_0=1$ $\sum\limits_{i=1}^{n=1}{i}=1\mustbe\,\frac{1}{2}(1+1)=1 \Rightarrow ok$
+	\item IS $n \mapsto n+1$ Annahme (*) gilt für n. Zu zeigen: (*) gilt für n+1, d.h. z.z.\\
+	$\sum\limits_{i=1}^{n+1}{i}=\frac{1}{2}(n+1)(n+1+1)=\frac{n^2+3n+2}{2}$\\
+	$\sum\limits_{i=1}^{n+1}{i}=\underbrace{\sum\limits_{i=1}^{n}{i}}_{Annahme} + n+1$ \\
+	$=\frac{n}{2}(n+1) + \frac{2(n+1)}{2}= \frac{n^2+3n+2}{2} \Rightarrow ok$
+\end{enumerate}
+
+\para{Behauptung}
+Die Berechnung von $f[x_0], f[x_0,x_1],\cdots\,f[x_0,\cdots\,,x_n]$ benötigt $\frac{3n(n+1)}{2}$ Flops. \\
+Beweis: Vollständige Induktion\\
+
+\begin{enumerate}
+	\item IA, $n_0=1 \quad f[x_0],f[x_0,x_1]=\frac{f[x_1]-f[x_0]}{x_1-x_0} \Rightarrow 3 \mustbe \frac{3\cdot\,1(2)}{2}=3 \Rightarrow ok$
+	\item IS $n \mapsto n+1 \quad$ Annahme: Aufwand für $f[x_0], \cdots\,f[x_0,\cdots\,,x_n]$ beträgt $\frac{3n(n+1)}{2}$ Flops. Z.z. für $\underbrace{f[x_0], \cdots\,,f[x_0,\cdots\,,x_n]}_{\text{wissen wir}},f[x_0,\cdots,x_{n+1}]$ sind $\frac{3(n+1)(n+1+1)}{2}$ Flops nötig. \\
+Aufwand für $f[x_0,\cdots\,,x_{n+1}]$\\
+\begin{tabular}{c|l}
+\vdots \\
+$x_{n}$ & $f_{n} = f[x_{n}] \searrow$\\
+$x_{n+1}$ & $f_{n+1} = f[x_{n+1}] \rightarrow \underbrace{f[x_n,x_{n+1}] \rightarrow f[x_{n-1},x_n,x_{n+1}] \rightarrow f[x_0,\cdots\,,x_{n+1}]}_{\underbrace{\text{n+1 d.D. mit jeweils 3 Flops}}_{3(n+1)}}$ 
+\end{tabular}
+
+D.h. insgesamt $\underbrace{f[x_0],\cdots\,,f[x_0,\cdots\,,x_n]}_{\frac{3n(n+1)}{2}} + \underbrace{f[x_0,\cdots\,,x_{n+1}]}_{\frac{2\cdot\,3n(n+1)}{2}} = \frac{(n+2)3(n+1)}{2} \Rightarrow $ ok
+\end{enumerate}
+
+\para{2.1.1.1 Horner Schema (Auswertung von Polynomen)}
+Naive Auswertung von $p_n(x) = a_0+a_1x+\cdots\,+a_nx^n$ erfordert 
+
+\begin{itemize}
+	\item $x^2, x^3,\cdots\,,x^n \rightarrow$ n-1 Multiplikationen
+	\item $a_i\cdot\,x^i \quad i = 1\cdots\,n \rightarrow$ n Mulitplikationen
+	\item n Additionen
+\end{itemize}
+
+\underline{Horner Schema}
+$p_n(x) = a_0 + x\cdot\,(a_1 + x\cdot\,(a_2 + \cdots + x\cdot\,(\underbrace{a_{n-2} + x\cdot\,(\underbrace{a_{n-1} + x\cdot\,(a_n))}_{b_{n-1}}}_{b_{n-2}}\cdots\,)$
+Auswertung von innen nach außen:
+
+\begin{equation*}
+\left.
+\begin{aligned}
+ b_n &:= a_n \\
+ b_{n-1} &:= a_{n-1} + x\,b_n \\
+ b_{n-2} &:= a_{n-2} + x\,b_{n-1} \\
+ & \vdots \\
+ b_{1} &:= a_{1} + x\,b_{2} \\
+ b_{0} &:= a_{0} + x\,b_{1} 
+\end{aligned}
+\right\}
+\text{Aufwand:} \\
+\text{n Multiplikationen, n Additionen}
+\end{equation*}
+$\Rightarrow p_n(x) = b_0$\\
+
+Horner Schema zur Auswertung von $p_n$ in Newtondarstellung.\\
+\begin{align*}
+ p_n(x) &= \underbrace{f[x_0]}_{a_0}\underbrace{N_0(x)}_{1} + \underbrace{f[x_0,x_1]}_{a_1}\underbrace{N_1(x)}_{(x-x_0)}
++ \underbrace{f[x_0,x_1,x_2]}_{a_2}\underbrace{N_2(x)}_{(x-x_0)(x-x_1)} + \cdots + \underbrace{f[x_0,\cdots\,,x_n]}_{a_n}\underbrace{N_n(x)}_{(x-x_0)\cdots(x-x_n)} \\
+ &= a_0 + (x-x_0)(a_1 + (x-x_1)(a_2+ \cdots + (x-x_{n-2})(a_{n-1})+(x-x_{n-1})(a_n))\cdots)) \\
+\end{align*}
+\begin{equation*}
+\left.
+\begin{aligned}
+ b_n &:= a_n \\
+ b_{n-1} &:= a_{n-1} + (x-x_{n-1})b_n \\
+ b_{n-2} &:= a_{n-2} + (x-x_{n-2})b_{n-1} \\
+ \vdots \\
+ b_0 &:= a_0 + (x-x_0)b_1
+\end{aligned}
+\right\}
+\text{Aufwand: \\
+2n Additionen, \\
+n Multiplikationen}
+\end{equation*}
