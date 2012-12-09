@@ -1,1 +1,110 @@
 \section{Numerische Lineare Algebra}
+\textbf{ZIEL}: Beantwortung folgender Fragen:
+\begin{itemize}
+\item{Gibt es Algorithmen, so dass grosse Abweichungen der berechneten Loesung (Lsg) zur tatsaechlichen nicht auftreten?}
+\item{Kann man vorhersagen wann es zu grossen Fehlern kommt, und wann nicht?}
+\end{itemize}
+
+\begin{equation*}
+  \left.
+    \begin{align*}
+      \exists \widetilde{x} \neq 0: A\widetilde{x} = 0 & \Rightarrow  Ax = b \\
+        & \Rightarrow A(x + \alpha \widetilde{x}) = b
+%      \exists \widetilde{x} \neq 0: A\widetilde{x} = 0 \Rightarrow & Ax = b  \\
+%      & A(x + \alpha \widetilde{x}) = b
+%		\Fhat = \F \cup \F_d \hspace{0.5cm} \text{mit} \hspace{0.5cm} & \F && \text{normalisierte Gleitpunktzahlen}\\
+%		 &\F_d && \text{denormalisierte Gleitpunktzahlen} 
+    \end{align*}
+  \right\}
+  \text{linear aber nicht eindeutig}
+\end{equation*}
+
+\subsection{Grundlegendes}
+
+\subsubsection{Matrix Norm}
+
+Jede Norm über $\mathbb{K}^{m \times n}$ heißt Matrixnorm.
+Matrixnormen lassen sich durch Vektornormen induzieren:
+\begin{equation*}
+\|A\|_p \coloneqq \underset{x \neq 0}{max} \frac{\|Ax\|_p}{\|x\|_p} = \underset{\|x\|_p = 1}{max}\|Ax\|_p
+\end{equation*}
+
+z.B.: $p \in \left\{1, 2, \inf \right\}$
+
+Für induzierte Normen gilt:
+
+\begin{itemize}
+\item{$\|Ax\|_p \leq \|A\|_p \|x\|_p$}
+\item{$\|A B\|_p \leq \|A\|_p \|B\|_p$}
+\end{itemize}
+Lässt sich einfach beweisen.
+
+Im folgenden werden nur induzierte Normen verwendet
+
+Satz: Sei $A \in \mathbb{K}^{m \times n}$. Dann gilt:
+\begin{enumerate}
+\item{$\|A\|_1 = \underset{j = 1,..,n}{max} \sum\limits_{i=1}^{m}{\left|a_{ij}\right|}$ } %Spalten Summennorm
+\item{$\|A\|_{\infty} = \underset{j = 1,..,m}{max} \sum\limits_{i=1}^{n}{\left|a_{ij}\right|}$ } %Zeilen SummennormS
+\item{$\|A\|_2 = \sqrt{\lambda_{max}\left(A^*A\right)}$}
+\end{enumerate}
+Beweise a, b durch einsetzen, c benötigt Mittel aus linearen Algebra.
+
+\subsubsection{$\left(Relative\right)$ Kondition einer Matrix}
+%\begin{align*}
+%Geg.: &Sei $Ax = b$ (ungestörtes System), wobei \\
+      %&$A \in \mathbb{K}^{m \ times n}$ invertierbar und $b \in \mathbb{K}^n$ sei.  \\
+			%&Wie wirken sich Störungen $\Delta A$ und $\Delta b$ aus:  \\
+			%&$\left(A+\DeltaA)(x+\Delta x)=b+\Delta b$  Gestörte System
+%\end{align*}
+...
+
+Berechnung von $\kappa_2\left(A\right)$
+\begin{equation*}
+  \begin{align*}
+    \kappa_2(A) = \|A\|_2 \|A^{-1}\|_2 = &\sqrt{\lambda_{max}\left(A^*A\right)} \cdot \frac{1}{\sqrt{\lambda_{min}\left(A^*A\right)}} //
+    & \frac{\sigma_1\left(A\right)}{\sigma_n\left(A\right)}
+  \end{align*}
+\end{equation*}
+Für symmetrische und positiv definite $\frac{\sigma_1\left(A\right)}{\sigma_n\left(A\right)}$ Matrizen:
+\begin{equation*}
+  \kappa_2(A) = \frac{\lambda_{max}\left(A\right)}{\lambda_{min}\left(A\right)}
+\end{equation*}
+
+Bemerkung: Man beachte, dass in diesem Abschnitt die Konditionszahl einer Matrix $A$ definiert wurde und nicht die des Problems:
+
+$Input\left(A,B\right) \rightarrow Output\left(A^{-1}b\right)$
+
+Letzteres kann über den Ansatz in Abschnitt  berechnet werden und hängt eng mit $\kappa_A$ zusammen.
+
+\textbf{Zeilenskalierung}
+Bsp.: NUR DEMO!
+\begin{equation*}
+  \begin{align*}
+    \hspace{1cm} &Ax = \begin{pmatrix} 10^8 & 0 \\ 0 & 10^{-8} \end{pmatrix} x = \begin{pmatrix}b_1 \\ b_2\end{pmatrix} \\
+    &\kappa_\infty\left(A\right) = 10^8 \cdot 10^8 = 10^{16}
+  \end{align*}
+\end{equation*}
+Vorkonditionierung durch Diagonalmatrix
+\begin{equation*}
+  D = \begin{pmatrix}10^{-8} & 0 \\ 0 & 10^8\end{pmatrix},
+\end{equation*}
+d.h. Löse statt Ax = b, dass dazu äquivalente System
+\begin{equation*}
+  \begin{align*}
+    &DAx = Db \\
+    &\kappa_\infty\left(DA\right) = \kappa_\infty\left(I\right) = 1
+	\end{align*}	
+\end{equation*}
+
+Verbesserung der Konditionszahl bezgl. $\|.\|_\infty$ durch Zeilenskalierung.
+Definiere: Diagonalmatrix:
+\begin{equation*}
+  D_z \left[ i,i \right] \coloneqq \left(\sum\limits_{j=1}^{n}{\left|a_{ij}\right|}\right)^{-1} %
+\end{equation*}
+Dann gilt:
+\begin{equation*}
+  \begin{align*}
+    &\sum\limits_{j=1}^{n}{\left|D_zA\left[i,j\right]\right|} = 1  \hspace{2cm} fuer 1, ..., n \\
+    &\Rightarrow \|D_zA\|_\infty = 1
+		\end{align*}
+\end{equation*}
