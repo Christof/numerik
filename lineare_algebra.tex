@@ -7,14 +7,14 @@
 
 \begin{equation*}
   \left.
-    \begin{align*}
+    \begin{aligned}
       \exists \widetilde{x} \neq 0: A\widetilde{x} = 0 & \Rightarrow  Ax = b \\
         & \Rightarrow A(x + \alpha \widetilde{x}) = b
 %      \exists \widetilde{x} \neq 0: A\widetilde{x} = 0 \Rightarrow & Ax = b  \\
 %      & A(x + \alpha \widetilde{x}) = b
 %		\Fhat = \F \cup \F_d \hspace{0.5cm} \text{mit} \hspace{0.5cm} & \F && \text{normalisierte Gleitpunktzahlen}\\
 %		 &\F_d && \text{denormalisierte Gleitpunktzahlen} 
-    \end{align*}
+    \end{aligned}
   \right\}
   \text{linear aber nicht eindeutig}
 \end{equation*}
@@ -41,29 +41,30 @@ Lässt sich einfach beweisen.
 
 Im folgenden werden nur induzierte Normen verwendet
 
-Satz: Sei $A \in \mathbb{K}^{m \times n}$. Dann gilt:
+\textbf{Satz:}
+Sei $A \in \mathbb{K}^{m \times n}$. Dann gilt:
 \begin{enumerate}
 \item{$\|A\|_1 = \underset{j = 1,..,n}{max} \sum\limits_{i=1}^{m}{\left|a_{ij}\right|}$ } %Spalten Summennorm
 \item{$\|A\|_{\infty} = \underset{j = 1,..,m}{max} \sum\limits_{i=1}^{n}{\left|a_{ij}\right|}$ } %Zeilen SummennormS
 \item{$\|A\|_2 = \sqrt{\lambda_{max}\left(A^*A\right)}$}
 \end{enumerate}
-Beweise a, b durch einsetzen, c benötigt Mittel aus linearen Algebra.
+\textbf{Beweise:} a, b durch einsetzen, c benötigt Mittel aus linearen Algebra.
 
 \subsubsection{$\left(Relative\right)$ Kondition einer Matrix}
-%\begin{align*}
+%\begin{aligned}
 %Geg.: &Sei $Ax = b$ (ungestörtes System), wobei \\
       %&$A \in \mathbb{K}^{m \ times n}$ invertierbar und $b \in \mathbb{K}^n$ sei.  \\
 			%&Wie wirken sich Störungen $\Delta A$ und $\Delta b$ aus:  \\
 			%&$\left(A+\DeltaA)(x+\Delta x)=b+\Delta b$  Gestörte System
-%\end{align*}
+%\end{aligned}
 ...
 
 Berechnung von $\kappa_2\left(A\right)$
 \begin{equation*}
-  \begin{align*}
+  \begin{aligned}
     \kappa_2(A) = \|A\|_2 \|A^{-1}\|_2 = &\sqrt{\lambda_{max}\left(A^*A\right)} \cdot \frac{1}{\sqrt{\lambda_{min}\left(A^*A\right)}} //
     & \frac{\sigma_1\left(A\right)}{\sigma_n\left(A\right)}
-  \end{align*}
+  \end{aligned}
 \end{equation*}
 Für symmetrische und positiv definite $\frac{\sigma_1\left(A\right)}{\sigma_n\left(A\right)}$ Matrizen:
 \begin{equation*}
@@ -79,10 +80,10 @@ Letzteres kann über den Ansatz in Abschnitt  berechnet werden und hängt eng mi
 \textbf{Zeilenskalierung}
 Bsp.: NUR DEMO!
 \begin{equation*}
-  \begin{align*}
+  \begin{aligned}
     \hspace{1cm} &Ax = \begin{pmatrix} 10^8 & 0 \\ 0 & 10^{-8} \end{pmatrix} x = \begin{pmatrix}b_1 \\ b_2\end{pmatrix} \\
     &\kappa_\infty\left(A\right) = 10^8 \cdot 10^8 = 10^{16}
-  \end{align*}
+  \end{aligned}
 \end{equation*}
 Vorkonditionierung durch Diagonalmatrix
 \begin{equation*}
@@ -90,10 +91,10 @@ Vorkonditionierung durch Diagonalmatrix
 \end{equation*}
 d.h. Löse statt Ax = b, dass dazu äquivalente System
 \begin{equation*}
-  \begin{align*}
+  \begin{aligned}
     &DAx = Db \\
     &\kappa_\infty\left(DA\right) = \kappa_\infty\left(I\right) = 1
-	\end{align*}	
+	\end{aligned}	
 \end{equation*}
 
 Verbesserung der Konditionszahl bezgl. $\|.\|_\infty$ durch Zeilenskalierung.
@@ -103,8 +104,137 @@ Definiere: Diagonalmatrix:
 \end{equation*}
 Dann gilt:
 \begin{equation*}
-  \begin{align*}
+  \begin{aligned}
     &\sum\limits_{j=1}^{n}{\left|D_zA\left[i,j\right]\right|} = 1  \hspace{2cm} fuer 1, ..., n \\
     &\Rightarrow \|D_zA\|_\infty = 1
-		\end{align*}
+		\end{aligned}
 \end{equation*}
+
+\textbf{Satz:}
+$\kappa_\infty\left(D_zA\right) \leq \kappa_\infty\left(DA\right)$ \hspace{2cm} $\forall$ regulären Diagonalmatrizen
+
+\textbf{Beweis:}
+Sei $A$ bereits äquilibriert, d.h.:
+\begin{equation*}
+  \sum\limits_{j=1}^{n}{\left|A\left[i,j\right]\right|} = 1 \hspace{2cm} fuer i = 1, .., n \\	\\
+	\Rightarrow \|A\|_\infty = 1 \\ \\
+	\Rightarrow \kappa_\infty\left(A\right) = \|A\|_\infty \|A^{-1}\|_\infty = \|A^{-1}\|_\infty
+\end{equation*}
+
+Sei $D$ eine beliebige reguläre Diagonalmatrix
+\begin{equation*}
+\begin{aligned}
+  \|DA\|_\infty = &\underset{1 \leq i \leq n}{max} \left\{\sum\limits_{j=1}^{n}{\left|d_ia_{ij}\right|}\right\} =
+  \underset{1 \leq i \leq n}{max}\left\{\left|d_i\right|\sum\limits_{j=1}^{n}{\left|a_{ij}\right|}\right\} = \\
+  &\underset{1 \leq i \leq n}{max}\left\{\left|d_i\right|\right\} = \|D\|_\infty = 
+  \|\left(DA\right)^{-1}\|_\infty = \underset{x \neq 0}{max}\left\{\frac{\|A^{-1}D^{-1}x\|_\infty}{\|x\|_\infty}\right\} = \\
+  &\underset{y \neq 0}{max}\left\{\frac{\|A^{-1}y\|_\infty}{\|Dy\|_\infty}\right\} \geq \underset{y \neq 0}{max}\left\{\frac{\|A^{-1}y\|_\infty}{\|D\|_\infty\|y\|_\infty}   \right\} \\
+  &\Rightarrow \kappa_\infty\left(DA\right) = \|DA\|_\infty \|\left(DA\right)^{-1}\|_\infty \geq \\
+  &\hcancel{$\|D\|_\infty$} \|A^{-1}\|_\infty \hcancel{$\|D\|_{\infty}^{-1}$} = \kappa_\infty\left(A\right)
+\end{aligned}
+\end{equation*}
+
+\subsubsection{Residuum}
+Sei $\widetilde
+{x}$ eine Näherungslösung von GLS
+\begin{equation*}
+Ax=b
+\end{equation*}
+
+Dann bezeichnet man
+\begin{equation*}
+r \coloneqq r_{\widetilde{x}} \coloneqq A\widetilde{x} - b
+\end{equation*}
+
+als Residuum.
+\textbf{ACHTUNG:}
+\begin{itemize}
+  \item{Residuum ist nicht der Fehler von $\widetilde{x}$}
+	\item{Für die exakte Lösung $x$ gilt:}
+\end{itemize}
+\begin{equation*}
+r_x = Ax - b = 0
+\end{equation*}
+
+Frage: Ist $r_{\widetilde{x}}$ ein guter Indikator dafür, wie genau $\widetilde{x}$ ist?
+Antw.: Nein, außer Matrix ist gut Knoditioniert!
+
+\textbf{Satz:}
+Sei $a \in \mathbb{K}^{n \times n}$ invertierbar und $\widetilde{x}$ Näherungslösung von
+\begin{equation*}
+\begin{aligned}
+Ax = b \hspace{2cm} b \neq 0
+\end{aligned}
+\end{equation*}
+Dann gilt:
+\begin{equation*}
+\frac{\|x - \widetilde{x}\|}{\|x\|} \leq \kappa\left(A\right) \frac{\|r\|}{\|b\|}
+\end{equation*}
+\textbf{Beweis:}
+\begin{equation*}
+\begin{aligned}
+r &= A\widetilde{x} - b = A\widetilde{x} - Ax = A\left(\widetilde{x} - x\right) \\
+&\Rightarrow \widetilde{x} - x = A^{-1}r \\
+&\|\widetilde{x} - x\| = \|A^{-1}r\| \leq \|A^{-1}\|\|r\| \\
+&\|b\| = \|Ax\| \leq \|A\|\|x\| \\
+&\frac{1}{\|x\|} \leq \frac{\|A\|}{\|b\|}
+\end{aligned}
+\end{equation*}
+
+\subsection{Direkte Lösung von Linearen Gleichungssystemen (in n - Schritten exakte Lsg)}
+\subsubsection{Gauß - Algorithmus und LR - Zerlegung}
+Zunächst: &Voraussetzung das Gauß - Algorithmus ohne Zeilen verauschen druchführbar sei:
+
+\begin{equation*}
+  \begin{aligned}
+    Ax = b \\
+    &a_{11}^{\left(1\right)}x_1 + \ldots + a_{1n}^{\left(1\right)}x_n = b_1^{\left(1\right)}  \\
+    &\vdots                               \vdots                     = \vdots  \\
+    &a_{n1}^{\left(1\right)x_1 + \ldots + a_{nn}^{\left(1\right)}x_n = b_n^{\left(1\right)}  \\
+  \end{aligned}
+\end{equation*}
+
+1.Schritt: Subtrahiere das $\left(\frac{a_{i1}}{a_{11}}\right) =: L_{i1}$ - fache der 1. Zeile
+von der i-ten Zeile, i = 2, ..., n
+\begin{equation*}
+  \begin{aligned}
+    &a_{11}^{\left(1\right)}x_1 + \ldots + a_{1n}^{\left(1\right)}x_n = b_1^{\left(1\right)}  \\
+		&\vdots                    +a_{22}^{\left(2\right)}x_2 \ldots + a_{1n}^{\left(2\right)}x_n = b_2^{\left(2\right)}  \\
+    &\vdots                               \vdots                     = \vdots  \\
+    &\ldots  + a_{2n}^{\left(2\right)}x_2 + a_{nn}^{\left(2\right)}x_n = b_n^{\left(2\right)} 
+		%
+		%
+		A^{\left(2\right)} = L-1A^{\left(1\right)}, wobei dieses bleibt gleich
+    L_1 = \begin{pmatrix} 1 & \ldots &        &  \\ 
+		                -L_{21} & 1      & 0      &  \\
+					          \vdots	& 0      & \ddots &  \\
+										-L_{n1} & \ldots &        & 1
+					\end{pmatrix}
+					
+		s. Schritt: A^{\left(s\right)} = L_{s-1}A^{\left(s-1\right)} \\
+		A_s = \begin{pmatrix}
+		      a_{11}^{\left(1\right)} & a_{12}^{\left(1\right)} & \ldots & \ldots & a_{1n}^{\left(1\right)} \\
+					\vdots                  & a_{22}^{\left(2\right)} & \ldots & \ldots & a_{2n}^{\left(2\right)} \\
+					\vdots                  & \ddots                  & \ldots & \ldtos & \vdots                  \\
+					                        &                         & a_{ss}^{\left(s\right)} & \ldots  & a_{sn}^{\left(s\right)} \\
+																	&                         & a_{ns}^{\left(s\right)} & \ldots  & a_{nn}^{\left(s\right)}                                 
+		      \end{pmatrix}
+					b = \begin{pmatrix}b_1^{\left(1\right)} \\ b_2^{\left(2\right)} \\ \vdots \\ b_s^{\left(s\right)} \\ b_n^{\left(s\right)}\end{pmatrix}
+					
+		L_s = \begin{pmatrix}
+		      1 &   &        &            &        &        & \\
+					  & 1 &        &            &        &        & \\
+						&   & \ddots &            &        &        & \\
+						&   &        & 1          &        &        & \\
+						&   &        & -L_{s+1,s} & \ddots &        & \\
+						&   &        & \vdots     &        & \ddots & \\
+						&   &        & -L_{ns}    &        &        & 1
+		      \end{pmatrix}
+					
+		L_{i,s} = \frac{a_{i,s}^{\left(s\right)}}{a_{s,s}^{\left(s\right)}    fuer i = s + 1, ..., n
+  \end{aligned}
+\end{equation*}
+
+Schritt n-1: $A^{\left(n\right)} = L_{n-1}A^{n-1}$
+Rechte obere
+
