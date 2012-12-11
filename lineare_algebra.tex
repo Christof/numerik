@@ -116,9 +116,11 @@ $\kappa_\infty\left(D_zA\right) \leq \kappa_\infty\left(DA\right)$ \hspace{2cm} 
 \textbf{Beweis:}
 Sei $A$ bereits äquilibriert, d.h.:
 \begin{equation*}
-  \sum\limits_{j=1}^{n}{\left|A\left[i,j\right]\right|} = 1 \hspace{2cm} fuer i = 1, .., n \\	\\
-	\Rightarrow \|A\|_\infty = 1 \\ \\
-	\Rightarrow \kappa_\infty\left(A\right) = \|A\|_\infty \|A^{-1}\|_\infty = \|A^{-1}\|_\infty
+  \begin{aligned}
+    \sum\limits_{j=1}^{n}{\left|A\left[i,j\right]\right|} = 1 \hspace{2cm} fuer i = 1, .., n \\
+	  \Rightarrow \|A\|_\infty = 1 \\
+	  \Rightarrow \kappa_\infty\left(A\right) = \|A\|_\infty \|A^{-1}\|_\infty = \|A^{-1}\|_\infty
+	\end{aligned}
 \end{equation*}
 
 Sei $D$ eine beliebige reguläre Diagonalmatrix
@@ -190,7 +192,7 @@ Zunächst: &Voraussetzung das Gauß - Algorithmus ohne Zeilen verauschen druchf�
     Ax = b \\
     &a_{11}^{\left(1\right)}x_1 + \ldots + a_{1n}^{\left(1\right)}x_n = b_1^{\left(1\right)}  \\
     &\vdots                               \vdots                     = \vdots  \\
-    &a_{n1}^{\left(1\right)x_1 + \ldots + a_{nn}^{\left(1\right)}x_n = b_n^{\left(1\right)}  \\
+    &a_{n1}^{(1)}x_1 + \ldots + a_{nn}^{(1)}x_n = b_n^{(1)}  \\
   \end{aligned}
 \end{equation*}
 
@@ -198,29 +200,29 @@ Zunächst: &Voraussetzung das Gauß - Algorithmus ohne Zeilen verauschen druchf�
 von der i-ten Zeile, i = 2, ..., n
 \begin{equation*}
   \begin{aligned}
-    &a_{11}^{\left(1\right)}x_1 + \ldots + a_{1n}^{\left(1\right)}x_n = b_1^{\left(1\right)}  \\
-		&\vdots                    +a_{22}^{\left(2\right)}x_2 \ldots + a_{1n}^{\left(2\right)}x_n = b_2^{\left(2\right)}  \\
+    &a_{11}^{(1)}x_1 + \ldots + a_{1n}^{(1)}x_n = b_1^{(1)}  \\
+		&\vdots                    +a_{22}^{(2)}x_2 \ldots + a_{1n}^{(2)}x_n = b_2^{(2)}  \\
     &\vdots                               \vdots                     = \vdots  \\
-    &\ldots  + a_{2n}^{\left(2\right)}x_2 + a_{nn}^{\left(2\right)}x_n = b_n^{\left(2\right)} 
+    &\ldots  + a_{2n}^{(2)}x_2 + a_{nn}^{(2)}x_n = b_n^{(2)} 
 		%
 		%
-		A^{\left(2\right)} = L-1A^{\left(1\right)}, wobei dieses bleibt gleich
+		A^{(2)} = L-1A^{(1)}, wobei dieses bleibt gleich
     L_1 = \begin{pmatrix} 1 & \ldots &        &  \\ 
 		                -L_{21} & 1      & 0      &  \\
 					          \vdots	& 0      & \ddots &  \\
 										-L_{n1} & \ldots &        & 1
 					\end{pmatrix}
-					
+					%
 		s. Schritt: A^{\left(s\right)} = L_{s-1}A^{\left(s-1\right)} \\
 		A_s = \begin{pmatrix}
 		      a_{11}^{\left(1\right)} & a_{12}^{\left(1\right)} & \ldots & \ldots & a_{1n}^{\left(1\right)} \\
 					\vdots                  & a_{22}^{\left(2\right)} & \ldots & \ldots & a_{2n}^{\left(2\right)} \\
-					\vdots                  & \ddots                  & \ldots & \ldtos & \vdots                  \\
+					\vdots                  & \ddots                  & \ldots & \ldots & \vdots                  \\
 					                        &                         & a_{ss}^{\left(s\right)} & \ldots  & a_{sn}^{\left(s\right)} \\
 																	&                         & a_{ns}^{\left(s\right)} & \ldots  & a_{nn}^{\left(s\right)}                                 
 		      \end{pmatrix}
 					b = \begin{pmatrix}b_1^{\left(1\right)} \\ b_2^{\left(2\right)} \\ \vdots \\ b_s^{\left(s\right)} \\ b_n^{\left(s\right)}\end{pmatrix}
-					
+					%
 		L_s = \begin{pmatrix}
 		      1 &   &        &            &        &        & \\
 					  & 1 &        &            &        &        & \\
@@ -230,11 +232,64 @@ von der i-ten Zeile, i = 2, ..., n
 						&   &        & \vdots     &        & \ddots & \\
 						&   &        & -L_{ns}    &        &        & 1
 		      \end{pmatrix}
-					
-		L_{i,s} = \frac{a_{i,s}^{\left(s\right)}}{a_{s,s}^{\left(s\right)}    fuer i = s + 1, ..., n
+					%%
+		L_{i,s} = \frac{a_{i,s}^{(s)}}{a_{s,s}^{(s)}}    fuer i = s + 1, ..., n
   \end{aligned}
 \end{equation*}
 
 Schritt n-1: $A^{\left(n\right)} = L_{n-1}A^{n-1}$
 Rechte obere
+$\Delta$-Matrix
 
+D.h.: 
+\begin{equation*}
+  \begin{aligned}
+A = A^{(1)} \rightarrow A^{(2)} = L_1A^{(1)} \rightarrow A^{(3)} = L_2A^{(2)} \ldots \rightarrow A^{(n)} = L_{n-1}A^{(n-1)} \\
+A^{(3)} = L_2L_1A^{(1)}
+  \end{aligned}
+\end{equation*}
+bzw.
+\begin{equation*}
+  \begin{aligned}
+    R = A^{(n)} = L_{n-1} \ldots L_1 A  \\
+		(L_{n-1}, \ldots, L_1)^{-1}R = A  \\
+		\underbrace{(L_1^{-1} \cdot \ldots \cdot L_{n-1}^{-1})}{=:L}R = A  \\
+%		=: L  und  \\
+		L = \begin{pmatrix}
+		    1      &        &        &  \\
+				L_{21} & \ddots & 0      &  \\
+				\vdots &        & \ddots &  \\
+				L_{n1} & \ldots & L_{n\left(n-1\right)} & 1
+		    \end{pmatrix}
+	\end{aligned}
+\end{equation*}
+
+\textbf{Beweis:}
+Lässt sich über nachrechnen leicht überprüfen
+
+\textbf{LR = A} % Todo: sollte in einer Box sein!
+Algorithmus (Gauß a. - ohne Zeilen vertauschen)
+\begin{equation*}
+  for s = 1, .., n-1  \\
+	  for i = s+1, ..., n  \\
+		  L_{is} = \frac{a_{is}}{a_{ss}^{\left(s\right)}}  \\
+			b_i^{\left(s+1\right)} = b_i{\left(s\right)} - L_{is}b_s^{\left(s\right)}
+			[a_{i, s+1}^{(s+1)} \ldots a_{i,n}^{(s+1)}] = [a_{i, s+1}^{(s)} \ldots a_{i,n}^{(s)}] - L_{i,s}[a_{s,s+1}^{(s)} \ldots a_{s,n}^{(s)}]
+		end
+	end
+\end{equation*}
+%
+\textbf{Satz:}
+Für den Gauß - Algorithmus sind $\frac{2}{3}n^3 + \mathcal O(n^2)$ Arithmetische Operationen erforderlich.
+
+\textbf{Beweis:}
+Schritt s: (s = 1, .., n-1)
+\begin{equation*}
+  \begin{aligned}
+	  : n-s [s+1, s+2, \ldots, s+n - s] \\
+		\cdot n-s + (n-s)(n-s) = n^2 - 2ns +s^2 \\
+		- n-s + (n-s)(n-s) \\
+		\hline
+		\underbrace{2 \cdot \sum\limits_{s=1}^{n-1}{s^2}}{2 \frac{(n-1)n(2n-1)}{6}}+\underbrace{\sum\limits_{s=1}^{n-1}{s}}_{3\frac{(n-1)n}{2}}
+	\end{aligned}
+\end{equation*}
