@@ -18,6 +18,8 @@
 
 \usepackage{color}
 
+\usepackage{tikz}
+
 \definecolor{rot}{cmyk}{.4,1,1,0}   % hellroter Text
 
 %befehl damit tag in align umgebung mit klammer über zwei zeilen möglich ist
@@ -45,6 +47,13 @@
 \newcommand{\sumizn}[1]{\sum\limits_{i=0}^{n}{#1}}
 \newcommand{\xztoxn}{x_0,\,\ldots,\,x_n}
 
+\newcommand{\hcancel}[1]{%
+    \tikz[baseline=(tocancel.base)]{
+        \node[inner sep=0pt,outer sep=0pt] (tocancel) {#1};
+        \draw[red] (tocancel.south west) -- (tocancel.north east);
+    }%
+}%
+
 
 
 % workaround damit zeilenumbruch nach paragraph erfolgt
@@ -58,16 +67,16 @@
 \author{A. Schwarzl, C. Sirk}
 \maketitle
 
-\tableofcontents
+%\tableofcontents
 
 \include{einfuehrung}
 \include{approximation}
 \include{integration}
 \include{lineare_algebra}
-\include{nichtlineare_gleichungen}
-\include{dgl}
-\section{Übungen}
-\include{uebungen/uebung1}
-\include{uebungen/uebung3}
+%\include{nichtlineare_gleichungen}
+%\include{dgl}
+%\section{Übungen}
+%\include{uebungen/uebung1}
+%\include{uebungen/uebung3}
 
 \end{document}
