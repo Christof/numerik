@@ -62,8 +62,8 @@ Sei $A \in \mathbb{K}^{m \times n}$. Dann gilt:
 Berechnung von $\kappa_2\left(A\right)$
 \begin{equation*}
   \begin{aligned}
-    \kappa_2(A) = \|A\|_2 \|A^{-1}\|_2 = &\sqrt{\lambda_{max}\left(A^*A\right)} \cdot \frac{1}{\sqrt{\lambda_{min}\left(A^*A\right)}} //
-    & \frac{\sigma_1\left(A\right)}{\sigma_n\left(A\right)}
+    \kappa_2(A) = \|A\|_2 \|A^{-1}\|_2 = &\sqrt{\lambda_{max}\left(A^*A\right)} \cdot \frac{1}{\sqrt{\lambda_{min}\left(A^*A\right)}} \\
+    = &\frac{\sigma_1\left(A\right)}{\sigma_n\left(A\right)}
   \end{aligned}
 \end{equation*}
 Für symmetrische und positiv definite $\frac{\sigma_1\left(A\right)}{\sigma_n\left(A\right)}$ Matrizen:
@@ -72,9 +72,7 @@ Für symmetrische und positiv definite $\frac{\sigma_1\left(A\right)}{\sigma_n\l
 \end{equation*}
 
 Bemerkung: Man beachte, dass in diesem Abschnitt die Konditionszahl einer Matrix $A$ definiert wurde und nicht die des Problems:
-
 $Input\left(A,B\right) \rightarrow Output\left(A^{-1}b\right)$
-
 Letzteres kann über den Ansatz in Abschnitt  berechnet werden und hängt eng mit $\kappa_A$ zusammen.
 
 \textbf{Zeilenskalierung}
@@ -105,7 +103,7 @@ Definiere: Diagonalmatrix:
 Dann gilt:
 \begin{equation*}
   \begin{aligned}
-    &\sum\limits_{j=1}^{n}{\left|D_zA\left[i,j\right]\right|} = 1  \hspace{2cm} fuer 1, ..., n \\
+    &\sum\limits_{j=1}^{n}{\left|D_zA\left[i,j\right]\right|} = 1  \hspace{2cm} \text{für } 1, \ldots, n \\
     &\Rightarrow \|D_zA\|_\infty = 1
 		\end{aligned}
 \end{equation*}
@@ -115,13 +113,11 @@ $\kappa_\infty\left(D_zA\right) \leq \kappa_\infty\left(DA\right)$ \hspace{2cm} 
 
 \textbf{Beweis:}
 Sei $A$ bereits äquilibriert, d.h.:
-\begin{equation*}
-  \begin{aligned}
-    \sum\limits_{j=1}^{n}{\left|A\left[i,j\right]\right|} = 1 \hspace{2cm} fuer i = 1, .., n \\
-	  \Rightarrow \|A\|_\infty = 1 \\
-	  \Rightarrow \kappa_\infty\left(A\right) = \|A\|_\infty \|A^{-1}\|_\infty = \|A^{-1}\|_\infty
-	\end{aligned}
-\end{equation*}
+\begin{align*}
+    &\sum\limits_{j=1}^{n}{\left|A\left[i,j\right]\right|} = 1 \hspace{2cm} \text{für } i = 1, \dots, n \\
+	  &\Rightarrow \|A\|_\infty = 1 \\
+	  &\Rightarrow \kappa_\infty\left(A\right) = \|A\|_\infty \|A^{-1}\|_\infty = \|A^{-1}\|_\infty
+\end{align*}
 
 Sei $D$ eine beliebige reguläre Diagonalmatrix
 \begin{equation*}
@@ -142,7 +138,6 @@ Sei $\widetilde
 \begin{equation*}
 Ax=b
 \end{equation*}
-
 Dann bezeichnet man
 \begin{equation*}
 r \coloneqq r_{\widetilde{x}} \coloneqq A\widetilde{x} - b
@@ -185,7 +180,7 @@ r &= A\widetilde{x} - b = A\widetilde{x} - Ax = A\left(\widetilde{x} - x\right) 
 
 \subsection{Direkte Lösung von Linearen Gleichungssystemen (in n - Schritten exakte Lsg)}
 \subsubsection{Gauß - Algorithmus und LR - Zerlegung}
-Zunächst: &Voraussetzung das Gauß - Algorithmus ohne Zeilen verauschen druchführbar sei:
+Zunächst: Voraussetzung das Gauß - Algorithmus ohne Zeilen verauschen druchführbar sei:
 
 \begin{equation*}
   \begin{aligned}
@@ -197,32 +192,37 @@ Zunächst: &Voraussetzung das Gauß - Algorithmus ohne Zeilen verauschen druchf�
 \end{equation*}
 
 1.Schritt: Subtrahiere das $\left(\frac{a_{i1}}{a_{11}}\right) =: L_{i1}$ - fache der 1. Zeile
-von der i-ten Zeile, i = 2, ..., n
-\begin{equation*}
-  \begin{aligned}
-    &a_{11}^{(1)}x_1 + \ldots + a_{1n}^{(1)}x_n = b_1^{(1)}  \\
-		&\vdots                    +a_{22}^{(2)}x_2 \ldots + a_{1n}^{(2)}x_n = b_2^{(2)}  \\
-    &\vdots                               \vdots                     = \vdots  \\
-    &\ldots  + a_{2n}^{(2)}x_2 + a_{nn}^{(2)}x_n = b_n^{(2)} 
-		%
-		%
-		A^{(2)} = L-1A^{(1)}, wobei dieses bleibt gleich
+von der i-ten Zeile, i = 2, ..., n.
+\begin{align*}
+    a_{11}^{(1)}x_1 + \ldots + a_{1n}^{(1)}x_n = b_1^{(1)}  \\
+		\vdots                    +a_{22}^{(2)}x_2 \ldots + a_{1n}^{(2)}x_n = b_2^{(2)}  \\
+    \vdots                               \vdots                     = \vdots  \\
+    \ldots  + a_{2n}^{(2)}x_2 + a_{nn}^{(2)}x_n = b_n^{(2)} \\
+\end{align*}
+\begin{align*}
+    A^{(2)} = L_1A^{(1)}, \text{wobei dieses bleibt gleich} \\
+\end{align*}
+\begin{align*}
     L_1 = \begin{pmatrix} 1 & \ldots &        &  \\ 
 		                -L_{21} & 1      & 0      &  \\
 					          \vdots	& 0      & \ddots &  \\
 										-L_{n1} & \ldots &        & 1
 					\end{pmatrix}
-					%
+\end{align*}
+\begin{align*}
 		s. Schritt: A^{\left(s\right)} = L_{s-1}A^{\left(s-1\right)} \\
+\end{align*}
+\begin{align*}
 		A_s = \begin{pmatrix}
 		      a_{11}^{\left(1\right)} & a_{12}^{\left(1\right)} & \ldots & \ldots & a_{1n}^{\left(1\right)} \\
 					\vdots                  & a_{22}^{\left(2\right)} & \ldots & \ldots & a_{2n}^{\left(2\right)} \\
 					\vdots                  & \ddots                  & \ldots & \ldots & \vdots                  \\
 					                        &                         & a_{ss}^{\left(s\right)} & \ldots  & a_{sn}^{\left(s\right)} \\
-																	&                         & a_{ns}^{\left(s\right)} & \ldots  & a_{nn}^{\left(s\right)}                                 
+																	&                         & a_{ns}^{\left(s\right)} & \ldots  & a_{nn}^{\left(s\right)}
 		      \end{pmatrix}
-					b = \begin{pmatrix}b_1^{\left(1\right)} \\ b_2^{\left(2\right)} \\ \vdots \\ b_s^{\left(s\right)} \\ b_n^{\left(s\right)}\end{pmatrix}
-					%
+					b = \begin{pmatrix}b_1^{\left(1\right)} \\ b_2^{\left(2\right)} \\ \vdots \\ b_s^{\left(s\right)} \\ b_n^{\left(s\right)}\end{pmatrix}\\
+\end{align*}
+\begin{align*}
 		L_s = \begin{pmatrix}
 		      1 &   &        &            &        &        & \\
 					  & 1 &        &            &        &        & \\
@@ -232,10 +232,10 @@ von der i-ten Zeile, i = 2, ..., n
 						&   &        & \vdots     &        & \ddots & \\
 						&   &        & -L_{ns}    &        &        & 1
 		      \end{pmatrix}
-					%%
-		L_{i,s} = \frac{a_{i,s}^{(s)}}{a_{s,s}^{(s)}}    fuer i = s + 1, ..., n
-  \end{aligned}
-\end{equation*}
+\end{align*}
+\begin{align*}
+  L_{i,s} = \frac{a_{i,s}^{(s)}}{a_{s,s}^{(s)}} \text{für } i = s + 1, \ldots, n
+\end{align*}
 
 Schritt n-1: $A^{\left(n\right)} = L_{n-1}A^{n-1}$
 Rechte obere
