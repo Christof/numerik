@@ -1,0 +1,50 @@
+\section{Bestapproximation (BA)}
+Aufgabenstellung:\\
+Gegeben:
+\begin{itemize}
+  \item Element $f \in H$ (z.B. Funktion in $C[a,b]$)
+  \item Raum $U$ für die Approximation (z.B. $\Pi_n$)
+  \item Norm $||.||$
+\end{itemize}
+Gesucht:
+Bestapproximation $g \in U$ von $f$ bezüglich $||.||$, so dass 
+$||f - g|| \leq ||f - u||\,\forall\,u \in U$
+
+\subsection{BA bezgl. einer durch ein Skalarprodukt induzierten Norm}
+\para{Satz} Sei $H$ ein Vektorraum und $<.,.>$ ein Skalarprodukt auf $H$, das die
+Norm $||.||$ induziere. Weiters sei $U$ ein endlichdimensionaler Unterraum von $H$.
+Dann gilt:
+\begin{enumerate}[(a)]
+  \item $g \in U$ ist BA von $f$ bzgl. 
+    $||.||\,\Longleftrightarrow\,<f - g, u> = 0\,\forall\,u \in U$
+    (Orthogonalitätseigenschaft)
+  \item $\forall f \in H$ gibt es genau eine BA $g \in U$ bzgl. $||.||$
+\end{enumerate}
+Beweis: a) Einsetzen und Umformen
+\missingfigure{Zeichnung mit Ebene und Projektion}
+Beweis: b) (Wir führen den Bewis für $\mathbb{K} = \mathbb{R}$;
+Analoger Beweis für $\mathbb{K} = \mathbb{C}$
+Konstruktionsbeweis: Sei ${\phi_0,\,\cdots,\,\phi_n}$ eine Basis von $U$ und $f \in H$\\
+Ansatz: $g = \sumzn{j}{a_j \phi_j}$, wobei wir zeigen, dass $\ztoxn{a}$
+eindeutig bestimmt sind, so dass $g$ BA von $f$ bzgl. $||.||$ ist.
+Teil a)
+\begin{align*}
+  g \in U \text{ ist BA von } f &\Longleftrightarrow <f - g, u> = 0\, \forall\, u \in U\\
+  &\Longleftrightarrow\\
+  <f-g, \phi_i> &= 0\, \forall\, i=0,\,\ldots,\,n\\
+  &\Longleftrightarrow\\
+  <g, \phi_i> &= <f, \phi_i>\, \forall\, i=0,\,\ldots,\,n\\
+  \sumzn{j}{a_j<\phi_j,\phi_i>} &= <f, \phi_i>\, \forall\, i=0,\,\ldots,\,n\\
+  a_0<\phi_0,\phi_0> + a_1<\phi_1,\phi_0> + \ldots + a_n<\phi_n,\phi_0> &= <f,\phi_0>\\
+  a_0<\phi_0,\phi_1> + a_1<\phi_1,\phi_1> + \ldots + a_n<\phi_n,\phi_1> &= <f,\phi_1>\\
+  \ldots\\
+  a_0<\phi_0,\phi_n> + a_1<\phi_1,\phi_n> + \ldots + a_n<\phi_n,\phi_n> &= <f,\phi_n>\\
+  &\Longleftrightarrow\\
+  M\underline{a} &= \underline{f}
+\end{align*}
+\begin{align*}
+  M[i,j] &= <\phi_j, \phi_i>\; i,j = 0,\,1,\,\ldots,\,n\\
+  \underline{f}[i] &= <f, \phi_i>\; i = 0,\,1,\,\ldots,\,n\\
+  \underline{a}[i] &= a_i\; i = 0,\,1,\,\ldots,\,n\\
+\end{align*}
+M nennt man Gramsche Matrix zu $\ztoxn{\phi}$
