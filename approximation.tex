@@ -1,11 +1,15 @@
-%\section{Approximation von Funktionen}
-% hat er es nur umbenannt?, ja glaub schon
 \section{Interpolation}
 Aufgabenstellung: Aus einer festgelegten Menge von Funktionen $M_n$ 
 bestimme man eine Funktion, die durch die gegebenen Punkte
-$(x_0, f_0), (x_1, f_1), \cdots, (x_n, f_n) \in \mathbb{R}^2$ verläuft.
+$(x_0, f_0), (x_1, f_1), \ldots, (x_n, f_n) \in \mathbb{R}^2$ verläuft.
 
-\missingfigure{Funktion mit Stützstellen}
+\begin{figure}[htbp]
+  \centering
+  \includegraphics[width=0.7\textwidth]{figures/interpolation.png}
+  \caption{Interpolation: Stützstellen sind in rot markiert}
+  \label{fig:interpolation}
+\end{figure}
+
 Die Wahl von $M_n$ ist abhängig von der Problemstellung:
 \begin{itemize}
   \item $\Pi_n$: Menge der Polynome mit Grad $\leq$ n
