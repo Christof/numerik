@@ -154,17 +154,17 @@ sich Eingangsfehler erheblich verstärken. $\Rightarrow$ \large{\textcolor{rot}{
 signifikanter Stellen}}}
 
 \para{Fehlerverstärkung bei Multiplikation}
-Seien $ a, b \in \mathbb{R} $ gegeben und
+Seien $ a, b \in \mathbb{R}\setminus\{0\} $ gegeben und
 $ \tilde{a} = rd(a) = \frac{a}{1 + \delta_{a}} $ mit $ | \delta_{a} | \leq eps $ sowie
 $ \tilde{b} = rd(b) = \frac{b}{1 + \delta_{b}} $ mit $ | \delta_{b} | \leq eps $ \\
 Relative Fehler
-\begin{equation*}
+\begin{gather*}
 \left| \frac{\tilde{a}\tilde{b} - a b}{a b} \right| =
-\left| \frac{\frac{ab}{(1 + \delta_{a})(1 + \delta_{b})} - ab}{ab}\right| =
+\left| \frac{\frac{ab}{(1 + \delta_{a})(1 + \delta_{b})} - ab}{ab}\right| = \\
 \left| \frac{ab - ab(1 + \delta_{a})(1 + \delta_{b})}{ab(1 + \delta_{a})(1 + \delta_{b})} \right| =
 \left| \frac{ab(\delta_{a} + \delta_{b} + \delta_{a}\delta_{b})}{ab(1 + \delta_{a})(1 + \delta_{b})} \right| \leq
 \frac{3eps}{1 - 3eps} \leq 4eps 
-\end{equation*}
+\end{gather*}
 $\Rightarrow$ Multiplikation führt nicht zu einer wesentlichen Fehlerverstärkung.
 Dasselbe lässt sich auch für die Division zeigen.
 
@@ -180,8 +180,8 @@ Definition: Seien $f,g: \mathbb{R} \to \mathbb{R}$
     Es gilt $c > 0$ und $\delta > 0$, so dass für alle $x \in \{|y - a| < \delta\}: |f(x)| \leq c|g(x)| \Leftrightarrow$ in etwa ähnliches Verhalten
   \item $f(x) = \LandauO(g(x))$ für $x \to \infty :\Leftrightarrow$
     Es gilt $c > 0$ und ein $x_0 > 0$, so dass für alle $x > x_0:\,|f(x)| \leq c|g(x)| \Leftrightarrow$ $f(x)$ wächst nicht schneller als $g(x)$
-  \item $f(x) = \Landauo(g(x))$ für $x \to \Box (\in \mathbb{R} \cup \{\pm \infty\} :\Leftrightarrow
-    \lim_{x \to \Box}{|\frac{f(x)}{g(x)}|} = 0$
+  \item $f(x) = o(g(x))$ für $x \to \Box \in \mathbb{R} \cup \{\pm \infty\} :\Leftrightarrow
+    \underset{x \to \Box}{\lim}|\frac{f(x)}{g(x)}| = 0$
 \end{enumerate}
 
 \example{Beispiel:}
@@ -190,7 +190,7 @@ Definition: Seien $f,g: \mathbb{R} \to \mathbb{R}$
   \frac{1}{x} + \frac{1}{x^2} &\leq \frac{1}{x} + \frac{1}{x} = \underbrace{2}_c \frac{1}{x} \text{ für } x \geq \underbrace{1}_{x_0}
 \end{align*}
 \begin{align*}
-  x^{\alpha} = \Landauo(x^{\alpha + 1}) \text{ für } x \to \infty \text{ , denn }
+  x^{\alpha} = o(x^{\alpha + 1}) \text{ für } x \to \infty \text{ , denn }
   \frac{x^{\alpha}}{x^{\alpha + 1}} = \frac{1}{x} \xrightarrow[x\to\,\infty]{}0
 \end{align*}
 \textcolor{rot}{VORSICHT}: Das Gleichheitszeichen ist bei Verwendung der Landau-Symbole rein symbolisch
@@ -251,7 +251,7 @@ Die Nullstellen der quadratischen Gleichung $\lambda^2 - 2x\lambda + 1 = 0$ sind
 $\lambda_1 = x +\sqrt{x^2 - 1} \;\;\; \lambda_2 = x - \sqrt{x^2 - 1}$ \\
 Konditionszahl für $\lambda_2 = H(x)$
 \begin{align*}
-  \kappa(H, x) = \left|\frac{x H^{\prime}(x)}{h(x)}\right| = 
+  \kappa(H, x) = \left|\frac{x H^{\prime}(x)}{H(x)}\right| = 
   \left|\frac{x[1 - \frac{1}{2}(x^2 - 1)^{-\frac{1}{2}} 2x]}{x - \sqrt{x^2 - 1}} \right| =
   \left|\frac{\frac{x(\sqrt{x^2 - 1} - x)}{\sqrt{x^2 - 1}}}{x - \sqrt{x^2 - 1}}\right| =
   \left|- \frac{x}{\sqrt{x^2 - 1}}\right|
