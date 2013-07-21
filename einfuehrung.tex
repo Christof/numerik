@@ -47,7 +47,7 @@ x = \sigma\,\cdot\,M\,\cdot\,\,b^e \hspace{0.5cm} \text{mit} \hspace{0.5cm} & \s
 \end{align*}
 
 \begin{align*}
-M = \sum^t_{k=1} d_k b^{-k} \hspace{0.5cm} \text{mit} \hspace{0.5cm} & d_1,\cdots,d_t\, \in\,\{0,1,\cdots,b-1\} && \text{Ziffern der Mantisse}\\
+M = \sum^t_{k=1} d_k b^{-k} \hspace{0.5cm} \text{mit} \hspace{0.5cm} & d_1,\ldots,d_t\, \in\,\{0,1,\ldots,b-1\} && \text{Ziffern der Mantisse}\\
 & t && \text{Mantissenlänge} \\
 & d_1 \neq 0 && \text{(Normalisierung)} \\
 & e_{min} \leq e \leq e_{max} && \text{Exponentenbereich}
@@ -55,7 +55,7 @@ M = \sum^t_{k=1} d_k b^{-k} \hspace{0.5cm} \text{mit} \hspace{0.5cm} & d_1,\cdot
 
 Schreibweise:
 \begin{equation*}
-x = \sigma\,(0.d_1d_2d_3\,\cdots\,d_t)b^e
+x = \sigma\,(0.d_1d_2d_3\,\ldots\,d_t)b^e
 \end{equation*}
 
 \para{Denormalisierte GPZen}
@@ -68,7 +68,7 @@ x = \sigma\,(0.d_1d_2d_3\,\cdots\,d_t)b^e
 
 \begin{align*}
 x_d = \sigma\,M\,b^{e_{min}} &\\
-M = \sum^t_{k=2} d_k b^{-k} \hspace{0.5cm} \text{mit} \hspace{0.5cm} & d_2,\cdots,d_t\, \in\,\{0,1,\cdots,b-1\} \\
+M = \sum^t_{k=2} d_k b^{-k} \hspace{0.5cm} \text{mit} \hspace{0.5cm} & d_2,\ldots,d_t\, \in\,\{0,1,\ldots,b-1\} \\
 & \text{keine Normierung} 
 \end{align*}
 
@@ -217,7 +217,7 @@ Fehlberbehafteter Input $x + \Delta x$ mit $\Delta x$ als Fehler
   \item Sei $f: I \in \mathbb{R} \to \mathbb{R}\,$ (n + 1)-mal stetig differenzierbar, dann gilt für
     $x, \Delta x \in I$: \\
     $f(x + \Delta x) = f(x) + \Delta x f^{\prime}(x) + 
-    \frac{(\Delta x)^2}{2!}f^{\prime\prime}(x) + \cdots + 
+    \frac{(\Delta x)^2}{2!}f^{\prime\prime}(x) + \ldots + 
     \frac{(\Delta x)^n}{n!}f^n(x)+
     \frac{(\Delta x)^{n + 1}}{(n + 1)!}f^{n + 1}(\zeta(x)) $ \\
     wobei $x \leq \zeta(x)\leq x + \Delta x$
