@@ -73,25 +73,25 @@ Beweis:
 \end{enumerate}
 
 % 17.10.2012
-Wh. Polynominterpolation
+%Wh. Polynominterpolation
 
-\begin{align*}
-\text{geg.} \hspace{0.5cm} & (x_0,f_0),\ldots\,,(x_n,f_n) \\
-\text{ges.} \hspace{0.5cm} & p_n \in \Pi_n:p_n(x_i)=f_i & \Rightarrow p_n(x) = f_0\,L_0+\ldots\,+f_n\,L_n(x) \hspace{1cm} (2.2)\\
-& & L_i(x)=\prod\limits_{i=0,i\neq\,j}^n \frac{x-x_j}{x_i-x_j}
-\end{align*}
+%\begin{align*}
+%\text{geg.} \hspace{0.5cm} & (x_0,f_0),\ldots\,,(x_n,f_n) \\
+%\text{ges.} \hspace{0.5cm} & p_n \in \Pi_n:p_n(x_i)=f_i & \Rightarrow p_n(x) = f_0\,L_0+\ldots\,+f_n\,L_n(x) \hspace{1cm} (2.2)\\
+%& & L_i(x)=\prod\limits_{i=0,i\neq\,j}^n \frac{x-x_j}{x_i-x_j}
+%\end{align*}
 
-\begin{equation*} 
-  L_i(x_k)
-	\left\{  
-  \begin{aligned} 
-   & i=k: 1 \\ 
-   & i\neq\,k: 0\\
-  \end{aligned} 
-	\right.
-\end{equation*} 
+%\begin{equation*} 
+  %L_i(x_k)
+	%\left\{  
+  %\begin{aligned} 
+   %& i=k: 1 \\ 
+   %& i\neq\,k: 0\\
+  %\end{aligned} 
+	%\right.
+%\end{equation*} 
 
-(2.2) nennt man Lagrange-Darstellung des Interpolationspolynoms [theoretisch von Interesse]
+(2.2) nennt man Lagrange-Darstellung des Interpolationspolynoms (IP) [theoretisch von Interesse]
 
 \subsubsection{Effiziente Berechnung und Auswertung des IPs (Newton-Darstellung)}
 \underline{Nachteile der Lagrange-Darstellung:}
@@ -102,7 +102,7 @@ Wh. Polynominterpolation
 \end{itemize}
 
 \para{Definition}
-Zu $x_0,\ldots\,x_n$ sind die Newton-Basispolynome definiert durch:\\
+Zu $x_0,\ldots,x_n$ sind die Newton-Basispolynome definiert durch:
 
 \begin{align*}
 &N_0 \equiv 1\\
