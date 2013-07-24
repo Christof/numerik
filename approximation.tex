@@ -181,7 +181,7 @@ b) Vollständige Induktion
 \end{enumerate}
 
 \para{Behauptung}
-Die Berechnung von $f[x_0], f[x_0,x_1],\ldots\,f[x_0,\ldots\,,x_n]$ benötigt $\frac{3n(n+1)}{2}$ Flops. \\
+Die Berechnung von $f[x_0], f[x_0,x_1],\ldots,f[x_0,\ldots\,,x_n]$ benötigt $\frac{3n(n+1)}{2}$ Flops. \\
 Beweis: Vollständige Induktion\\
 
 \begin{enumerate}
@@ -221,12 +221,12 @@ Auswertung von innen nach außen:
  b_{0} &:= a_{0} + x\,b_{1} 
 \end{aligned}
 \right\}
-\text{Aufwand:} \\
+\text{Aufwand: } \\
 \text{n Multiplikationen, n Additionen}
 \end{equation*}
 $\Rightarrow p_n(x) = b_0$\\
 
-Horner Schema zur Auswertung von $p_n$ in Newtondarstellung.\\
+Horner Schema zur Auswertung von $p_n$ in Newtondarstellung:\\
 \begin{align*}
  p_n(x) &= \underbrace{f[x_0]}_{a_0}\underbrace{N_0(x)}_{1} + \underbrace{f[x_0,x_1]}_{a_1}\underbrace{N_1(x)}_{(x-x_0)}
 + \underbrace{f[x_0,x_1,x_2]}_{a_2}\underbrace{N_2(x)}_{(x-x_0)(x-x_1)} + \ldots + \underbrace{f[x_0,\ldots\,,x_n]}_{a_n}\underbrace{N_n(x)}_{(x-x_0)\ldots(x-x_n)} \\
@@ -242,9 +242,8 @@ Horner Schema zur Auswertung von $p_n$ in Newtondarstellung.\\
  b_0 &:= a_0 + (x-x_0)b_1
 \end{aligned}
 \right\}
-\text{Aufwand: \\
-2n Additionen, \\
-n Multiplikationen}
+\text{Aufwand: }
+\text{2n Additionen, n Multiplikationen}
 \end{equation*}
 
 \subsubsection{Absolute Kondition der Polynominterpolation}
@@ -266,12 +265,17 @@ WH:
 Maß für dier Verstärkung des Eingangsfehlers:
 \begin{equation*}
   \maxxab \sumizn{|L_i(x)|} =: \Lambda_n(x_0, \dots, x_n) = \Lambda_n 
-  \text{Lebesque Konstante}
+  \text{ Lebesque Konstante}
 \end{equation*}
 Ändert sich nicht durch affin-lineare Transformation der Stützstellen.
 \example{Bsp:} Interpolation von $f(x) =\sin(2\pi x)$ in $[-1, 1]$ mit 21
 gleichverteilten Stützstellen. $p_{20}, p_{20}^\Delta$ mit Störung $\Delta_9 = -10^{-3}$
-\missingfigure{Sinus interpoliert}
+\begin{figure}[htbp]
+  \centering
+  \includegraphics[width=\textwidth]{figures/interpolation_stoerung.png}
+  \caption{Interpolation mit und ohne Störung.}
+  \label{fig:interpolation-stoerung}
+\end{figure}
 
 \subsubsection{Fehlerschätzung der Polynominterpolation}
 \para{Satz}
