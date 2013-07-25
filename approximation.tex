@@ -361,3 +361,15 @@ $\xztoxn$ interpoliert gilt:
   &\leq \underbrace{\maxxab |f(x) - q_n^*(x)|}_A \: \underbrace{\maxxab \sumizn|L_i(x)| + A}_{\Lambda_n}\\
   &= (1 + \Lambda_n) \: \maxxab |f(x) - q_n^*(x)|
 \end{align*}
+
+\subsection{Stückweise polynomiale Interpolation}
+Die Interpolation einer Funktion $f:[a,b] \longrightarrow \mathbb{R}$ durch Polynome hohen Grades
+kann aus verschiedenen Gründen problematisch sein (Prüfungsfrage: wo ist es nicht problematisch):
+\begin{itemize}
+  \item Fehlerschranken erfordern hohe Differenzierbarkeit von f
+  \item Konvergenzgeschwindigkeit $f-p_n$ für $n \rightarrow \infty$ ist unbefriedigend
+  \item Polynome hohen Grades können stark oszillieren (z.B.: grafische Anwendung $\leftarrow$ unerwünscht)
+\end{itemize}
+
+Alternativer Ansatz: Anstatt den Polynomgrad zu erhöhen, unterteile zuerst $[a,b]$ in Teilintervalle
+$\rightarrow$ Polynominterpolation niedriger Ordnung
