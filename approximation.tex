@@ -373,3 +373,45 @@ kann aus verschiedenen Gründen problematisch sein (Prüfungsfrage: wo ist es ni
 
 Alternativer Ansatz: Anstatt den Polynomgrad zu erhöhen, unterteile zuerst $[a,b]$ in Teilintervalle
 $\rightarrow$ Polynominterpolation niedriger Ordnung
+
+\subsubsection{Stückweise lineare Interpolation}
+Beispiel: siehe Abbildung~\ref{fig:interpolation}
+\para{Definition:}
+Sei $[a,b] \subset \mathbb{R}$ und $a=x_0<\ldots<x_n=b$ eine Unterteilung von $[a,b]$, dann bezeichnet
+\begin{align*}
+  S_L:=\{s_L:s_L\in C[a,b] \text{ und } s_L \text{ ist linear in } [x_{i-1},x_i],\,i=1,\ldots,n\}
+\end{align*}
+den Raum der stückweise linearen Funktionen bezüglich der Unterteilung $x_0,\ldots,x_n$.
+(S steht für Spline und L bedeutet dass es sich um ein lineares Spline handelt.)\\
+Basis?\\
+\para{Definition:}
+Sein $[a,b] \subset \mathbb{R}$ und $a=x_0<\ldots<x_n=b$. Die Hutfunktionen $\phi_0,\ldots,\phi_n$
+sind folgendermaßen definiert:
+\begin{align*}
+  \phi_{k=1,\ldots,n-1}(x) &= \begin{cases}
+    \frac{x-x_k{k-1}}{x_k-x_{k-1}} &\mbox{für } x\in[x_{k-1},x_k]\\
+    \frac{x_{k+1}-x}{x_{k+1}-x_k} &\mbox{für } x\in[x_k,x_{k+1}]\\
+    0 &\mbox{sonst}
+  \end{cases}\\
+  \phi_0(x) &= \begin{cases}
+    \frac{x_1-x}{x_1-x_0} &\mbox{für } x\in[x_0,x_1]\\
+    0 &\mbox{sonst}
+  \end{cases}\\
+  \phi_n(x) &= \begin{cases}
+    \frac{x-x_{n-1}}{x_n-x_{n-1}} &\mbox{für } x\in[x_{n-1},x_n]\\
+    0 &\box{sonst}
+  \end{cases}
+\end{align*}
+\missingfigure{Hutfunktion(en)}
+Man beachte:
+\begin{align*}
+  \phi_i(x_j) = \begin{cases}
+    1 &\mbox{für } i=j\\
+    0 &\mbox{für } i \neq j
+  \end{cases}
+\end{align*}
+Vorteil bei Verwendung von Hutfunktionen: Einfache Darstellung der stückweise
+linearen Interpolationsfunktion $s_L$ zu $(x_0,f_0),\ldots,(x_n,f_n)$:
+\begin{align*}
+  s_L(x)=\sum_{i=0}^n f_i \phi_i(x) \text{, denn } s_L(x_k)=\sum_{i=0}^n f_i \phi_i(x_k) = f_k \underbrace{\phi_k(x_k)}_{1} = f_k
+\end{align*}
