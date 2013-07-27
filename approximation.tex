@@ -432,3 +432,30 @@ Fehlerdarstellung für Polynominterpolation in $[x_{i-1},x_i]$:
   &\leq \frac{1}{8} \underset{\xi(x) \in [a,b]}{\max}|f''(\xi)| h_{max}^2\\
 \end{align*}
 \missingfigure{max letzter teil}
+\para{Einschub: Norm und Skalarprodukt}
+Norm dient als Maß um Fehler bzw. Genaugigkeit zu messen.\\
+\para{Definition:} Sei $V$ ein Vektorraum über $\mathbb{K}\,(\mathbb{K}=\mathbb{R}, \mathbb{K}=\mathbb{C})$.
+Eine Abbildung $||.||: V\rightarrow\mathbb{K}$ heißt Norm auf $V$, falls
+\begin{itemize}
+  \item $||v||>0\, \forall\, v \in V$ und aus $||v||=0 \Rightarrow v = 0$
+  \item $||\alpha v|| = |\alpha|\,||v||\, \forall\, \alpha \in \mathbb{K}\, \forall\, v \in V$
+  \item $||v+w|| \leq ||v|| + ||w||\, \forall\,v,w\in V$
+\end{itemize}
+Beispiel: $V=\mathbb{R}^n$\\
+\begin{itemize}
+  \item $||v||_2 = \sqrt{\sumion{[v_i]^2}}$ (Euklidische Norm)
+  \item $||v||_{\infty} = \underset{1 \leq i \leq n}{\max} |v_i|$ (Maximumsnorm)
+\end{itemize}
+Beispiel: $V=C[a,b]$
+\begin{itemize}
+  \item $||f||_{L2(a,b)} = \sqrt{\int_a^b |f(x|^2 \mathrm{d}x}$ (L2-Norm)
+  \item $||f||_{\infty} = \maxxab |f(x)|$
+\end{itemize}
+In unendlich dimensionalen Räumen (z.B $C[a,b], L2[a,b]$) sind Normen
+\large{\textcolor{rot}{\textbf{nicht}}} äquivalent, d.h. Konvergenz 
+in $||.||_1$ bedeutet nicht Konvergenz in $||.||_2$.\\
+Bemerkung: Der größtmögliche Raum auf dem die L2-Norm definiert ist, ist
+\begin{align*}
+  L2(a,b) := \{f:||f||_{L2(a,b)} < \infty\}
+\end{align*}
+$L2(a,b)$ ist Obermenge von $C[a,b]$.
