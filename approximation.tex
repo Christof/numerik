@@ -255,12 +255,12 @@ WH:
 \begin{align*}
   \maxxab |\alpha f(x) + \beta g(x)| &\leq
     \maxxab |\alpha| |f(x)| + \maxxab |\beta| |g(x)| \\
-  &\leq max\{|\alpha|, |\beta|\}\, \maxxab\{|f(x)|, |g(x)|\}
+  &\leq \max\{|\alpha|, |\beta|\}\, \maxxab\{|f(x)|, |g(x)|\}
 \end{align*}
 
 \begin{align*}
   \maxxab |p_n(x) - p^{\Delta}_n(x)| = \maxxab | \sumizn{|\Delta_i L_i(x)} | \leq
-  \underset{0 \leq i \leq n}{max}\,|\Delta_i| \maxxab \sumizn{\underbrace{|L_i(x)|}_{\geq 1}}
+  \underset{0 \leq i \leq n}{\max}\,|\Delta_i| \maxxab \sumizn{\underbrace{|L_i(x)|}_{\geq 1}}
 \end{align*}
 Maß für dier Verstärkung des Eingangsfehlers:
 \begin{equation*}
@@ -399,7 +399,7 @@ sind folgendermaßen definiert:
   \end{cases}\\
   \phi_n(x) &= \begin{cases}
     \frac{x-x_{n-1}}{x_n-x_{n-1}} &\mbox{für } x\in[x_{n-1},x_n]\\
-    0 &\box{sonst}
+    0 &\mbox{sonst}
   \end{cases}
 \end{align*}
 \missingfigure{Hutfunktion(en)}
@@ -415,3 +415,20 @@ linearen Interpolationsfunktion $s_L$ zu $(x_0,f_0),\ldots,(x_n,f_n)$:
 \begin{align*}
   s_L(x)=\sum_{i=0}^n f_i \phi_i(x) \text{, denn } s_L(x_k)=\sum_{i=0}^n f_i \phi_i(x_k) = f_k \underbrace{\phi_k(x_k)}_{1} = f_k
 \end{align*}
+\para{Satz:} Sei $f \in C^n[a,b]$ und $s_L$ die stückweise lineare Funktion, die f in den Knoten
+$a=x_0<\ldots<x_n=b$ interpoliert. Dann gilt:
+\begin{align*}
+  \maxxab |f(x)-s_L(x)| \leq \frac{1}{8}h_{max} \maxxab |f''(x)|
+\end{align*}
+wobei $h_{max} = \underset{1 \leq i \leq n}{\max} \underbrace{x_i - x_{i-1}}_{=:h_i}$
+\para{Beweis:} Betrachte $[x_{i-1},x_i]$:
+\missingfigure{TN7}
+Fehlerdarstellung für Polynominterpolation in $[x_{i-1},x_i]$:
+\begin{align*}
+  f(x)-s_L(x) &= \frac{1}{2!} f''(\xi(x))(x-x_{i-1})(x-x_i) \,\, \xi(x) \in [x_{i-1},x_i]\\
+  |f(x)-s_L(x)| &\leq \frac{1}{2} \underset{\xi(x) \in [x_{i-1},x_i]}{\max}|f''(\xi)| 
+  \underbrace{\underset{x \in [x_{i-1},x_i]}{\max}|(x-x_{i-1})(x-x_i)|}_{\frac{h_i}{2}\cdot\frac{h_i}{2}\leq\frac{1}{4}h_{max}^2}\\
+  &\leq \frac{1}{8} \underset{\xi(x) \in [x_{i-1},x_i]}{\max}|f''(\xi)| h_{max}^2\\
+  &\leq \frac{1}{8} \underset{\xi(x) \in [a,b]}{\max}|f''(\xi)| h_{max}^2\\
+\end{align*}
+\missingfigure{max letzter teil}
