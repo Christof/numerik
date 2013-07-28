@@ -459,3 +459,41 @@ Bemerkung: Der größtmögliche Raum auf dem die L2-Norm definiert ist, ist
   L2(a,b) := \{f:||f||_{L2(a,b)} < \infty\}
 \end{align*}
 $L2(a,b)$ ist Obermenge von $C[a,b]$.
+\para{Definition:} Sei $V$ ein Vektorraum über $\mathbb{K}$. Eine Abbildung $\langle.,.\rangle:V \times V \rightarrow \mathbb{R}$
+heißt Skalarprodukt, falls
+\begin{itemize}
+  \item $\langle v,v\rangle \geq 0\, \forall\, v \in V$ und $\langle v,v\rangle=0 \Leftrightarrow v=0$
+  \item $\langle v,w\rangle = \overline{\langle w,v \rangle}$
+  \item $\langle \alpha v + \beta w, z\rangle = \alpha \langle v,z \rangle + \beta \langle w, z \rangle\, \forall\,v,w,z\in V$
+\end{itemize}
+Beispiel: $V=\mathbb{R}^n$ Euklidisches Skalarprodukt
+\begin{align*}
+  \langle v,w \rangle_2 = \sumion v_i \cdot w_i
+\end{align*}
+\para{Satz:} Jedes Skalarprodukt induziert eine Norm durch
+\begin{align*}
+  ||v||=\sqrt{\langle v, v \rangle}
+\end{align*}
+Beispiel: $V=L_2(a,b)$: Die L2-Norm wird durch das L2-Skalarprodukt induziert:
+\begin{align*}
+  \langle f, g \rangle_{L2(a,b)} := \int_a^b f(x) \overline{g(x)} \mathrm{d}x
+\end{align*}
+Bemerkung: Es lässt sich zeigen, dass die Maximumsnorm
+nicht durch ein Skalarprodukt induziert wird.
+\para{Satz (Cauchy-Schwarzsche Ungleichung):} Sei $\inner{.}{.}$ ein Skalarprodukt in $V$
+und $||.||$ die induzierte Norm. Dann gilt:
+\begin{align*}
+  |\inner{v}{w}| \leq ||v||\,||w||\, \forall\, v,w \in V
+\end{align*}
+Beweis: Einsetzen, siehe Wikipedia.\\
+Beispiel: $L2(a,b)$
+\begin{align*}
+  |\int_a^b f(x)\overline{g(x)}\mathrm{d}x| \leq \sqrt{\int_a^b |f(x)|^2 \mathrm{d}x}\sqrt{\int_a^b |g(x)|^2 \mathrm{d}x}
+\end{align*}
+Unterschied zwischen $||.||_{\infty}$ und $||.||_{L2}$: Sei
+\begin{align*}
+  f:[a,b] & \longrightarrow \mathbb{R} \\
+  t &\mapsto f(t) \text{ Verbrauch}
+\end{align*}
+\missingfigure{Maximumnorm vs L2-Norm}
+L2-Norm als Maß für den ``Gesamtverbrauch''
