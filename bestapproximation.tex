@@ -47,4 +47,30 @@ Teil a)
     \underline{f}[i] &= \inner{f}{ \phi_i}\; i = 0,\,1,\,\ldots,\,n\\
   \underline{a}[i] &= a_i\; i = 0,\,1,\,\ldots,\,n\\
 \end{align*}
-M nennt man Gramsche Matrix zu $\ztoxn{\phi}$
+M nennt man Gramsche Matrix zu $\ztoxn{\phi}$\\
+Es bleibt z.z.: $M$ ist invertierbar.\\
+Sei $\underline{b} \in \mathbb{R}^{n+1} \setminus \{\underline{0}\}$
+\begin{align*}
+  (M \underline{b})[i] &= \sumzn{j}{\inner{\phi_j}{\phi_i}b_j} = \sumzn{j}{\inner{b_j\phi_j}{\phi_i}}\\
+  \inner{M \underline{b}}{\underline{b}}_2 &= \sumizn{\inner{\sumzn{j}{b_j\phi_j}}{\phi_i}b_i}\\
+  &= \inner{\underbrace{\sumzn{j}{b_j\phi_j}}_{a \in U}}{\underbrace{\sumizn{b_i\phi_i}}_{a \neq 0}}\\
+  &= \inner{a}{a} > 0
+\end{align*}
+$\Rightarrow\,M$ ist positiv definit (siehe später), d.h. alle Eigenwerte von $M$ sind positiv.\\
+$\Rightarrow\,M$ ist invertierbar.\\
+Praktische Vorgangsweise zur Bestimmung der BA $g \in U$ von $f$ bzgl. $\norm{.}$ bzw. $\inner{.}{.}$
+\begin{enumerate}
+  \item Bestimme geeignete Basis $\phi_0,\ldots,\phi_n \in U$
+  \item Ansatz: $g = \sumzn{j}{a_j\phi_j}$ wobei $a_0,\ldots,a_n$ bestimmt werden durch 
+    $\sumzn{j}{a_j\inner{\phi_j}{\phi_i}} = \inner{f}{\phi_i}\,i=0,\ldots,n$
+\end{enumerate}
+Eine explizite Darstellung der BA lässt sich angeben, wenn die gewählte Basis
+ein Orthogonalsystem für $U$ bildet, d.h.
+\begin{align*}
+  \inner{\phi_j}{\phi_i} \begin{cases}
+    = 0 &\mbox{für } j \neq i\\
+    \neq 0 &\mbox{für } j = i
+  \end{cases}
+\end{align*}
+$\Rightarrow \sumzn{j}{a_j\inner{\phi_j}{\phi_i}} = a_i \inner{\phi_i}{\phi_i} = \inner{f}{\phi_i}\,i=0,\ldots,n$\\
+$\Rightarrow g = \sumzn{j}{\frac{\inner{f}{\phi_j}}{\inner{\phi_j}{\phi_j}} \phi_j}$ TODO stimmt des so?
