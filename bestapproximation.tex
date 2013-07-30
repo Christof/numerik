@@ -74,3 +74,33 @@ ein Orthogonalsystem für $U$ bildet, d.h.
 \end{align*}
 $\Rightarrow \sumzn{j}{a_j\inner{\phi_j}{\phi_i}} = a_i \inner{\phi_i}{\phi_i} = \inner{f}{\phi_i}\,i=0,\ldots,n$\\
 $\Rightarrow g = \sumzn{j}{\frac{\inner{f}{\phi_j}}{\inner{\phi_j}{\phi_j}} \phi_j}$ TODO stimmt des so?
+
+\subsubsection{BA durch Polynome in der gewichteten L2-Norm}
+\para{Definition:} Sei $\omega: (a,b)\longrightarrow \mathbb{R}$ stetig, $\omega(x) > 0$ für $x \in (a,b)$.
+Weiters sei $\omega$ zumindest uneigentlich integrierbar auf $(a,b)$. $\omega(x)$ ist eine Gewichtsfunktion.
+\begin{align*}
+  \inner{f}{g}_\omega &:= \int_a^b \omega(x) f(x)g(x) \mathrm{d}x\\
+  \norm{f}_\omega &:= \sqrt{\int_a^b \omega(x) [f(x)]^2 \mathrm{d}x}
+\end{align*}
+(Wir betrachten nur reellwertige Funktionen)\\
+Aufgabenstellung:\\
+Gegegeben: $f \in C[a,b],\,n \in \mathbb{N}_0,\,\norm{.}_\omega$\\
+Gesucht: $p_n \in \Pi_n:\,\norm{p_n - f} \leq \norm{q_n - f}\,\forall\, q_n \in \Pi_n$
+
+Ansatz über Orthogonalpolynome $\rightarrow$ Gram-Schmidt Orthogonalisierungsverfahren
+für $\psi_0,\ldots,\psi_n$ Basis von $U$
+\begin{align*}
+  k &= 0 & \phi_0 &= \psi_0\\
+  k &\mapsto k+1 & \phi_{k+1} &= \psi_{k+1} - \sum\limits_{i=0}^{k}{\frac{\inner{\psi_{k+1}}{\phi_i}}{\inner{\phi_i}{\phi_i}}\phi_i}
+\end{align*}
+$\Rightarrow \phi_0,\ldots,\phi_n$ ist orthogonale Basis von $U$ (Einsetzen)\\
+``Günstigeres'' Orthogonalisierungsverfahren für Polynome über ``Dreiterm-Rekrsuion'', siehe z.B. Wikipedia.\\
+Beispiel: Orthogonalpolynome für $\omega \equiv 1$ und $[a,b]=[-1,1]$ sind die Legendre-Polynome:
+\begin{align*}
+  P_0(x)\equiv 0, \, P_1(x)=x, \, P_2(x)=x^2 - \frac{1}{3},\ldots
+\end{align*}
+Beispiel: Orthogonalpolynome bzg. $\omega(x)=\frac{1}{\sqrt{1-x^2}}$ und $[a,b]=[-1,1]$ sind die Tschebyscheff-Polynome.\\
+\para{Satz:} Sei $f \in C^k[a,b]\, k \in \mathbb{N}$ und $p_n \in \Pi_n$ sei die BA von f bzgl. der L2-Norm. Dann gilt:
+\begin{align*}
+  \norm{f-p_n}_{L2} \leq C(k,f)n^{-k} \underset{n \to \infty}{\longrightarrow} 0
+\end{align*}
