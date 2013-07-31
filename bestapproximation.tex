@@ -153,3 +153,18 @@ Beweis: Nicht schwierig, siehe Hanke\\
 Eine bessere Abschätzung bzgl. $h_{max}$ als in (b) ist nicht möglich.
 Auch durch Interpolation wird ein Fehler von $\LandauO(h^2_{max})$ erreicht,
 wenn $f'' \in L2(a,b)$ ist; siehe Hanke.
+
+\subsection{BA bzgl. einer nicht durch ein Skalarprodukt induzierten Norm}
+Beispiel: $\norm{.}_\infty$
+Für Approximationen in endlichdimensionalen Räumen gilt:
+\begin{itemize}
+  \item Es existiert eine BA, sie muss aber nicht eindeutig sein.
+  \item Es gibt i.A. keine geschlossene Darstellung einer BA.
+  \item Für $f \in C[a,b]$ und für $\norm{.}_\infty$ gilt:
+    \begin{itemize}
+      \item Es existiert eine eindeutig bestimmte BA in $\Pi_n$
+      \item Es gibt i.A keine geschlossene Darstellung. Iterativer Renz-Algorithmus liefert BA
+        $\rightarrow$ aufwändig und BA ist nur unwesentlich besser als die ``Tschebyscheff-Interpolation'',
+        siehe Kapitel~\ref{ch:interpolation}.
+    \end{itemize}
+\end{itemize}
