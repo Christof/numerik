@@ -104,3 +104,52 @@ Beispiel: Orthogonalpolynome bzg. $\omega(x)=\frac{1}{\sqrt{1-x^2}}$ und $[a,b]=
 \begin{align*}
   \norm{f-p_n}_{L2} \leq C(k,f)n^{-k} \underset{n \to \infty}{\longrightarrow} 0
 \end{align*}
+
+\subsubsection{BA durch stückweise lineare Funktionen bezüglich $\norm{.}_{L2}$}
+Gegeben: $f$ in $[a,b]$ und $a=x_0<x_1<\ldots<x_n=b$\\
+Gesucht: $s_L \in S_L$ BA von $f$ bzgl. $\norm{.}_{L2}$\\
+Anstatt einer Orthogonalbasis werden die Hutfunktionen $\phi_0,\ldots,\phi_n$ als Basis von $S_L$ verwendet.
+Die Hutfunktionen sind ``fast orthogonal'', denn
+\begin{align*}
+  \inner{\phi_j}{\phi_i}_{L2} = \int_a^b \phi_i(x)\phi_j(x)\mathrm{d}x\begin{cases}
+    =0 &\mbox{für } \abs{i-j} \geq 2\\
+    \neq0 &\mbox{für } \abs{i-j} \leq 1\\
+  \end{cases}
+\end{align*}
+\missingfigure{Hutfunktionen}
+Berechnung von $s_L$:\\
+Ansatz: $s_L(x)=\sumzn{j}{a_j \phi_j(x)}$, wobei $a_0,\ldots,a_n$ bestimmt werden durch:
+\begin{align*}
+  s_L \mbox{ ist BA von } f &\Leftrightarrow \inner{s_L - f}{\phi_i} = 0 \mbox{ für } i=0,\ldots,n\\
+  &\Leftrightarrow \sumzn{j}{a_j\inner{\phi_j}{\phi_i}} = \inner{f}{\phi_i}\mbox{ für } i=0,\ldots,n\\
+  &\Leftrightarrow M \underline{a} = \underline{f}
+\end{align*}
+$M$ (Gramsche Matrix, Massenmatrix) $\in \mathbb{R}^{(n+1)\times(n+1)}$
+\begin{align*}
+  M[i,j] &= \inner{\phi_j}{\phi_i}_{L2} = \int_a^b \phi_j(x)\phi_i(x) \mathrm{d}x\\
+  M[i,j] &= 0 \mbox{ für } \abs{i-j} \geq 2
+\end{align*}
+\begin{align*}
+  n &= 1 & M &= \frac{1}{6}\begin{pmatrix}
+    2h_1 & h_1\\
+    h_1 & 2h_1
+  \end{pmatrix}\\
+  n &> 1 & M &= \frac{1}{6}\begin{pmatrix}
+		      2 h_1   & h_1 &        &          & &  \\
+					h_1     & 2(h_1+h_2)   & h_2      & &  \\
+                  & h_2          & \ddots   & h_{n-1} & \\
+                  &              &  h_{n-1} & 2(h_{n+1}+h_n)  & h_n \\
+									&              &  & h_n   & 2 h_n
+		      \end{pmatrix}
+\end{align*}
+$h_i = x_i - x_{i-1}\,\,i=1,\ldots,n$
+\para{Satz:} Sei $s_L \in S_L$ die BA von $f \in L2(a,b)$ bzgl. $\norm{.}_{L2}$
+\begin{enumerate}[(a)]
+  \item Ist $f' \in [a,b]$: $\norm{f-s_L}_{L2} \leq \frac{1}{\sqrt{2}} h_{max} \norm{f'}_{L2}$
+  \item Ist $f'' \in L2(a,b)$: $\norm{f-s_L}_{L2} \leq \frac{1}{2} h^2_{max} \norm{f''}_{L2}$
+    %TODO is it possible to align them?
+\end{enumerate}
+Beweis: Nicht schwierig, siehe Hanke\\
+Eine bessere Abschätzung bzgl. $h_{max}$ als in (b) ist nicht möglich.
+Auch durch Interpolation wird ein Fehler von $\LandauO(h^2_{max})$ erreicht,
+wenn $f'' \in L2(a,b)$ ist; siehe Hanke.
