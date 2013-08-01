@@ -26,7 +26,7 @@ $w_i$ sind nicht abhängig von $f$. Fehler von (4.1.):
 \end{align*}
 Genauigkeitsgrad einer IQF $I_{[a,b]}^{(n)}$: mindestens $n$
 
-\subsubsection{Geschlossene Newtone-Cotes-Formeln}
+\subsubsection{Geschlossene Newton-Cotes-Formeln}
 Sind IQF mit gleichmäßig verteilten Stützstellen $x_i = a + ih$ $i=0,\ldots,n$ $h=\frac{b-a}{n}$.
 (``Geschlossen'', weil $a$ und $b$ als Stützstellen verwendet werden.)\\
 Beispiel: $n=1$ $x_0=a$ $x_1=b$
@@ -44,3 +44,16 @@ Integrationsgewichte ($n$ allgemein)
   t:= \frac{x-a}{h} && \frac{\dvar{t}}{\dx} = \frac{1}{h} \\
   t(a)=0 && t(b)=\frac{b-a}{h}=n && x_j = n + jh
 \end{align*}
+
+\subsection{Offene Newton-Cotes-Formeln}
+Sind IQF mit $x_i = a + (i+1)h$ $i=0,\ldots,n \in \mathbb{N}_0$
+$h=\frac{b-a}{n+2}$
+\missingfigure{offene newton-cotes-formeln n=0, n=1}
+Beispiel: $n=0$
+\missingfigure{n=1 beispiel}
+\begin{align*}
+  \int_a^b f(x) \dx \approx \underbrace{(b-a)}_{w_0} f(\frac{a+b}{2}) \tag{Mittelpunkt-/Rechteckregel}
+\end{align*}
+Warnung: Bei Newton-Cotes-Formeln treten bei $n \geq 8$ (geschlossene) und $n \geq 2$ (offene)
+negative Gewichte auf, was zur Auslöschung führen kann. (Oft: $f \geq 0$ oder $f \leq 0$).
+Daher für solche $n$ nie verwenden.
