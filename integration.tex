@@ -15,7 +15,7 @@ die größte Zahl $r \in \mathbb{N}_0$, für die gilt:
 Konstruktion der QF über Interpolation von $f$ in $a \leq x_0 < \ldots < x_n \leq b$.
 \begin{align*}
   \int_a^b f(x) \dx &\approx \int_a^b \underbrace{p_r(x)}_{\text{IP}} \dx = 
-  \int_a^b \sumizn{f(x_i)L_i(x)\dx} = \sumizn{f(x_i) \int_a^b L_i(x)\dx} \text{  (4.1)}\\
+  \int_a^b \sumizn{f(x_i)L_i(x)\dx} = \sumizn{f(x_i) \int_a^b L_i(x)\dx} \tag{4.1}\\
   &= \sumizn{f(x_i) \int_a^b \prod_{j=0,i\neq j}^n \frac{x-x_j}{x_i - x_j}\dx}
 \end{align*}
 $w_i$ sind nicht abhängig von $f$. Fehler von (4.1.):
@@ -25,3 +25,22 @@ $w_i$ sind nicht abhängig von $f$. Fehler von (4.1.):
   &\leq \frac{\norm{f^{(n+1)}}_\infty}{(n+1)!}(b-a)^{n+2}
 \end{align*}
 Genauigkeitsgrad einer IQF $I_{[a,b]}^{(n)}$: mindestens $n$
+
+\subsubsection{Geschlossene Newtone-Cotes-Formeln}
+Sind IQF mit gleichmäßig verteilten Stützstellen $x_i = a + ih$ $i=0,\ldots,n$ $h=\frac{b-a}{n}$.
+(``Geschlossen'', weil $a$ und $b$ als Stützstellen verwendet werden.)\\
+Beispiel: $n=1$ $x_0=a$ $x_1=b$
+\missingfigure{IQF n=1}
+\begin{align*}
+  \int_a^b f(x) \dx \approx \frac{1}{2} (b-a)[f(a)+f(b)] \tag{Trapezregel}\\
+  w_0 = w_1 = \frac{1}{2} (b-a)
+\end{align*}
+Integrationsgewichte ($n$ allgemein)
+\begin{align*}
+  w_i &= \int_a^b L_i(x) \dx = \int_a^b \prod_{j=0,i\neq j}^n \frac{x-x_j}{x_i - x_j}\dx =\\
+  &= h \int_{t(a) = 0}^{t(b) = n} \frac{a + th - (a+jh)}{a + ih - (a+jh)} \dvar{t} = h \int_0^t \prod \frac{(t-j)h}{i-j)h} \dvar{t}
+\end{align*}
+\begin{align*}
+  t:= \frac{x-a}{h} && \frac{\dvar{t}}{\dx} = \frac{1}{h} \\
+  t(a)=0 && t(b)=\frac{b-a}{h}=n && x_j = n + jh
+\end{align*}
