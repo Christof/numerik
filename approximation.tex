@@ -448,7 +448,7 @@ Beispiel: $V=\mathbb{R}^n$\\
 \end{itemize}
 Beispiel: $V=C[a,b]$
 \begin{itemize}
-  \item $\norm{f}_{L2(a,b)} = \sqrt{\int_a^b \abs{f(x)}^2 \mathrm{d}x}$ (L2-Norm)
+  \item $\norm{f}_{L2(a,b)} = \sqrt{\int_a^b \abs{f(x)}^2 \dx}$ (L2-Norm)
   \item $\norm{f}_{\infty} = \maxxab \abs{f(x)}$
 \end{itemize}
 In unendlich dimensionalen Räumen (z.B $C[a,b], L2[a,b]$) sind Normen
@@ -476,7 +476,7 @@ Beispiel: $V=\mathbb{R}^n$ Euklidisches Skalarprodukt
 \end{align*}
 Beispiel: $V=L_2(a,b)$: Die L2-Norm wird durch das L2-Skalarprodukt induziert:
 \begin{align*}
-  \inner{f}{g}_{L2(a,b)} := \int_a^b f(x) \overline{g(x)} \mathrm{d}x
+  \inner{f}{g}_{L2(a,b)} := \int_a^b f(x) \overline{g(x)} \dx
 \end{align*}
 Bemerkung: Es lässt sich zeigen, dass die Maximumsnorm
 nicht durch ein Skalarprodukt induziert wird.
@@ -488,7 +488,7 @@ und $\norm{.}$ die induzierte Norm. Dann gilt:
 Beweis: Einsetzen, siehe Wikipedia.\\
 Beispiel: $L2(a,b)$
 \begin{align*}
-  \abs{\int_a^b f(x)\overline{g(x)}\mathrm{d}x} \leq \sqrt{\int_a^b \abs{f(x)}^2 \mathrm{d}x}\sqrt{\int_a^b \abs{g(x)}^2 \mathrm{d}x}
+  \abs{\int_a^b f(x)\overline{g(x)}\dx} \leq \sqrt{\int_a^b \abs{f(x)}^2 \dx}\sqrt{\int_a^b \abs{g(x)}^2 \dx}
 \end{align*}
 Unterschied zwischen $\norm{.}_{\infty}$ und $\norm{.}_{L2}$: Sei
 \begin{align*}

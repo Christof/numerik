@@ -1,1 +1,27 @@
 \section{Numerische Integration}
+Ziel: Näherungsweise Berechnung von bestimmten Integralen
+durch ``Quadraturformeln'', z.B. durch:
+\begin{align*}
+  \int_a^b f(x) \dx \simeq I_{[a,b]]}^{(n)}(f) := \sumizn{w_i f(x_i)}
+\end{align*}
+wobei $w_i$ Integrationsgewichte und $x_i$ Stützstellen sind.
+\para{Definition:} Der Genauigkeitsgrad einer QF $I_{[a,b]}^{(n)}$ ist
+die größte Zahl $r \in \mathbb{N}_0$, für die gilt:
+\begin{align*}
+  \int_a^b f(x) \dx = I_{[a,b]}^{(n)}(p)\,\forall\,p \in \Pi_r
+\end{align*}
+
+\subsection{Interpolatorische Quadraturformeln 1 (IQF)}
+Konstruktion der QF über Interpolation von $f$ in $a \leq x_0 < \ldots < x_n \leq b$.
+\begin{align*}
+  \int_a^b f(x) \dx &\approx \int_a^b \underbrace{p_r(x)}_{\text{IP}} \dx = 
+  \int_a^b \sumizn{f(x_i)L_i(x)\dx} = \sumizn{f(x_i) \int_a^b L_i(x)\dx} \text{  (4.1)}\\
+  &= \sumizn{f(x_i) \int_a^b \prod_{j=0,i\neq j}^n \frac{x-x_j}{x_i - x_j}\dx}
+\end{align*}
+$w_i$ sind nicht abhängig von $f$. Fehler von (4.1.):
+\begin{align*}
+  \abs{\int_a^b f(x)\dx - \int_a^b p_n(x)\dx} &= \abs{ \int_a^b \frac{1}{(n+1)!} f^{(n+1)}(\xi(x))(x-x_0)\cdots(x-x_n)\dx}\\
+  &\leq \frac{1}{(n+1)!} \norm{f^{(n+1)}}_\infty \underbrace{\norm{(x-x_0)\cdots(x-x_n)}_\infty}_{(b-a)^{n+1}} \underbrace{\int_a^b 1 \dx}_{b-a}\\
+  &\leq \frac{\norm{f^{(n+1)}}_\infty}{(n+1)!}(b-a)^{n+2}
+\end{align*}
+Genauigkeitsgrad einer IQF $I_{[a,b]}^{(n)}$: mindestens $n$

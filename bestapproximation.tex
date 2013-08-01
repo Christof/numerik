@@ -79,8 +79,8 @@ $\Rightarrow g = \sumzn{j}{\frac{\inner{f}{\phi_j}}{\inner{\phi_j}{\phi_j}} \phi
 \para{Definition:} Sei $\omega: (a,b)\longrightarrow \mathbb{R}$ stetig, $\omega(x) > 0$ für $x \in (a,b)$.
 Weiters sei $\omega$ zumindest uneigentlich integrierbar auf $(a,b)$. $\omega(x)$ ist eine Gewichtsfunktion.
 \begin{align*}
-  \inner{f}{g}_\omega &:= \int_a^b \omega(x) f(x)g(x) \mathrm{d}x\\
-  \norm{f}_\omega &:= \sqrt{\int_a^b \omega(x) [f(x)]^2 \mathrm{d}x}
+  \inner{f}{g}_\omega &:= \int_a^b \omega(x) f(x)g(x) \dx\\
+  \norm{f}_\omega &:= \sqrt{\int_a^b \omega(x) [f(x)]^2 \dx}
 \end{align*}
 (Wir betrachten nur reellwertige Funktionen)\\
 Aufgabenstellung:\\
@@ -111,7 +111,7 @@ Gesucht: $s_L \in S_L$ BA von $f$ bzgl. $\norm{.}_{L2}$\\
 Anstatt einer Orthogonalbasis werden die Hutfunktionen $\phi_0,\ldots,\phi_n$ als Basis von $S_L$ verwendet.
 Die Hutfunktionen sind ``fast orthogonal'', denn
 \begin{align*}
-  \inner{\phi_j}{\phi_i}_{L2} = \int_a^b \phi_i(x)\phi_j(x)\mathrm{d}x\begin{cases}
+  \inner{\phi_j}{\phi_i}_{L2} = \int_a^b \phi_i(x)\phi_j(x)\dx\begin{cases}
     =0 &\mbox{für } \abs{i-j} \geq 2\\
     \neq0 &\mbox{für } \abs{i-j} \leq 1\\
   \end{cases}
@@ -126,7 +126,7 @@ Ansatz: $s_L(x)=\sumzn{j}{a_j \phi_j(x)}$, wobei $a_0,\ldots,a_n$ bestimmt werde
 \end{align*}
 $M$ (Gramsche Matrix, Massenmatrix) $\in \mathbb{R}^{(n+1)\times(n+1)}$
 \begin{align*}
-  M[i,j] &= \inner{\phi_j}{\phi_i}_{L2} = \int_a^b \phi_j(x)\phi_i(x) \mathrm{d}x\\
+  M[i,j] &= \inner{\phi_j}{\phi_i}_{L2} = \int_a^b \phi_j(x)\phi_i(x) \dx\\
   M[i,j] &= 0 \mbox{ für } \abs{i-j} \geq 2
 \end{align*}
 \begin{align*}
