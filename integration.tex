@@ -57,3 +57,34 @@ Beispiel: $n=0$
 Warnung: Bei Newton-Cotes-Formeln treten bei $n \geq 8$ (geschlossene) und $n \geq 2$ (offene)
 negative Gewichte auf, was zur Auslöschung führen kann. (Oft: $f \geq 0$ oder $f \leq 0$).
 Daher für solche $n$ nie verwenden.
+
+\subsection{Summierte Quadraturformeln}
+Idee: Unterteile $[a,b]$ in $N$ Teilintervalle. Wende auf jedem Teilintervall vorgebene QF an.
+Sinnvoll (notwendig): Fehler hängt von $(b-a)$ ab.
+\para{Summierte Trapezregel}
+Unterteile $[a,b]$ in $N$ Teilintervalle der Länge $h=\frac{b-a}{N}$ $x_i := a + ih$ $i=0,\ldots,N$.
+\begin{align*}
+  \int_a^b f(x) \dx &= \sum^{N}_{i=1} \int_{x_{i-1}}^{x_i} f(x) \dx\\
+  &\approx \sum^{N}_{i=1} \frac{h}{2} \left[f(x_{i-1}) + f(x_i)\right] \\
+  &= h\left[\frac{1}{2} f(a) + \sum^{N-1}_{i=1} f(x_i) + \frac{1}{2} f(b)\right] =: I_h^{(1)}(f)
+\end{align*}
+\para{Summierte Simpsonregel}
+\missingfigure{summierte simpsonregel}
+\begin{align*}
+  \int_a^b f(x) \dx &= \sum^{N}_{i=1} \int_{x_{i-1}}^{x_i} f(x) \dx\\
+  &\approx \sum^{N}_{i=1} \frac{h}{6} \left[f(x_{i-1}) + 4f(\frac{x_{i-1}+x_i}{2}) + f(x_i)\right] \\
+  &= \frac{h}{6} \left[ f(a) + 2 \sum^{N-1}_{i=1} f(x_i) + 4 \sum^{N}_{i=1} \frac{x_{i-1}+x_i}{2} + f(b) \right] := I_h^{(2)}(f)
+\end{align*}
+\para{Satz:}
+\begin{enumerate}[a)]
+  \item Für $f \in C^2[a, b]$ gilt: \begin{align*}
+    \abs{\int_a^b f(x) \dx - I_h^{(1)}(f)} \leq ch^2 (b-a) \norm{f''}_\infty \underset{n \to \infty}{\longrightarrow} 0
+  \end{align*}
+  \item Für $f \in C^4[a, b]$ gilt: \begin{align*}
+      \abs{\int_a^b f(x) \dx - I_h^{(2)}(f)} \leq ch^4 (b-a) \norm{f^{(4)}}_\infty \underset{n \to \infty}{\longrightarrow} 0
+  \end{align*}
+\end{enumerate}
+Beweis für a):
+\begin{align*}
+  \abs{\int_a^b f(x) \dx - I_h^{(1)}(f)} \leq c \sum^{N}_{i=1} h^3 \norm{f''}_\infty = c \underbrace{h^3}_{\frac{(b-a)^3}{N^3}} N \norm{f''}_\infty = c h^2 (b-a) \norm{f''}_\infty
+\end{align*}
