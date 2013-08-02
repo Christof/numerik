@@ -45,7 +45,7 @@ Integrationsgewichte ($n$ allgemein)
   t(a)=0 && t(b)=\frac{b-a}{h}=n && x_j = n + jh
 \end{align*}
 
-\subsection{Offene Newton-Cotes-Formeln}
+\subsubsection{Offene Newton-Cotes-Formeln}
 Sind IQF mit $x_i = a + (i+1)h$ $i=0,\ldots,n \in \mathbb{N}_0$
 $h=\frac{b-a}{n+2}$
 \missingfigure{offene newton-cotes-formeln n=0, n=1}
@@ -88,3 +88,45 @@ Beweis für a):
 \begin{align*}
   \abs{\int_a^b f(x) \dx - I_h^{(1)}(f)} \leq c \sum^{N}_{i=1} h^3 \norm{f''}_\infty = c \underbrace{h^3}_{\frac{(b-a)^3}{N^3}} N \norm{f''}_\infty = c h^2 (b-a) \norm{f''}_\infty
 \end{align*}
+
+\subsection{Euler-Maclaurinsche Summenformel}
+Ziel: Genauigkeit der summierten Trapezregel ist erhöht bzw. kann erhöht werden.
+\para{Satz:} Sei $f \in C^{2m+2}[a,b]$. Dann gilt
+\begin{align*}
+  I_h^{(1)}(f) = \int_a^b f(x) \dx + \sum^{m}_{k=1} h^{2k} \frac{B_k}{(2k)!} \left(f^{(2k-1)}(b) -
+  f^{(2k-1)}(a)\right) + h^{2m+2}\frac{B_{2m+2}}{(2m+2)!} f^{(2m+2)}(\xi)
+\end{align*}
+$\xi \in (a,b)$, $B_k$ Bernoulli-Zahlen\\
+Korollar (unmittelbare Konsequenz): Sei $f \in C^{2m+2}(-\infty, \infty)$ periodisch mit Periode $[a,b]$.
+Dann ist $f^{(k)}(a) = f^{(k)}(b)$ für $k=0,\ldots,2m+2$ und 
+$I_h^{(1)} - \int_a^b f(x) \dx = \LandauO(h^{2m+2})$.
+
+\subsubsection{Romberg-Integrationsverfahren}
+\begin{align*}
+  I := \int_a^b f(x) \dx && T(h) := I_h^{(1)}\\
+  I-T(h) &= c_1h^2 + c_2h^4+c_3h^6+\ldots+\LandauO(h^{2m+2})\\
+  I-T(\frac{h}{2}) &= \frac{c_1}{4} h^2 + c_2^1h^4+\ldots+\LandauO(h^{2m+2})\\
+  I-[\frac{4}{3} \underbrace{T(\frac{h}{2})}_{\LandauO(\frac{h^2}{4}} - \frac{1}{3} \underbrace{T(h)}_{\LandauO(h^2)} ] &= \tilde{c}_2h^4 + \tilde{c}_3h^6 + \ldots + \LandauO(h^{2m+2})
+\end{align*}
+Also: Kenne ich $T(h)$ und $T(\frac{h}{2})\rightarrow$ Fehler $\LandauO(h^4)$
+\begin{align*}
+  T_1(h) :&= \frac{4}{3} T(\frac{h}{2}) - \frac{1}{3} T(h) = \tilde{c}_2h^4 + \tilde{c}_3h^6 + \ldots + \LandauO(h^{2m+2})\\
+  T_1(\frac{h}{2}) &= \frac{\tilde{c}_2}{16} h^4 + \hat{c}_3 h^6 + \ldots + \LandauO(h^{2m+2})\\
+  T_1(\frac{h}{2}) &= \frac{4}{3} T(\frac{h}{4}) - \frac{1}{3} T(\frac{h}{2})\\
+  I-\underbrace{[\frac{16}{15} T_1(\frac{h}{2}) - \frac{1}{15} T_1(h)]}_{=: T_2(h)} &= \breve{c}_3 h^6 + \ldots + \LandauO(h^{2m+2})
+\end{align*}
+Romberg-Schema $T_0(h) := T(h)$
+\begin{align*}
+  \begin{pmatrix}
+    T_0(h)                & \searrow    & \LandauO(h^4)    &             &               &           &\\
+    T_0(\frac{h}{2})      & \rightarrow & T_1(h)           & \searrow    & \LandauO(h^6) &           &\\
+    T_0(\frac{h}{4})      & \esearrow & T_1(\frac{h}{2}) & \rightarrow & T_2(h)        &  \ddots     &\\
+    \vdots                &             &                  &             &               &           & \LandauO(h^{2m+2})\\
+    T_0(\frac{h}{2^m})    & \ldots      & \ldots           & \ldots      &      \ldots   &  \ldots   & T_m(h) \\ % TODO richtig laut mitschrift T_m(m^6)???
+  \end{pmatrix}
+\end{align*}
+\begin{align*}
+  T_k\left(\frac{h}{2^i}\right) = \left( 4^k T_{k-1}\left(\frac{h}{2^{i+1}} \right) - T_{k-1}\left(\frac{h}{2^i} \right) \right) \left(4^k-1\right)^{-1}
+\end{align*}
+\para{Satz:} Sei $f \in C^{2m+2}[a,b] \Rightarrow \abs{I-T_m(h)} = \LandauO\left(\left[\frac{h}{2^m} \right]^{2m+2} \right)$
+\missingfigure{Zussamenfassung der summenformeln}
