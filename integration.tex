@@ -130,3 +130,26 @@ Romberg-Schema $T_0(h) := T(h)$
 \end{align*}
 \para{Satz:} Sei $f \in C^{2m+2}[a,b] \Rightarrow \abs{I-T_m(h)} = \LandauO\left(\left[\frac{h}{2^m} \right]^{2m+2} \right)$
 \missingfigure{Zussamenfassung der summenformeln}
+
+\subsection{Gauß-Quadratur (Interpolatorische QF 2)}
+Ziel: Formeln
+\begin{align*}
+  \int_a^b \omega(x) f(x) \dx \approx \sumizn{w_i f(x_i)}\;\;(a \leq x_0 < x_1 < \ldots < x_n \leq b)
+\end{align*}
+mit möglichst hohem Genauigkeitsgrad $m$, d.h. 
+\begin{align*}
+  \int_a^b \omega(x) p(x) \dx = \sumizn{w_i p(x_i)}\,\forall\, p \in \Pi_m
+\end{align*}
+wobei $\omega$ eine Gewichtsfunktion ist mit $\omega > 0$ in $(a,b)$ und $\omega$ nicht negativ in $[a,b]$.\\
+QF über Interpolation von $f$ in $x_0 < \ldots < x_n$ durch $p_n \in \Pi_n$, d.h.
+\begin{align*}
+  \int_a^b \omega(x) p(x) \dx \approx \int_a^b \omega(x) p_n(x) \dx &= \int_a^b \omega(x) \sumizn{f(x_i)L_i(x) \dx} \\
+  &= \sumizn{ f(x_i) \underbrace{\int_a^b \omega(x) L_i(x) \dx}_{w_i}}
+\end{align*}
+Obige Formel hat Genauigkeitsgrad von mindestens $n$. Genauigkeit ist maximal $2n+1$, denn für
+\begin{align*}
+  p(x) := \prod_{j=0}^n (x-x_j)^2 \in \Pi_{2n+2} \\
+  \int_a^b \underbrace{\omega(x)}_{>0} \underbrace{p(x)}_{\geq 0,\not \equiv 0} \dx > 0\\
+  QF = \sumizn w_i \underbrace{p(x_i)}_{=0} = 0
+\end{align*}
+$\Rightarrow$ QF für $p\,(\in \Pi_{2n+2})$ ist nicht exakt.
