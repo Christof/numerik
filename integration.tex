@@ -152,4 +152,61 @@ Obige Formel hat Genauigkeitsgrad von mindestens $n$. Genauigkeit ist maximal $2
   \int_a^b \underbrace{\omega(x)}_{>0} \underbrace{p(x)}_{\geq 0,\not \equiv 0} \dx > 0\\
   QF = \sumizn w_i \underbrace{p(x_i)}_{=0} = 0
 \end{align*}
-$\Rightarrow$ QF für $p\,(\in \Pi_{2n+2})$ ist nicht exakt.
+$\Rightarrow$ QF für $p\,(\in \Pi_{2n+2})$ ist nicht exakt.\\
+Konstruktion einer QF mit Genauigkeitsgrad $2n+1$ für $a \leq x_0 < x_1, \ldots < x_n \leq b$.
+Sei $p \in P_{2n+10}$. Wähle $g \in \Pi_{2n+1}$ und führe Polynomdivision durch:
+\begin{align*}
+  p &= g \cdot q + r,\, q,r \in \Pi_n\\
+  0 &\overset{!}{=} \int_a^b \omega(x) p(x) \dx - \sumizn{w_i p(x_i)} \\
+  &= \underbrace{\int_a^b \omega(x) g(x) q(x) \dx}_{A} - \underbrace{\sumizn{w_i g(x_i) q(x_i)}}_{B} + \underbrace{ \int_a^b \omega(x) r(x) \dx - \sumizn{w_i r(x_i)}}_{=0}
+\end{align*}
+WÄHLE $g$ so, dass $A=0$ und $B=0$ ist.
+\begin{align*}
+  A \overset{!}{=} \int_a^b \omega(x) g(x) q(x) \dx = \inner{g}{q}_\omega
+\end{align*}
+$g \in \Pi_{n+1}\, q \in \Pi_n$. Wähle $g \perp \Pi_n \Rightarrow g \equiv \phi_{n+1}$ Orthogonalpolynom vom Grad $n+1$
+\begin{align*}
+  B \overset{!}{=} \sumizn{w_i \phi_{n+1}(x_i) q(x_i)}
+\end{align*}
+$\Rightarrow$ Wähle Nullstellen von $\phi_{n+1}$ als Stützstellen $x_0, \ldots,x_n$.
+\para{Satz:} Wählt man als Stützstellen $x_0,\ldots,x_n$ die Nullstellen
+des Orthogonalpolynoms $\phi_{n+1}$ bezüglich $\inner{.}{.}_\omega$ auf $[a,b]$, dann gilt:
+\begin{enumerate}[a)]
+  \item $\int_a^b f(x) \dx \approx \sumizn{w_i f(x_i)}$ mit
+    \begin{align*} w_i = \int_a^b \omega(x) L_i(x) \dx \tag{Gauß-QF}\end{align*}
+    hat Genauigkeit $2n + 1$
+  \item Der Fehler der Formel ist \begin{align*}
+      f^{(2n+2)}(\xi) \frac{1}{(2n+2)!} \int_a^b \omega(x) \prod_{i=0}^{n} (x-x_i)^2 \dx
+    \end{align*} wobei $\xi \in [a,b]$ und $f \in C^{2n+2}[a,b]$ sein muss.
+\end{enumerate}
+Fehlerkonstante für $\omega(x) \equiv 1$\\
+\begin{tabular}{ c | c | c | c}
+  b-a & n=2 & n=4 & n=8 \\
+  \hline
+  4   &  2e-1 & & 3e-13\\
+  2   &       & &      \\
+  1   &       & &      \\
+  0,5 & 7e-6  & 1e-12 & 1e-28\\
+\end{tabular}\\
+$\omega \equiv 1$ Gauß-Legendre-Quadratur\\
+$\omega = \frac{1}{\sqrt{1-x^2}}$  Gauß-Tschebyscheff-Quadratur\\
+
+Beispiel: Gauß-QF für $[a,b] = [-1,1],\, \omega \equiv 1$\\
+$n=0$: $x_0$ ist Nullstelle von $P_1(x)=x$, Orthogonalpolynom $\in \Pi_1$ bzgl. $\inner{.}{.}_{\omega \equiv 1}$.\\
+$x_0 = 0$ $w_0 = \int_{-1}^1 \underbrace{L_0(x)}_{\equiv 1} \dx = 2$\\
+\missingfigure{TN12}
+$\int_{-1}^1 f(x) dx \approx 2 f(0)$ Mittelpunktformel\\
+
+Transformation der Gauß-Legendre QF auf allgemeins Intervall $[a,b]$:\\
+Seine $t_0,\ldots,t_n$ Stützstellen und $\tilde{w}_0,\ldots,\tilde{w}_n$ Gewicht für $[-1,1]$.\\
+Transformation: 
+\begin{align*}
+  x:[-1,1] &\longrightarrow [a,b]\\
+  t &\mapsto \frac{a+b}{2} + \frac{b-a}{2} t\\
+  x(-1) = a && x(1) = b && \frac{\dx}{\dvar{t}} = \frac{b-a}{2} 
+\end{align*}
+\begin{align*}
+  \int_{x(-1)=a}^{x(1)=b} f(x) \dx = \int_{-1}^1 f(x(t)) \frac{b-a}{2} \dvar{t} \approx
+    \frac{b-a}{2} \sumizn{\tilde{w}_i f(x(t_i))}
+\end{align*}
+$\Rightarrow w_i = \frac{b-a}{2} \tilde{w}_i \qquad x_i = x(t_i)$
