@@ -210,3 +210,31 @@ Transformation:
     \frac{b-a}{2} \sumizn{\tilde{w}_i f(x(t_i))}
 \end{align*}
 $\Rightarrow w_i = \frac{b-a}{2} \tilde{w}_i \qquad x_i = x(t_i)$
+
+\subsection{Mehrdimensionale Integration (2D)}
+Herkömmlicher Ansatz:
+\begin{itemize}
+  \item Zerlegung des Gebietes in einfache Elemente (Vierecke, Dreiecke) $B_i$
+  \item Verwende Transformation $\psi_i: E \longrightarrow B_i$\begin{align*}
+      \int_{B_i} g(x,y) \dx\dy = \int_E g(\psi_i(\tilde{x},\tilde{y})) \abs{\det J_i(\tilde{x},\tilde{y})} \dvar{\tilde{x}}\dvar{\tilde{y}}
+  \end{align*} wobei $J_i$ die Jacobi-Matrix zu $\psi_i$ ist.
+\end{itemize}
+\subsubsection{Integration über das Einheitsquadrat}
+\begin{align*}
+  \int_0^1 \int_0^1 f(x,y) \dx\dy
+\end{align*}
+Sei $I_n(g) = \sumizn{w_i g(x_i)}$ QF im Eindimensionalen für $[0,1]$
+\begin{align*}
+  \int_0^1 \underbrace{\int_0^1 f(x,y) \dx}_{=:F(y)} \dy &= \int_0^1 F(y) \dy \approx \sumzn{j}{w_j F(x_j)} = \sumzn{j}{w_j \int_0^1 f(x, x_j) \dx}\\
+    &\approx \sumzn{j}{w_j \sum_{i=0}^m w_i f(x_i, x_j) } := I_{n \times m}(f)
+\end{align*}
+Ist $I_m$ exakt vom Grad $M$, dann ist $I_{n \times m}$ exakt für alle Polynome\\
+$p \in \mathrm{span} \{x^{k_1}y^{k_2}: 0 \leq k_1, k_2, \leq M\}$
+\subsubsection{Interpolation über das Einheitsdreieck}
+\missingfigure{Einheitsdreieck}
+Zwei Ansätze:
+\begin{itemize}
+  \item Duffy-Transformation: Idee: Transformation von QF für das Einheitsquadrat auf das Einheitsdreieck.
+  \item Bestimmung von QF über den Ansatz: Alle Monome der Form $x^{k_1}y^{k_2} \qquad 0 \leq k_1, k_2, \leq M$
+    sollen exakt integriert werden.
+\end{itemize}
