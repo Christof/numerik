@@ -1,8 +1,9 @@
-\section{Numerische Lineare Algebra}
+\section{Numerische Lineare Algebra, Lineare Gleichungssysteme}
 \textbf{ZIEL}: Beantwortung folgender Fragen:
 \begin{itemize}
-\item{Gibt es Algorithmen, so dass grosse Abweichungen der berechneten Loesung (Lsg) zur tatsaechlichen nicht auftreten?}
-\item{Kann man vorhersagen wann es zu grossen Fehlern kommt, und wann nicht?}
+\item{Gibt es Algorithmen, so dass große Abweichungen der berechneten Lösung (Lsg) zur tatsöchlichen nicht auftreten? 
+  (``Es kommt darauf an'')}
+\item{Kann man vorhersagen wann es zu großen Fehlern kommt, und wann nicht? (Ja)}
 \end{itemize}
 
 \begin{equation*}
@@ -16,7 +17,7 @@
 %		 &\F_d && \text{denormalisierte Gleitpunktzahlen} 
     \end{aligned}
   \right\}
-  \text{linear aber nicht eindeutig}
+  \text{linear aber nicht eindeutig} %TODO christof: ich hab lösbar, aber nicht eindeutig stehen
 \end{equation*}
 
 \subsection{Grundlegendes}
@@ -29,7 +30,7 @@ Matrixnormen lassen sich durch Vektornormen induzieren:
 \|A\|_p \coloneqq \underset{x \neq 0}{max} \frac{\|Ax\|_p}{\|x\|_p} = \underset{\|x\|_p = 1}{max}\|Ax\|_p
 \end{equation*}
 
-z.B.: $p \in \left\{1, 2, \inf \right\}$
+z.B.: $p \in \left\{1, 2, \infty \right\}$
 
 Für induzierte Normen gilt:
 
@@ -39,16 +40,16 @@ Für induzierte Normen gilt:
 \end{itemize}
 Lässt sich einfach beweisen.
 
-Im folgenden werden nur induzierte Normen verwendet
+Im folgenden werden nur induzierte Normen verwendet.
 
 \textbf{Satz:}
 Sei $A \in \mathbb{K}^{m \times n}$. Dann gilt:
-\begin{enumerate}
-\item{$\|A\|_1 = \underset{j = 1,..,n}{max} \sum\limits_{i=1}^{m}{\left|a_{ij}\right|}$ } %Spalten Summennorm
-\item{$\|A\|_{\infty} = \underset{j = 1,..,m}{max} \sum\limits_{i=1}^{n}{\left|a_{ij}\right|}$ } %Zeilen SummennormS
-\item{$\|A\|_2 = \sqrt{\lambda_{max}\left(A^*A\right)}$}
+\begin{enumerate}[a)]
+  \item{$\|A\|_1 = \underset{j = 1,..,n}{max} \sum\limits_{i=1}^{m}{\left|a_{ij}\right|}$ ( Spaltensummennorm )}
+  \item{$\|A\|_{\infty} = \underset{j = 1,..,m}{max} \sum\limits_{i=1}^{n}{\left|a_{ij}\right|}$ ( Zeilensummennorm )}
+  \item{$\|A\|_2 = \sqrt{\lambda_{max}\left(A^*A\right)}$}
 \end{enumerate}
-\textbf{Beweise:} a, b durch einsetzen, c benötigt Mittel aus linearen Algebra.
+\textbf{Beweise:} a), b) durch einsetzen, c) benötigt Mittel aus linearen Algebra.
 
 \subsubsection{$\left(Relative\right)$ Kondition einer Matrix}
 %\begin{aligned}
