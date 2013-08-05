@@ -52,12 +52,33 @@ Sei $A \in \mathbb{K}^{m \times n}$. Dann gilt:
 \textbf{Beweise:} a), b) durch einsetzen, c) benötigt Mittel aus linearen Algebra.
 
 \subsubsection{$\left(Relative\right)$ Kondition einer Matrix}
-%\begin{aligned}
-%Geg.: &Sei $Ax = b$ (ungestörtes System), wobei \\
-      %&$A \in \mathbb{K}^{m \ times n}$ invertierbar und $b \in \mathbb{K}^n$ sei.  \\
-			%&Wie wirken sich Störungen $\Delta A$ und $\Delta b$ aus:  \\
-			%&$\left(A+\DeltaA)(x+\Delta x)=b+\Delta b$  Gestörte System
-%\end{aligned}
+Geg.: Sei $Ax = b$ (ungestörtes System), wobei
+$A \in \mathbb{K}^{m \ times n}$ invertierbar und $b \in \mathbb{K}^n$ sei.  \\
+Wie wirken sich Störungen $\Delta A$ und $\Delta b$ aus:  \\
+\begin{align*}
+  \left(A+\Delta A\right) \left(x+\Delta x\right)=b+\Delta b  \tag{gestörtes System}\\
+  ? \quad \frac{\norm{\Delta x}}{\norm{x}} 
+\end{align*}
+
+Zunächst: Nur Störung von $b$ durch $\Delta b$, d.h. $A(x + \Delta x) = b + \Delta b$\\
+$\Delta x = ?$
+\begin{align*}
+  A (x + \Delta x) &= b + \Delta b\\
+  A \Delta x &= \Delta b\\
+  \Delta x &= A^{-1} \Delta b\\
+  \norm{\Delta x} &= \norm{ A^{-1} \Delta b } \leq \norm{A^{-1}} \norm{\Delta b}\\
+  \norm{b} &= \norm{Ax} \leq \norm{A}\norm{b} \Rightarrow \frac{1}{\norm{x}} \leq \frac{\norm{A}}{\norm{b}} \\
+  \Rightarrow \frac{\norm{\Delta x}}{\norm{x}} &\leq \norm{A}\norm{A^{-1}}\frac{\norm{\Delta b}}{\norm{b}} 
+\end{align*}
+\definition Sei $A$ invertierbar. $\kappa(A) := \norm{A}\norm{A^{-1}}$ heißt Konditionszahl von $A$ bzgl. $\norm{.}$.\\
+\satz Sei $A$ invertierbar und $\Delta A$ sowie $\Delta b$ Störungen von $Ax=b$.
+Dann gilt für hinreichend kleine $\Delta A$
+\begin{align*}
+  (A+\Delta A)(x + \Delta x) &= b + \Delta b\\
+  \text{mit } \frac{\norm{\Delta x}}{\norm{x}} &\leq \frac{\kappa(A)}{1-\kappa(A)\frac{\norm{\Delta A}}{\norm{A}} } \left( \frac{\norm{\Delta A}}{\norm{A}} + \frac{\norm{\Delta b}}{\norm{b}} \right)
+\end{align*}
+
+TODO Fehlendes nachtragen
 ...
 
 Berechnung von $\kappa_2\left(A\right)$
