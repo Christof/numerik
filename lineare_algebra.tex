@@ -315,3 +315,35 @@ Schritt s: (s = 1, .., n-1)
 		\underbrace{2 \cdot \sum\limits_{s=1}^{n-1}{s^2}}{2 \frac{(n-1)n(2n-1)}{6}}+\underbrace{\sum\limits_{s=1}^{n-1}{s}}_{3\frac{(n-1)n}{2}}
 	\end{aligned}
 \end{equation*}
+
+TODO nachschauen ob sicher nichts fehlt\\
+
+Zeitaufwand für Gauß-Verfahren Intel Core i7, 3GHz $\approx 100$GFlops:\\
+\begin{tabular}{c | r l}
+  $n = 10^4$ & $6,6$ &s\\
+  $n = 10^5$ & $1,85$ &h\\
+  $n = 10^6$ & $77$ &Tage
+\end{tabular}\\
+Gauß-Verfahren mit Zeilenvertauschung (Spaltenpivotisierung)\\
+Zu Beginn des Schrittes s sucht man das größte Element von $[a_{ss}^{(s)}\ldots a_{ns}^{(s)}]^T$
+und vertausche Zeile s mit derjenigen Zeile, die das größte Element des obigen Vektors hat.
+Dies ist notwendig:
+\begin{itemize}
+  \item damit GV i.A. durchführbar ist,
+  \item wegen numerischer Stabilität (siehe später)
+\end{itemize}
+\satz Sei $A \in \mathbb{K}^{n \times n}$ regulär, dann existiert eine Permutationsmatrix $P$,
+so dass $PA = LR$ ist, wobie $L$ linke und $R$ rechte Dreiecksmatrix ist.\\
+\beweis Findet man in jedem Numerik-Lehrbuch\\
+\matlab{lu(A)}\\
+
+Die Lösung $Ax=b$ mittels LR-Zerlegung:\\
+$Ax = b \Leftrightarrow PAx = Pb \Leftrightarrow L\underbrace{Rx}_{y} = Pb \Leftrightarrow [Ly = Pb \text{ und } Rx = y]$
+\begin{enumerate}
+  \item LR-Zerlegung von A: Aufwand $\frac{2}{3} n^3 + \LandauO(n^2)$
+  \item Löse $Ly = Pb$ (``Vorwärtseinsetzen''): $n^2$
+  \item Löse $Rx = y$ (``Rückwärtseinsetzen''): $n^2$
+\end{enumerate}
+Gesamtaufwand: $\frac{2}{3} n^3 + \frac{3}{2} n^2 + \LandauO(n) \qquad (A \in \mathbb{R}^{n \times n})$\\
+Anteil von Vorwärst- und Rückwärtseinsetzen an den Gesamtkosten $\approx \frac{3}{n}$.\\
+Bei $n=100 \quad 3\%$; bei $n=1000 \quad 0,3\%$
