@@ -347,3 +347,38 @@ $Ax = b \Leftrightarrow PAx = Pb \Leftrightarrow L\underbrace{Rx}_{y} = Pb \Left
 Gesamtaufwand: $\frac{2}{3} n^3 + \frac{3}{2} n^2 + \LandauO(n) \qquad (A \in \mathbb{R}^{n \times n})$\\
 Anteil von Vorwärst- und Rückwärtseinsetzen an den Gesamtkosten $\approx \frac{3}{n}$.\\
 Bei $n=100 \quad 3\%$; bei $n=1000 \quad 0,3\%$
+
+Bsp: GV ohne Spaltenpivotisierung
+\begin{align*}
+  A = \begin{pmatrix}
+    10^{-20} & 1\\
+    1        & 1
+  \end{pmatrix}
+  ,\quad b = \begin{pmatrix} 3 \\ 3 \end{pmatrix}
+\end{align*}
+$Ax = b$ Matrix $A$ ist gut konditioniert: $\kappa_2(A) = 2,6$\\
+$\Rightarrow x = \begin{pmatrix} 0 \\ 3 \end{pmatrix}$ [``cond(A,2)'', Eigenvalue $A^* A$ (größerer)]\\
+GV mit $eps = 10^{-16}$\\
+$rd(1-10^{20}) = -10^{20}$
+\begin{align*}
+  \hat{R} = \begin{pmatrix}
+    10^{-20} & 1 \\
+    0 & -10^{20}
+  \end{pmatrix} && \hat{L} = \begin{pmatrix}
+    1 & 0 \\
+    10^{20} & 1
+  \end{pmatrix}\\
+  \hat{L} y = b: & \begin{pmatrix} 1 & 0 \\ 10^{20} & 1 \end{pmatrix} \begin{pmatrix} y_1 \\ y_2 \end{pmatrix} =
+  \begin{pmatrix} 3 \\ 3 \end{pmatrix} \Rightarrow \begin{pmatrix} y_1 \\ y_2 \end{pmatrix} = \begin{pmatrix}
+    3 \\ \underbrace{3 - 3\cdot 10^{20}}_{-3 \cdot 10^{20}}
+  \end{pmatrix}\\
+  \hat{R} x = y: & \begin{pmatrix} 10^{-20} & 1 \\ 0 & -10^{20} \end{pmatrix} \begin{pmatrix} x_1 \\ x_2 \end{pmatrix} =
+  \begin{pmatrix} 3 \\ -3 \cdot 10^{20} \end{pmatrix} \Rightarrow x_2 = 3\\
+  10^{-20}x_1 + 3 = 3 \Rightarrow x_1 = 0\\
+  \text{Aber: } & \hat{L}\hat{R} = \begin{pmatrix} 10^{-20} & 1 \\ 1 & 0 \end{pmatrix} \\
+  & \hat{L}\hat{R} \begin{pmatrix} \hat{x}_1 \\ \hat{x}_2 \end{pmatrix} = \begin{pmatrix} 3 \\ 3 \end{pmatrix} \\
+  & \Rightarrow \hat{x}_1 = \hat{x}_2 = 3
+\end{align*}
+\begin{align*}
+  \frac{\norm{\hat{x}-x}_{\infty}}{\norm{x}_\infty} = 100\%
+\end{align*}
