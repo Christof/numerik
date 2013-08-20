@@ -382,3 +382,28 @@ $rd(1-10^{20}) = -10^{20}$
 \begin{align*}
   \frac{\norm{\hat{x}-x}_{\infty}}{\norm{x}_\infty} = 100\%
 \end{align*}
+% subsubsubsection
+\para{Fehleranalyse des Gauß-Verfahrens}
+Einfluss von Rundungsfehlern?\\
+
+\satz Sei $A \in \mathbb{C}^{n \times n}$ regulär und $b \in \mathbb{C}^n$. Seien $\hat{L}$ und $\hat{R}$ die mittels GV
+berechneten Faktoeren der LR-Zerlegung von $A$ und $\hat{x}$ die berechnete Lösung für $Ax = b$, wobei mit
+Maschinengenauigkeit $eps$ gerechnete wurde. Dann gilt:
+\begin{align*}
+  \frac{\norm{\hat{x}-x}_\infty}{\norm{x}_\infty} \leq \kappa(A) 3n^2 eps \norm{\hat{R}} + \LandauO(eps^2) \tag{*}
+\end{align*}
+\beweis Siehe Demmel (1999), Abs. 2.4.\\
+Diskussion von (*):
+\begin{enumerate}
+  \item Der relative Fehler von $\hat{x}$ ist meist viel kleiner als in (*), $n^2$ wird nur im worst case angenommen
+  \item Was weiß man über $\norm{\hat{R}}$?
+    \begin{enumerate}[i]
+      \item $\norm{\hat{R}}$ kann sehr groß werden, z.B. $2^{n-1}$
+      \item Matrizen für die $\norm{\hat{R}}$ groß ist, sind sehr ``unwahrscheinlich'', was
+        \begin{itemize}
+          \item Experimente mit Zufallsmatrizen
+          \item Anwendungsbeispiele in der Praxis
+        \end{itemize}
+        gezeigt haben.
+    \end{enumerate}
+\end{enumerate}
