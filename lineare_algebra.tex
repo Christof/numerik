@@ -407,3 +407,20 @@ Diskussion von (*):
         gezeigt haben.
     \end{enumerate}
 \end{enumerate}
+% subsubsubsection
+\para{LR-Zerlegung für Bandmatrizen}
+\definition Die Matrix
+\begin{align*}
+  A = \begin{pmatrix}
+    a_{1,1} & \cdots & a_{1,p+1} & 0         & \cdots & 0\\
+    \vdots  & \ddots &           & a_{2,p+2} & & \\
+    a_{q+1,1} &      & \ddots    &           & \ddots & \\
+    0       & a_{q+2,2} &        & \ddots    & & a_{n-p,n} \\
+    \vdots  & \ddots & \ddots    &           & \ddots & \vdots \\
+    0       & \cdots & 0         & a_{n,n-q} & \cdots & a_{n,n} \\
+  \end{pmatrix}
+\end{align*}
+beziechnet man als Bandmatrix mit oberer Bandbreite $p$ und unterer Bandbreite $q$.
+\missingfigure{Bandmatrix}
+\missingfigure{Spaltenpivotisierung und numerische Stabilität Handout}
+
