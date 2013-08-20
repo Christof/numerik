@@ -423,4 +423,39 @@ Diskussion von (*):
 beziechnet man als Bandmatrix mit oberer Bandbreite $p$ und unterer Bandbreite $q$.
 \missingfigure{Bandmatrix}
 \missingfigure{Spaltenpivotisierung und numerische Stabilität Handout}
+\satz Sei $A \in \mathbb{R}^{n \times n}$ eine Bandmatrix mit oberer Bandbreite $p$
+und unterer Bandbreite $q$. Die LR-Zerlegung sei ohne Zeilenvertauschung durchführbar.
+Dann hat $L$ untere Bandbreite $q$ und $R$ obere Bandbreite $p$.\\
+\beweis
+\begin{itemize}
+  \item Zur Bestimmung von $R$ werden die Elemente oberhabl der Bandbreite nicht geändert.
+  \item $l_{ij}$ beschreibt den Faktor für die Zeilensubtraktion. Unterhalb der Bandbreite
+    sind keine Zeilesubtraktionen erforderlich.
+\end{itemize}
+Aufwand (arithmetische Opertionen) der LR-Zerlegung von $A \in \rnxn$
+\begin{enumerate}
+  \item LR-Zerlegung: $\approx 2 n pq$
+  \item Vorwärtseinsetzen: $\approx 2 nq$
+  \item Rückwärtseinsetzen: $\approx 2 np$
+\end{enumerate}
+Gasmt: $2n (pq + q + p)$, d.h. $\LandauO(n)$ für $n \gg \max\{ p, q \}$\\
+\satz Sei $A \in \rnxn$ eine Bandmatrix, wie im letzten Satz. Wird die LR-Zerlegung
+mit Spaltenpivotisierung durchgeführt, dann hat $R$ eine max. obere Bandbreite von
+$p + q$ und $L$ hat pro Spalte maximal $q$ Nichtnulleinträge.\\
+\beweis Demmel (1999), Abschnitt 2.7.3
+\para{Dünnbesetzte Matrizen}
+Treten z.B. bei der FEM auf. \matlab{sparse} Matrixklasse
+\begin{itemize}
+  \item LR-Zerlegung von dünnbesetzten Matrizen $\Rightarrow$ i.A. zu vollbesetzten $L$, $R$
+  \item Durch Umsortierung lässt sich eine dünnbesetzte Matrix auf Bandstruktur bringen
+\end{itemize}
+Algorithmen zur LR-Zerlegung dünnbesetzter Matrizen:
+\begin{itemize}
+  \item Super LU
+  \item UMFPACK
+  \item PARDISO
+\end{itemize}
+Regel: Nie die Inverse einer Matrix berechnen, wenn nicht unbedingt erforderlich (numerisch sehr instabil)\\
+Wenn $Ax_k = b_k$ für $k = 1,\ldots,m$ zu lösen ist, dann berechne LR-Zerlegung von A und nicht $A^{-1}$.\\
+\matlab{$A\backslash[b_1,\ldots,b_m]$}
 
