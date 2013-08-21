@@ -528,3 +528,26 @@ Methoden zur QR-Zerlegung:
 \end{itemize}
 \matlab{qr(A)}
 
+\subsection{Lineare Ausgleichsrechnung}
+Bsp.: Es seien $(t_i, y_i),\,i=1,\ldots,m$ gegeben.\\
+Gesucht: 
+\begin{align*}
+  y(t) := \sum^{n}_{j=1} x_j \phi_j(t) \tag{ + }
+\end{align*}
+wobei
+\begin{itemize}
+  \item $\phi_i$ gegebene Funktionen $j=1,\ldots,n$
+  \item $y(t_i) \approx y_i \qquad i=1,\ldots,m$
+  \item $m > n$
+\end{itemize}
+\missingfigure{Ausgleichsrechnung}
+D.h. mehr Messdaten als Unbekannte $(x_1,\ldots,x_n)$\\
+Setze Messdaten in (+) ein:
+\begin{align*}
+  y_i = \sum^{n}_{j=1} x_j \phi_j(t_i) \qquad i=1,\ldots,m\\
+  Ax=b \text{ überbestimmtes Gleichungssystem } \Rightarrow \text{ i.A. nicht lösbar}\\
+  A[i,j] = \phi_j(t_i), \quad b_i = y_i
+\end{align*}
+
+
+
