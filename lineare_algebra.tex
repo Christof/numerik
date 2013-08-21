@@ -489,3 +489,42 @@ Eigenschaften:\\
 d.h. ist $A$ gut konditioniert, dann kann der Fehler nicht ``explodieren''.\\
 Ist Matrix nicht s.p.d., dann kommt bei obigem Algorithmus NaN heraus.\\
 \matlab{chol(A)}
+
+\subsubsection{QR-Zerlegung}
+\definition Eine Matrix $A \in \rmxn$ mit $m \geq n$ sei gegeben. Die Faktorisierung $A = QR$, TODO(Matrixformen) wobei $Q$
+eine unitäre Matrix ($Q^*Q=I$) und $R$ eine verallgemeinerte obere Dreiecksmatrix sei, 
+d.h. $r_{ij} = 0$ für $i > j$ heißt QR-Zerlegung von $A$.
+\definition $Q \in \raxb{m}{m}$ heißt unitär, wenn $Q^*Q=QQ^*=I$\\
+Es gilt: $Q^*Q=I \Leftrightarrow$ Die Spalten bzw. Zeilen von $Q$ sind orthonormal bzgl. $\inner{.}{.}_2$.\\
+Eigenschaften unitärer Matrizen:
+\begin{itemize}
+  \item $\norm{Qx}_2^2 = (Qx)^*Qx = x^*\underbrace{Q^*Q}_{I}x = x^*x = \norm{x}_2^2 \Rightarrow$ Längenerhaltung, Drehungen
+  \item Es lässt sich einfach zeigen: $\norm{QA}_2 = \norm{AQ}_2 = \norm{A}_2$
+  \item $\kappa_2(Q) = \sqrt{\frac{\lambda_{max}(Q^*Q)}{\lambda_{min}(Q^*Q)}} = 1$
+\end{itemize}
+\satz Sei $A \in \rmxn$ Dann existiert eine QR-Zerlegung der Form 
+\begin{align*}
+  A=QR=\begin{pmatrix} Q_1 & Q_2 \end{pmatrix} \begin{pmatrix} R_1 \\ 0 \end{pmatrix} = Q_1 R_1
+\end{align*}
+\beweis Siehe Lehrbuch Numerik\\
+Eigenschaften und Einsatz der QR-Zerlegung:
+\begin{itemize}
+  \item Sei $A \in \rnxn$ regulär. Durch die QR-Zerlegung wird die Kondition von $Ax=b$ nicht verschlechtert, denn:
+    \begin{itemize}
+      \item Man löst: $Rx = Q^*b \quad (Ax = b \Leftrightarrow QRx = b \Leftrightarrow Rx = Q^*b)$
+      \item Man kann zeigen $\kappa_2(A) = \kappa_2(QR) = \kappa_2(R)$
+    \end{itemize}
+  \item QR-Zerlegung ist numerisch stabiler als LR-Zerlegung \begin{align*}
+      \frac{\norm{\hat{x} - x}}{\norm{x}} \leq c\,eps\,\kappa_\infty(A)n^2 + \LandauO(eps^2)
+    \end{align*}
+  \item QR-Zerlegung ist doppelt so teuer wie LR-Zerlegung
+  \item Einsatz: Ausgleichsrechnung
+\end{itemize}
+Methoden zur QR-Zerlegung:
+\begin{itemize}
+  \item Householder-Verfahren
+  \item Given-Verfahren
+  \item Gram-Schmidt-Verfahren
+\end{itemize}
+\matlab{qr(A)}
+
