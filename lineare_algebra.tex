@@ -459,3 +459,33 @@ Regel: Nie die Inverse einer Matrix berechnen, wenn nicht unbedingt erforderlich
 Wenn $Ax_k = b_k$ für $k = 1,\ldots,m$ zu lösen ist, dann berechne LR-Zerlegung von A und nicht $A^{-1}$.\\
 \matlab{$A\backslash[b_1,\ldots,b_m]$}
 
+\subsubsection{Cholesky-Zerlegung}
+\definition Eine Matrix $A$ heißt symmetrisch / hermitesch positiv definit (s.p.d),
+falls $A^* = A$ und $x^*Ax > 0\,\forall x \neq 0$.\\
+Treten häufig auf, z.B.: FEM, Ausgleichsrechnung, Optimierung\\
+\satz Sei $A$ s.p.d., dann gilt:
+\begin{enumerate}[a]
+  \item $a_{ii} > 0$
+  \item alle Eigenwerte von $A$ sind positiv (hinreichende Bedingung)
+  \item $\kappa_2(A) = \frac{\lambda_{max}(A)}{\lambda_{min}(A)}$
+\end{enumerate}
+\satz Sei $A \in \rnxn$ s.p.d., dann existiert eine untere (linke) Dreiecksmatrix $L$
+mit $A = LL^*$ (Cholesky Zerlegung)\\
+Algorithmus:\\
+\begin{flalign*}
+  & \texttt{for } k = 1:n\\
+  & \quad l_{kk} = \left( a_{kk} - \sum^{k-1}_{j=1} \abs{l_{kj}}^2 \right)^{\frac{1}{2}}\\
+  & \quad \texttt{for } i=k+1:n\\
+  & \qquad l_{ik} = \frac{a_{ik} - \sum^{k-1}_{j=1} l_{ij} \bar{l}_{kj}}{l_{kk}} \\
+  & \quad \texttt{end}\\
+  & \texttt{end}
+\end{flalign*}
+\beweis Siehe Lehrbuch Numerik\\
+Eigenschaften:\\
+\begin{itemize}
+  \item Aufwand $\frac{1}{3} n^3 + \LandauO(n^2)$ Flops für $A \in \rnxn$
+  \item Numerisch stabil ($Ax=b$): $\frac{\norm{\hat{x}-x}_\infty}{\norm{x}_\infty} \leq \kappa_\infty(A) 3n^2 eps + \LandauO(eps)$
+\end{itemize}
+d.h. ist $A$ gut konditioniert, dann kann der Fehler nicht ``explodieren''.\\
+Ist Matrix nicht s.p.d., dann kommt bei obigem Algorithmus NaN heraus.\\
+\matlab{chol(A)}
