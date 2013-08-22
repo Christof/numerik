@@ -548,6 +548,64 @@ Setze Messdaten in (+) ein:
   Ax=b \text{ überbestimmtes Gleichungssystem } \Rightarrow \text{ i.A. nicht lösbar}\\
   A[i,j] = \phi_j(t_i), \quad b_i = y_i
 \end{align*}
+\definition Sei $A \in \rmxn$ und $b \in \ra{m}$. Das lineare Ausgleichsproblem (LAP) besteht darin ein $x \in \ra{n}$ mit
+\begin{align*}
+  \norm{Ax-b}_2 = \underset{y \in \ra{n}}{\min} \norm{Ay - b}_2
+\end{align*}
+\satz Sei $A \in \rmxn$ und $b \in \ra{m}$. Dann gilt:
+\begin{enumerate}[a)]
+  \item LAP besitzt mindestens eine Lösung
+  \item $x \in \ra{n}$ ist Lösung von LAP $\Leftrightarrow$ $x$ Lösung der Gaußschen Normalengleichung (GNG)
+  \item Für $m \geq n$ und $\mathrm{Rang}(A) = n$ besitzt LAP genau eine Lösung
+
+\end{enumerate}
+\beweis
+\begin{enumerate}[a)]
+  \item siehe Numerik-Lehrbuch
+  \item{Das lineare Ausgleichsproblem \begin{align*}
+    \norm{Ax-b}_2 = \underset{y \in \ra{n}}{\min} \norm{Ay - b}_2\\
+    \norm{a_1 x_1 + \ldots + a_n x_n - b} = \underset{y \in \ra{n}}{\min} \norm{a_1 y_1 + \ldots + a_n x_n - b}
+    \end{align*} lässt sich als BA-Aufgabe von $b$ bzgl. $\norm{.}$ im Raum $\mathrm{span}\{a_1, \ldots, a_n\}$ interpretieren,
+    wobei $Ax$ die BA ist.
+    \missingfigure{Ebene\ldots}
+    \begin{align*}
+      \inner{b - Ax}{u}_2 &= 0 \qquad & \forall u \in \mathrm{span}\{a_1,\ldots, a_n\}\\
+      &\Updownarrow\\
+      \inner{b - Ax}{a_j}_2 &= 0 & \text{für } j=1,\ldots,n\\
+      &\Updownarrow\\
+      \inner{Ax}{a_j}_2 &= \inner{b}{a_j} \qquad & \text{\ditto}\\
+      &\Updownarrow\\
+      (a_j)^* Ax &= (a_j)^* \qquad & \text{\ditto} \Leftrightarrow A^*Ax = A^* b \tag{GNG}
+    \end{align*}}
+  \item Eindeutige Lösbarkeit folgt aufgrund der positiven Definitheit von $A^*A$, siehe Numerik-Lehrbuch.
+\end{enumerate}
+Im Folgenden setzen wir c) des letzten Satzes voraus.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
