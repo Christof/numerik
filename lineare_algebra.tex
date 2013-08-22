@@ -581,8 +581,28 @@ Setze Messdaten in (+) ein:
 \end{enumerate}
 Im Folgenden setzen wir c) des letzten Satzes voraus.
 
-
-
+Lange Zeit wurde GNG verwendet um LAP zu lösen (mittels Cholesky-Zerlegung).
+Allerdings ist GNG oft sehr schlecht konditioniert.\\
+\satz Sei $A \in \rmxn,\,m \geq n$ und $\mathrm{rg}(A) = n$. Sei $A = QR = \mat{Q_1 & Q_2} \mat{R_1 \\ 0}$.
+$Q_1 \in \rmxn,\, R_1 \in \rnxn$ eine QR-Zerlegung. Dann gilt:
+\begin{align*}
+  x \in \ra{n} \text{ ist Lösung von LAP } \Leftrightarrow R_1 x = Q_1^* b
+\end{align*}
+\beweis Es gilt: $\norm{Qx}_2 = \norm{x}_2,\quad Q^*Q = I = QQ^*$\\
+\begin{align*}
+  \norm{Ax - b}_2^2 &= \norm{QRx - b}_2^2 \\
+  &= \norm{QRx - QQ^*b}_2^2 \\
+  &= \norm{Q(Rx - Q^*b)}_2^2 \\
+  &= \norm{Rx - Q^*b}_2^2 \\ 
+  &= \norm{\mat{R_1 \\ 0}x - \mat{Q_1 & Q_2}^* b}_2^2\\
+  &= \norm{\mat{R_1x & -Q_1^*b \\ 0 & -Q_2^*b}}_2^2 \\
+  &= \norm{R_1 x - Q_1^*b}_2^2 + \norm{Q_2^* b}_2^2
+\end{align*}
+$R_1$ ist regulär weil $\mathrm{rg}(A) = n$. Damit erhält man für $x \in \ra{n}:
+\begin{align*}
+  \norm{Ax -b}_2^2 \text{ ist minimal } \Leftrightarrow \norm{R_1x - Q_1^*b}_2^2 = 0 \Leftrightarrow R_1x = Q_1^*b
+\end{align*}
+QR-Zerlegung ist der GNG vorzuziehen, weil sie numerisch stabiler ist und der Aufwand ca. gleich ist.
 
 
 
