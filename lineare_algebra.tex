@@ -656,12 +656,55 @@ Dann gilt:
 \beweis Siehe Dahmen, Lemma 4.32\\
 
 SVD für (LAP) mit Rangdefekt\\
-Sei $A \in \mathbb{K}^{m \times n}$ mit $r = \mathrm{rg}(A) < \min \{m,n\}$
+Sei $A \in \mathbb{K}^{m \times n}$ mit $r = \mathrm{rg}(A) \mathbin{\textcolor{rot}{<}} \min \{m,n\}$
 \begin{align*}
   \norm{Ax - b}_2 \leq \norm{Ay - b} \quad \forall y \in \mathbb{K}^n \tag{LAP}
 \end{align*}
-Es gibt mehrere Lösungen zu (LAP) $\Leftrightarrow$ (GNG) und QR-Zerlegung können nicht verwendet werden.
-
+Es gibt mehrere Lösungen zu (LAP) $\Leftrightarrow$ (GNG) und QR-Zerlegung können nicht verwendet werden.\\
+Man stellt eine zusätzliche Bedingung zum (LAP):
+\begin{align*}
+  \norm{x}_2 \text{ minimual u (LAP)} \tag{*}
+\end{align*}
+TODO obiger Text (*) richtig?
+Wegen $\norm{Uz}_2 = \norm{z}_2$ (für $U$ unitär) ist (*) äquivalent zu $\norm{x}_2$ minimal und
+\begin{align*}
+  \underbrace{\norm{U \Sigma  V^* x - b}_2}_{\norm{\underbrace{U^*U}_I \Sigma V^* - U^* b}_2} &\leq \norm{U \Sigma V^* y - b}_2 \quad \forall y\\
+  &\Updownarrow\\
+  \norm{\Sigma V^* x - U^*b}_2 &\leq \norm{\Sigma V^* y - U^* b}_2 \quad \forall y\\
+  &\Updownarrow V^* \text{ regulär}\\
+  \norm{\Sigma \underbrace{V^*x}_{=: \tilde{x}} - U^*b}_2 &\leq \norm{\Sigma y - U^*b}_2 \quad \forall y \\
+  % TODO brace below above line
+  \text{(LAP) zu } &\Sigma \tilde{x} = U^*b
+\end{align*}
+Wegen $\norm{\tilde{x}}_2 = \norm{V^* x}_2 = \norm{x}$
+\begin{align*}
+  (*) \Leftrightarrow \norm{\tilde{x}}_2 \text{ minimal und } \norm{\Sigma \tilde{x} - U^* b}_2 < \norm{\Sigma y - U^*b}_2 \quad \forall y \tag{**}
+\end{align*}
+Sei $u_j$ di j-te Spalte von $U$:
+\begin{align*}
+  \norm{\Sigma \tilde{x} - U^*b}_2^2 = \underbrace{\sum^{r}_{i=1} \abs{\sigma_i \tilde{x}_i - a_1^* b}^2}_{\mustbe 0} + \sum^{m}_{i=r+1} \abs{u_i^* b}_2
+\end{align*}
+\definition $\tilde{x}_j := \begin{cases}
+    \frac{1}{\sigma_j} a_j^*b &\mbox{für } j =1\ldots r\\
+     0 &\mbox{sonst}
+  \end{cases}$
+\begin{align*}
+  \tilde{x} = \underbrace{\begin{pmatrix}
+        \frac{1}{\sigma_1} &        &          & 0 \\
+                 & \ddots &          &   \\
+                 &        & \frac{1}{\sigma_r} &   \\
+        0        &        &          & 0
+      \end{pmatrix}}_{\textcolor{rot}{=: \Sigma^+}} U^*b \\
+  \text{ bzw. } \\
+  V^* x = \tilde{x} \Rightarrow x = V\tilde{x} = \underbrace{V\Sigma^+U^*}_{\textcolor{rot}{=: A^*\ldots\text{Pseudoinverse}}}b
+\end{align*}
+Eigenschaften von $A^+$
+\begin{itemize}
+  \item Ist $A$ regulär $\Leftrightarrow A^{-1} = A^+$
+  \item Ist $b \in \mathrm{Im}(A)$ dann gilt: $x = A^+ b$ ist Lösung von $Ax = b$
+    %TODO Im richtig?
+\end{itemize}
+\matlab{pinv}
 
 
 
