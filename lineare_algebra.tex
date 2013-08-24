@@ -706,8 +706,54 @@ Eigenschaften von $A^+$
 \end{itemize}
 \matlab{pinv}
 
-
-
+\subsection{Itertive Löser für lineare Gleichungssysteme}
+Nachteile von direkten Lösern für $Ax=b$ mit $A \in \mathbb{K}^{n \times n}$
+\begin{itemize}
+  \item Vollbesetzte Matrizen: Aufwand $cn^3 + \LandauO(n^2)$ \\ Ziel itertiver Löser: $\tilde{c} n^2 + \LandauO(n) \quad \tilde{c} \ll n$
+  \item Schwachbesetzte Matrizen: $\Rightarrow$ Bandmatrix (Zeilen- und Spaltenvertauschung) Aufwand $\approx n$\\
+    Iterative Löser sind schneller und stabiler für große $n$. Vorkonditionierungsstrategien sind schwer andwendbar, weil z.B. $PA \rightarrow$ vollbesetzt
+\end{itemize}
+\subsubsection{Fixpunktgleichung und Fixpunktiteration}
+Sehr bedeutsames Konzept in der Mathematik.\\
+\definition Sei $\Phi: x \rightarrow x \quad x \in X$ heißt Fixpunkt von $\Phi$, wenn
+\begin{align*}
+  \mathbin{\textcolor{rot}{x = \Phi(x)}} \tag{\textcolor{rot}{Fixpunktgleichung}}
+\end{align*}
+Viele Probleme werden auf eine Fixpunktgleichung zurückgeführt:
+\begin{itemize}
+  \item Nullstellensuche: \begin{align*}
+    f(x) = &\Leftrightarrow f(x) + x = x\\
+           &\Leftrightarrow x - \frac{f(x)}{f'(x)} = x
+  \end{align*}
+  \item Nichtlineare Probleme: \begin{align*}
+    F(x) = G(x) &\Leftrightarrow F(x) - G(x) = 0\\
+                &\Leftrightarrow x - \alpha \left(F(x) - G(x) \right) = x
+  \end{align*}
+\end{itemize}
+\textcolor{rot}{Fixpunktiteration:}
+\begin{align*}
+  \mathbin{\textcolor{rot}{x^{k+1} := \Phi(x^k)}} \text{ wobei } x^0 \text{ vorgegeben werden muss}
+\end{align*}
+Wann konvergiert $x^{k+1} \rightarrow x$ Fixpunkt?\\
+Banachsche Fixpunktsatz: Sei $D \subset \mathbb{K}^n$ abgeschlossen und $\Phi: D \rightarrow D$ sein eine Kontraktion, 
+d.h. $\exists\, q \in [0,1)$ mit $\norm{\Phi(y) - \Phi(z)} \leq q\norm{y - z} \quad \forall y,z \in D$.\\
+Dann gilt:
+\begin{enumerate}[a)]
+  \item Es existiert geneu ein Fixpunkt $x \in D$ mit $x = \Phi(x)$
+  \item Für jeden beliebigen Startwert $x^0 \in D$ konvergiert die Fixpunktiteration $x^{k+1} := \Phi(x^k)$
+  \item $\norm{x^k - x} \leq q\norm{x^{k-1} - x}$ (Monotonie)
+  \item $\norm{x^k - x} \leq \frac{q^k}{1-q} \norm{x^1 - x^0}$ (a priori Fehlerschranke)
+  \item $\norm{x^k - x} \leq \frac{q}{1-q} \norm{x^k - x^{k-1}}$ (a posteriori Fehlerschranke)
+\end{enumerate}
+\beweis Ist einfach, siehe Numerik Lehrbuch.\\
+Bemerkung 1: d) und e) leifern ohne Kenntnis von $x$ Fehlerschranken für $x^k$ (wenn q bzw. ``eine Abschätzung von q'' bekannt ist).
+e) ist meist ``realistischer'' (``schärfer'') als d) und dient oft als Abbruchkriterium.\\
+Bemerkung 2: Je kleiner q umso schneller die Konvergenz. $q = 0.99$\\
+\begin{tabular}{l | r}
+           & $\frac{q^k}{1-q}$ \\
+  k = 100  & 36,6 \\
+  k = 1000 & 0,0043
+\end{tabular}
 
 
 
