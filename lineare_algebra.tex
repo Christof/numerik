@@ -799,6 +799,30 @@ $A = L + D + R$ wie oben
 \end{align*}
 \satz Das Gauß-Seidel-Verfahren konvergiert wenn $A$ s.p.d. ist oder strikt zeilen- bzw. spaltendiagonaldominant ist.\\
 \beweis Numerik-Lehrbuch
+%subsubsubsection 5.4.1.2
+\para{Krylov-Raum-Verfahren}
+Schreibweise: $\inner{.}{.}_ = (.,.)$\\
+Meistverwendete iterative Verfahren\\
+Idee: Wähle Folge von affinen Unterräumen $U_1 \subset U_2 \subset U_3 \ldots$ und suche 
+Approximation $x^k \in U^k$ so dass $x^k$ gewisse Eigenschaft (z.B. BA, minimales Residuum, \ldots) erfüllt.\\
+\definition Sei $A \in \mathbb{K}^{n \times m}$ und $v \in \mathbb{K}^n$. Für $l \in \mathbb{N}$ bezeichnet man
+\begin{align*}
+  \mathcal{K}_l(A,v) := \mathrm{span} \left \{ v, Av, A^2v, \ldots, A^{l-1}v \right \}
+\end{align*}
+als Krylov-Räume bezüglich $(A,v)$.\\
+\definition Sei $x^0 \in \mathbb{K}^n$ und $U \subset \mathbb{K}^n$ ein Unterraum, dann heißt
+\begin{align*}
+  x^0 + U := \{x^0 + u: u \in U\}
+\end{align*}
+affiner Unterraum von $\mathbb{K}^n$.\\
+Krylov-Raum-Verfahren: für $Ax = b$ verwenden
+\begin{align*}
+  \mathbin{\textcolor{rot}{x^0 + \mathcal{K}(A,r^0)}} \qquad k=1,2,\ldots\\
+  r^0 = Ax^0 - b
+\end{align*}
+($x^0$ gewählte Startnäherung), als Approximationsräume für $x = A^{-1}b$.\\
+\satz: Sei $A \in \mathbb{K}^{n \times n},\,x^0 \in \mathbb{K}^n$ und $b \in \mathbb{K}^n$. Die Lösung von
+$Ax = b$ liegt im Raum $x^0 + \mathcal{K}_l(A,r^0)$ für $l \leq n$.
 
 
 
