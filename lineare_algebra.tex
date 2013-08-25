@@ -772,7 +772,24 @@ Fixpunktiteration: $x^{k+1} = \Phi(x^k) = M^{-1}Nx^k + M^{-1}b$ (Splittingverfah
 Konsequenz: Das Splitting-Verfahren konvergiert gegen $x = A^{-1}b$, wenn $\norm{M^{-1}N} < 1$. (Es
 lässt sich zeigen, dass das Splitting-Verfahren genau dann konvergiert, wenn die Beträge der Eigenwerte
 von $M^{-1}N < 1$ sind.)
-
+\para{Jacobi-Verfahren}
+\begin{align*}
+  A = \underbrace{D}_{=: M} + \underbrace{L + R}_{=: -N} \qquad D = \mat{a_{11} & & \\ & \ddots & \\ & & a_{nn}} \qquad
+  L = \begin{pmatrix}
+    0      &        &        & 0 \\
+    a_{21} & \ddots &        &   \\
+    \vdots & \ddots & \ddots &   \\
+    a_{n1} & \ldots & a_{n,n-1} & 0
+  \end{pmatrix}
+\end{align*}
+\begin{align*}
+  Ax = b \Leftrightarrow Dx = -(L+R)x + b \Leftrightarrow x = -D^{-1} \left[ (L+R) - b \right]
+\end{align*}
+\satz Sei $A$ strikt zeilen- oder strikt spaltendiagonaldominant, dann konvergiert das Jacobi-Verfahren.\\
+Strikt zeilendiagonaldominant: $\abs{a_{ii}} > \sum^{n}_{j=1,j \neq i} \abs{a_{ij}} \text{ für } i=1,\ldots,n$
+\begin{align*}
+  q = \underset{i}{\max} \frac{\sum^{n}_{j=1,j \neq i} \abs{a_{ij}}}{\abs{a_{ii}}}
+\end{align*}
 
 
 
