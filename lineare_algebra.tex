@@ -754,8 +754,24 @@ Bemerkung 2: Je kleiner q umso schneller die Konvergenz. $q = 0.99$\\
   k = 100  & 36,6 \\
   k = 1000 & 0,0043
 \end{tabular}
-
-
+\para{Splitting-Verfahren für $Ax = b$}
+Sei $A$ regulär. $A = M - N$ ($M$ regulär)
+\begin{align*}
+  Ax = b \Leftrightarrow Mx = nx + b \Leftrightarrow x = M^{-1} (Nx+b) = \underbrace{M^{-1}Nx + M^{-1}b}_{=: \Phi(x)}
+\end{align*}
+Fixpunktiteration: $x^{k+1} = \Phi(x^k) = M^{-1}Nx^k + M^{-1}b$ (Splittingverfahren)\\
+\satz Sei $B \in \mathbb{K}^{n \times n}$ mit $\norm{B} < 1$. Sei $a \in \mathbb{K}^n$. Dann gilt:
+\begin{enumerate}[a)]
+  \item Die Fixpunktgleichung $x = Bx + a$ besitzt einen eundeutigen Fixpunkt $x$.
+  \item $x^{k+1} := Bx^k + a$ konvergiert gegen $x$ für jedes $x^0$.
+\end{enumerate}
+\beweis $\Phi(x) := Bx + a$ z.z. ist: $\Phi$ ist Kontraktion.\\
+\begin{align*}
+  \norm{\Phi(y) - \Phi(z)} = \norm{By + a - Bz - a} = \norm{B(y - z)} \leq \underbrace{\norm{B}}_{= q < 1} \norm{y - z}
+\end{align*}
+Konsequenz: Das Splitting-Verfahren konvergiert gegen $x = A^{-1}b$, wenn $\norm{M^{-1}N} < 1$. (Es
+lässt sich zeigen, dass das Splitting-Verfahren genau dann konvergiert, wenn die Beträge der Eigenwerte
+von $M^{-1}N < 1$ sind.)
 
 
 
