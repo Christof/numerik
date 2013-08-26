@@ -817,15 +817,43 @@ als Krylov-Räume bezüglich $(A,v)$.\\
 affiner Unterraum von $\mathbb{K}^n$.\\
 Krylov-Raum-Verfahren: für $Ax = b$ verwenden
 \begin{align*}
-  \mathbin{\textcolor{rot}{x^0 + \mathcal{K}(A,r^0)}} \qquad k=1,2,\ldots\\
-  r^0 = Ax^0 - b
+  & \mathbin{\textcolor{rot}{x^0 + \mathcal{K}(A,r^0)}} \qquad k=1,2,\ldots\\
+  & r^0 = Ax^0 - b
 \end{align*}
 ($x^0$ gewählte Startnäherung), als Approximationsräume für $x = A^{-1}b$.\\
 \satz: Sei $A \in \mathbb{K}^{n \times n},\,x^0 \in \mathbb{K}^n$ und $b \in \mathbb{K}^n$. Die Lösung von
 $Ax = b$ liegt im Raum $x^0 + \mathcal{K}_l(A,r^0)$ für $l \leq n$.
-
-
-
+%5.4.1.2.1
+\para{$\quad$CG-Verfahren (Conjugate Gradient Method)}
+Anwendbar für selbstadjungierte und positiv definite Matrizen.\\
+Selbstadjungiert: $A \in \rnxn := A = A^T; \quad A \in \mathbb{C}^{n \times n}\, A = A^*$ jetzt nur $\rnxn$\\
+Ansatz: Wähle $x^k$ als BA von $x$ in $x^0 + \mathcal{K}_k(A,r^0)$ bzgl. $\norm{.}_A$.\\
+\satz Sei $A$ s.p.D., dann definiert $(x,y)_A := (Ax, y) = y^TAx$ ein Skalarprodukt, das $A$-Skalarprodukt und
+$\norm{x}_A := \sqrt{(x,x)_A}$ ist eine Norm.\\
+\beweis Einsetzen\\
+Konstruktion der BA $x^k \in x^0 + \mathcal{K}_k(A,r^0)$ von $x = A^{-1}b$ bzgl. $\norm{.}_A$.
+Der Einfachheit halber: $x^0 = 0$
+\begin{align*}
+  r^0 &= Ax^0 - b = -b\\
+  x^k &\in \mathcal{K}_k(A,r^0) \text{ ist BA von } x \text{ bzgl. } \norm{.}_A\\
+  &\Updownarrow\\
+  x^k - x &\perp_A \mathcal{K}_k(A,r^0) \tag{*}
+\end{align*}
+\missingfigure{Ebene, wie bei BA}
+Sei $p^0, p^1,\ldots,p^{k-1}$ $A$-orthogonale Basis von $\mathcal{K}_k(A,r^0)$\\
+Ansatz: $x = \sum^{k-1}_{l=0} k_l p^l$
+\begin{align*}
+  (*) &\Leftrightarrow (x - x^k, p^i)_A = 0 \text{ für } 0,\ldots,k-1\\
+      &\Leftrightarrow (x,p^i)_A = (x^k,p^i)_A = (\sum^{k-1}_{l=0} \alpha_l p^l, p^i)_A 
+        = \sum^{k-1}_{l=0} \alpha_l(p^l, p^i)_A = \alpha_i(p^i, p^i)_A\\
+      &\Rightarrow \alpha_i = \frac{(x,p^i)_A}{(p^i,p^i)_A} \\
+      (x,p^i)_A &= (Ax,p^i) = (b,p^i) = -(r^0,p^i)\\
+      &\Rightarrow x^k = \sum^{k-1}_{l=0} \alpha_l p^l\\
+      r^k &= Ax^k - b = A(x^{k-1} + \alpha_{k-1}p^{k-1}) - b = r_{k-1} + \alpha_{k-1}Ap^{k-1}
+\end{align*}
+Berechnung von $p^k$: Gram-Schmidt-Verfahren\\
+$\Rightarrow$ CG-Verfahren (siehe Handout)
+\missingfigure{CG-Handout}
 
 
 
