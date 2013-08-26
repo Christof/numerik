@@ -877,7 +877,48 @@ es gilt ($x^0 \neq x$)
   $\epsilon = 10^{-16} \quad\Rightarrow\qquad 18,8$\\
   $\Rightarrow$ Für $k \geq \sqrt{\kappa_2(A)}19 \Rightarrow \frac{\norm{x^k - x}}{\norm{x^0 - x}} \leq 10^{-16}$
 \end{itemize}
+\para{$\qquad$Vorkonditioniertes CG-Verfahren}
+Allgemeine Idee: Anstelle von $Ax = b$ löse $P^{-1}Ax = P^{-1}b$, wobei
+\begin{itemize}
+  \item $\kappa(P^{-1}A)$ soll klein sein
+  \item $P^{-1}$ muss einfach anwendbar sein
+\end{itemize}
+Wie bestimmt man $P^{-1}$?\\
+Ansatz: Wähle $P^{-1}\approx A^{-1} \Rightarrow P^{-1}A \approx I \Rightarrow \kappa(P^{-1}A) \approx 1$
+\begin{itemize}
+  \item $P^{-1} = D^{-1}$ (Jacobi-VK)
+  \item $P^{-1} = (L + D)^{-1}$ (Gauß-Seidel)
+  \item Unvollständige LR-Zerlegung von $A$, d.h. $A = \tilde{L}\tilde{R} + F, \quad P = \tilde{L}\tilde{R}$ $A$ dünnbesetzt:
+    \begin{itemize}
+      \item $\tilde{r}_{ij} = \tilde{l}_{ij} = 0$ falls $a_{ij} = 0$
+      \item $(\tilde{L}\tilde{R})_{ij} = a_{ij}$
+      \item $\tilde{l}_{ii} = 1$
+    \end{itemize}
+    (Zerlegung kann auch nicht existieren, dann nicht anwendbar)\\
+    \matlab{ilu}
+  \item Unvollständige Cholesky-Zerlegung \matlab{cholinc}
+  \item VK-Strategien, die Eigenschaften des zugrundeliegenden Problems ausnutzen
+\end{itemize}
 
+\subsubsection{Weitere Krylov-Raum Löser}
+Literatur: SAAD, frei online verfügbar
+\begin{itemize}
+  \item GMRES (Generalized Minimal Residual Method)
+    \begin{itemize}
+      \item anwendbar für beliebige Matrizen
+      \item Verfahren minimiert das Residuum in $x^0 + \mathcal{K}_k(A,r^0)$
+      \item Nachteil gegenüber CG: gesamte $\mathcal{K}_k(A,r^0)$ muss gespeichert werden. Daher: Restarts
+      \item \matlab{gmres}
+      \item Konvergenzgeschwindigkeit abhängig von $\kappa_2(A)$
+    \end{itemize}
+  \item MINRES
+    \begin{itemize}
+      \item anwendbar auf symmetrische/hermitesche Matrizen (positive Definitheit wird nicht vorausgesetzt)
+      \item Spezialversion von GMRES
+      \item Vorteil gegenüber GMRES: weniger Speicherbedarf
+      \item \matlab{minres}
+    \end{itemize}
+\end{itemize}
 
 
 
