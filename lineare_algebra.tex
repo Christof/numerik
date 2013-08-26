@@ -854,6 +854,29 @@ Ansatz: $x = \sum^{k-1}_{l=0} k_l p^l$
 Berechnung von $p^k$: Gram-Schmidt-Verfahren\\
 $\Rightarrow$ CG-Verfahren (siehe Handout)
 \missingfigure{CG-Handout}
+\para{$\qquad$Konvergenz des CG-Verfahrens}
+Wir wissen bereits:
+\begin{itemize}
+  \item $\norm{x^{k+1} - x}_A \leq \norm{x^k - x}_A$
+  \item $\exists\; l \leq n$, so dass $x^l \in \mathcal{K}_l(A,r^0)$
+\end{itemize}
+\satz (Fehlerabschätzung des CG-Verfahrens)\\
+es gilt ($x^0 \neq x$)
+\begin{align*}
+  \frac{\norm{x^k - x}_A}{\norm{x^0 - x}_A} < 2 \underbrace{(\frac{\sqrt{\kappa_2(A)} - 1}{\sqrt{\kappa_2(A)}+1} )}_{<1}^k
+\end{align*}
+\beweis Siehe SAAD
+\begin{itemize}
+  \item Ist $x^0 = 0$, dann ist obige Abschätzung eine Abschätzung des relativen Fehlers.
+  \item Sei $\epsilon > 0$, dann gilt:
+  \begin{align*}
+    \frac{\norm{x^k - x}_A}{\norm{x^0 - x}_A} < \epsilon
+  \end{align*}
+  wenn $k \geq \sqrt{\kappa_2(A)} \underbrace{\frac{1}{2} \ln \frac{2}{\epsilon}}$\\
+  $\epsilon = 10^{-8} \;\quad\Rightarrow\qquad \;\;9,6$\\
+  $\epsilon = 10^{-16} \quad\Rightarrow\qquad 18,8$\\
+  $\Rightarrow$ Für $k \geq \sqrt{\kappa_2(A)}19 \Rightarrow \frac{\norm{x^k - x}}{\norm{x^0 - x}} \leq 10^{-16}$
+\end{itemize}
 
 
 
