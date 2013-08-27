@@ -37,3 +37,67 @@ Abbruchkriterien bei Fixpunktiteration:
 \end{enumerate}
 \missingfigure{Abbruchkriterium Fixpunktiteration}
 
+\subsection{Bestimmung von Nullstellen reeller Funktionen}
+Gesucht: $x^* \in [a,b]$ mit $f(x^*) = 0$\\
+Ist $f(a)f(b) < 0$ und $f$ stetig
+\missingfigure{Beispiel}
+$\Rightarrow \exists\; x^* \in (a,b):\;f(x^*) = 0$\\
+Einfache (aber langsame) Methode: Bisektionsverfahren\\
+Definiere $(a_k, b_k)_{k \in \mathbb{N}_0}$ induktiv durch
+\begin{align*}
+  (a_0, b_0) =& (a, b)\\
+  c_k :=& \frac{a_k + b_k}{2}\\
+  (a_{k+1}, b_{k+1}) :=& \begin{cases}
+    (a_k, c_k) &\mbox{falls} f(a_k)f(c_k) < 0\\
+    (c_k, b_k) &\mbox{sonst}
+  \end{cases}
+\end{align*}
+lineare Konvergenz $(x^*, x^*)$\\
+\matlab{fzero} (basierend auf Bisektion)\\
+Nur eine Nullstelle und auch keine Information ob es mehrere gibt.\\
+
+Bestimmung der Nullstellen von Polynomen\\
+$p(x) = x^n + a_{n-1}x^{n-1} + \ldots + a_0 \Leftrightarrow$ äquivalentes Eigenwertproblem (Begleitmatrix)
+
+\subsection{Newton-Verfahren und seine Varianten}
+Zunächst sei $n=1: \quad f:\;(a,b) \rightarrow \mathbb{R}, x^* \in (a,b)$ (unbekannt) mit $f(x^*) = 0$\\
+Ziel: Näherungsweise Bestimmung von $x^*$\\
+Ansatz: Sei $x^{(k)}$ gegebene Näherung von $x^*$
+\begin{enumerate}[i)]
+  \item Verwende lineare Approximation von $g$ und $f$ in $x^{(k)}$
+  \item Bestimme $x^{(k+1)}$ als Nullstelle von $g$
+    \missingfigure{Linearisierte Funktion g}
+\end{enumerate}
+Implementierungen:
+\begin{itemize}
+  \item LAPACK (kleine vollbesetzte Matrizen)
+  \item ARPACK (größere dünnbesetzte Matrizen)
+\end{itemize}
+D.h.
+\begin{align*}
+  f(x) &= \underbrace{f(x^{(k)} + f'(x^{(k)})(x - x^{(k)})}_{=: g(x)} + \LandauO\left( (x - x^{(k)})^2 \right)\\
+  0 &\mustbe g(x^{(k+1)})\\
+  \mathbin{\textcolor{rot}{x^{k+1} = x^k - [f(x^k)]^{-1} f(x^k) }}\tag{\textcolor{rot}{Newton-Verfahren für $f(x)=0$}}\\
+  \text{Auch gültig in } \rn &\quad f'(x^{(k)})\ldots\text{Jacobi-Matrix}
+\end{align*}
+\satz: Sei $f:\;M \subset \rn \rightarrow \rn$ 2-mal stetig differenzierbar und $f(x^*) = $ für $x^* \in M$.\\
+Ist $f'(x^*)$ invertierbar, dann ist das Newton-Verfahren lokal quadratisch konvergent.\\
+Standard-Newton-Verfahren konvergiert meist nicht oder nicht gegen gewünschte Nullstelle,
+wenn Startnäherung $x^{(0)}$ nicht nahe genug bei $x^*$ liegt.\\
+Ausweg: ``Globalisierungstechniken'' (``gedämpfte Newton-Verfahren'')
+\begin{align*}
+  x^{(k+1)} = x^{(k)} - \textcolor{rot}{\lambda_k}[f'(x^{(k)})]^{-1} f(x^{(k)}
+\end{align*}
+$\lambda_k$ (Dämpfer, Schrittweite) wird so gewählt (und kann so gewählt werden), dass
+\begin{itemize}
+  \item $\norm{f(x^{(k+1)}} < \norm{f(x^{(k)}}$
+  \item $\norm{f(x^{(k+1)}}$ möglichst klein in einem gewissen Bereich
+    \begin{itemize}
+      \item line search
+      \item trust region %TODO stimmt?
+      \item Levenberg-Marquardt
+    \end{itemize}
+\end{itemize}
+Konvergenz gegen $x^*$ ist NICHT gewährleistet.\\
+\matlab{fsolve}
+
