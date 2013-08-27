@@ -1,1 +1,39 @@
-\section{Numerik nichtlinearer Gleichungen}
+\section{Numerik nichtlinearer Gleichungen und Gleichungssysteme}
+\subsection{Grundlagen}
+Ziel: Gesucht $x^* \in M \subset \rn$, so dass $f(x^*) = 0$ wobei $f: M \rightarrow \rn$\\
+($ h(x) = g(x) \Leftrightarrow f(x) := h(x) - g(x) = 0$)\\
+Typische ``numerische'' Vorgehensweise:
+\begin{align*}
+  f(x) = 0 \overset{G(x) \neq 0}{\Leftrightarrow} -G(x)f(x) = 0 \Leftrightarrow \underbrace{x - G(x)f(x)}_{=: \Phi(x) \text{ Fixpktglg}} = x
+\end{align*}
+Fixpunktiteration: $x^{(k+1)} = \Phi(x^{(k)})$\\
+Fragestellungen:
+\begin{itemize}
+  \item Konvergenz
+  \item Konvergenzbereich (für welche $x^{(0)}$ konvergiert die FPI?)
+  \item Konvergenzgeschwindigkeit
+\end{itemize}
+\definition: Sei $M \subset \rn,\;\Phi: M \rightarrow \rn,\;\Phi(x^*) = x^* \in M$ und $x^{(k+1)} := \Phi(x^{(k)})$\\
+Die Folge $(x^{(k)})_{k \in \mathbb{N}_0}$ heißt
+\begin{itemize}
+  \item global konvergent, falls $\mathbin{\textcolor{rot}{\forall\;x^{(0)} \in M}}: \underset{k \rightarrow \infty}{\lim} x^{(k)} = x^*$
+  \item lokal konvergent, falls $\exists\;\epsilon > 0 \quad \mathbin{\textcolor{rot}{\forall\;x^{(0)} \in U_\epsilon(x^*)}}: \underset{k \rightarrow \infty}{\mathrm{lim}} x^{(k)} = x^*$
+  \item linear konvergent (Konvergenzordnung $p=1$), falls $\exists\; q \in [0,1)\quad \norm{x^{(k+1)} - x^*} \leq q \norm{x^{(k)} - x^*} \quad \forall\; k \geq k_0$
+      ($q$ Konvergenzfaktor)
+  \item von Konvergenzordnung $p > 1$, falls $\underset{k \rightarrow \infty}{\lim} x^{(k)} = x^*$ und $\exists\;c > 0$ mit
+    $\norm{x^{(k+1)} - x^*} \leq c \norm{x^{(k)} - x^*}^p$ ($p=2$: quadratische Konvergenz)
+  \item Fixpunktiterationen sind i.A. nur lokal konvergent, garantierter Konvergenzbereich $D$ lässt
+    sich theoretisch über Banach'schen Fixpunktsatz angeben: $\Phi_D: D \rightarrow D$ und $\Phi$ ist auf $D$ eine Kontraktion,
+    d.h. $\exists\; q \in [0,1): \norm{\Phi(x) - \Phi(y)} \leq q\norm{x - y} \quad \forall\;x,y \in D$
+    In der Praxis kennt man $D$ nicht.
+  \item Fixpunktiterationen sind mindestens linear konvergent (wenn sie konvergieren)\\
+    $\norm{x^{(k+1)} - x^*} = \norm{\Phi(x^{(k)} - \Phi(x^*)} \leq q \norm{x^{(k)} - x^*}$
+\end{itemize}
+Abbruchkriterien bei Fixpunktiteration:
+\begin{enumerate}[a)]
+  \item ``Residuum'' $\norm{f(x^{(k)}} \leq tol$
+  \item bei quadratischer Konvergenz gilt: $\frac{\norm{x^{(k+1)} - x^{(k)}}}{\norm{x^k - x^*}} \underset{k \rightarrow \infty}{\longrightarrow} 1$
+    Zähler vom Bruch ist Abbruchkriterium
+\end{enumerate}
+\missingfigure{Abbruchkriterium Fixpunktiteration}
+
