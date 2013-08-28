@@ -86,17 +86,17 @@ kleinste/größte pos Zahl:
 \end{align*}
 
 \subsubsection{Rundung}
-Die Abbildung $rd: \mathbb{R} \rightarrow \Fhat, x\,\mapsto\,rd(x)$ heißt Rundung, wenn $|rd(x)-x|=min|y-x|, y\in\,\F$. 
+Die Abbildung $\mathrm{rd}: \mathbb{R} \rightarrow \Fhat, x\,\mapsto\,\mathrm{rd}(x)$ heißt Rundung, wenn $|\mathrm{rd}(x)-x|=min|y-x|, y\in\,\F$. 
 \todo{realtiver Fehler unterbringen}
 \begin{empheq}[innerbox=\fbox,right=\Leftarrow{\text{gilt nur für normalisierte Zahlen}}]{align*}
 \text{Für} \hspace{1cm} x_{min}(\F)&\leq\,|x|\,\leq\,x_{max}\,(\F) \hspace{1cm}\text{gilt:}\\
 \frac{|rd(x)-x|}{x}&\leq \frac{1}{2}\,b^{-t+1} \eqqcolon eps \leftarrow \text{Maschinengenauigkeit}
 \end{empheq}
 
-Es sei $\frac{rd(x)-x}{x}=\sigma\,\Rightarrow\,rd(x)=x(1+\delta)$
+Es sei $\frac{\mathrm{rd}(x)-x}{x}=\delta\,\Rightarrow\,\mathrm{rd}(x)=x(1+\delta)$
 es gilt:
 \begin{empheq}[innerbox=\fbox]{align*}
-rd(x)=x(1+\delta) & \hspace{1cm} |\delta|\leq\,eps
+  \mathrm{rd}(x)=x(1+\delta) & \hspace{1cm} |\delta|\leq\,eps
 \end{empheq}
 
 \example{Maschinengenauigkeit für "`double"'}
@@ -119,7 +119,7 @@ Genaue Operation: $\Box$ \\
 Standard für die Genauigkeit von Maschinenoperationen (IEEE 754): \\
 
 \begin{empheq}[innerbox=\fbox]{align*}
- x \circ y &= rd(x \Box y)   \\ 
+  x \circ y &= \mathrm{rd}(x \Box y)   \\ 
 \text{für} \hspace{0.5cm} x, y \in \Fhat, x_{min}(\F) &\leq | x \circ y | \leq x_{max}(\F)\\
   & \Updownarrow \\
  x \circ y & = (x \Box y)(1 + \delta) \hspace{0.5cm} \text{mit} \hspace{0.5cm} |\delta | \leq eps
@@ -127,7 +127,7 @@ Standard für die Genauigkeit von Maschinenoperationen (IEEE 754): \\
 
 \subsubsection{Fehlerverstärkung bei elementaren Rechenoperationen}
 Fragestellung: Wie wirken sich fehlerbehaftete Eingangsdaten bei elementaren
-Rechenoperation aus? Kann es zu einer wesentlichen Fehlerverstärkung kommen?
+Rechenoperationen aus? Kann es zu einer wesentlichen Fehlerverstärkung kommen?
 Ja, es kommt aber darauf an.
 \example{Bsp:}
 $ f(x)=\frac{1 - \cos(x)}{x^2} $ für $x=1.2 \cdot 10^{-5} $
@@ -141,8 +141,8 @@ relativer Fehler $ \geq \frac{0.69 - 0.5}{0.5} = 38\% $ \\
 
 \para{Fehlerverstärkung bei Addition (Subtraktion)}
 Seien $ a, b \in \mathbb{R} $ gegeben und
-$ \tilde{a} = rd(a) = a (1 + \delta_{a}) $ mit $ | \delta_{a} | \leq eps $ sowie
-$ \tilde{b} = rd(b) = b (1 + \delta_{b}) $ mit $ | \delta_{b} | \leq eps $ \\
+$ \tilde{a} = \mathrm{rd}(a) = a (1 + \delta_{a}) $ mit $ | \delta_{a} | \leq eps $ sowie
+$ \tilde{b} = \mathrm{rd}(b) = b (1 + \delta_{b}) $ mit $ | \delta_{b} | \leq eps $ \\
 Relative Fehler\\
 \begin{equation*}
 \left| \frac{\tilde{a} + \tilde{b} - (a + b)}{a + b} \right| =
@@ -155,8 +155,8 @@ signifikanter Stellen}}}
 
 \para{Fehlerverstärkung bei Multiplikation}
 Seien $ a, b \in \mathbb{R}\setminus\{0\} $ gegeben und
-$ \tilde{a} = rd(a) = \frac{a}{1 + \delta_{a}} $ mit $ | \delta_{a} | \leq eps $ sowie
-$ \tilde{b} = rd(b) = \frac{b}{1 + \delta_{b}} $ mit $ | \delta_{b} | \leq eps $ \\
+$ \tilde{a} = \mathrm{rd}(a) = \frac{a}{1 + \delta_{a}} $ mit $ | \delta_{a} | \leq eps $ sowie
+$ \tilde{b} = \mathrm{rd}(b) = \frac{b}{1 + \delta_{b}} $ mit $ | \delta_{b} | \leq eps $ \\
 Relative Fehler
 \begin{gather*}
 \left| \frac{\tilde{a}\tilde{b} - a b}{a b} \right| =
@@ -243,7 +243,7 @@ relative Eingangsfehler $:= \delta x = \frac{\Delta x}{x}$
 \end{empheq}
 $\kappa(H, x)$ wird (relative) Kondition(szahl) des Problems $H$ für den Input $x$
 genannt. (Mehrdimensionaler Fall: Analoge Definition; verwende Normen statt Beträge) \\
-Ein Problem heißt \underline{gut konditioniert}, falss die Konditionszahl klein (nahe bei 1) ist
+Ein Problem heißt \underline{gut konditioniert}, falls die Konditionszahl klein (nahe bei 1) ist
 (für die infragekommenden Inputs).
 
 \example{Beispiel:}
