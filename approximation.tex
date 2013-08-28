@@ -402,7 +402,11 @@ sind folgendermaßen definiert:
     0 &\mbox{sonst}
   \end{cases}
 \end{align*}
-\missingfigure{Hutfunktion(en)}
+\begin{figure}[htbp]
+  \centering
+  \includegraphics[width=0.7\textwidth]{figures/hutfunktionen.png}
+  \caption{Hutfunktionen}
+\end{figure}
 Man beachte:
 \begin{align*}
   \phi_i(x_j) = \begin{cases}
@@ -422,7 +426,11 @@ $a=x_0<\ldots<x_n=b$ interpoliert. Dann gilt:
 \end{align*}
 wobei $h_{max} = \underset{1 \leq i \leq n}{\max} \underbrace{x_i - x_{i-1}}_{=:h_i}$
 \para{Beweis:} Betrachte $[x_{i-1},x_i]$:
-\missingfigure{TN7}
+\begin{figure}[htbp]
+  \centering
+  \includegraphics[width=0.3\textwidth]{figures/zwischenstuetzstellen.png}
+  \caption{Möglicher Verlauf zwischen Stützstellen}
+\end{figure}
 Fehlerdarstellung für Polynominterpolation in $[x_{i-1},x_i]$:
 \begin{align*}
   f(x)-s_L(x) &= \frac{1}{2!} f''(\xi(x))(x-x_{i-1})(x-x_i) \,\, \xi(x) \in [x_{i-1},x_i]\\
@@ -431,7 +439,11 @@ Fehlerdarstellung für Polynominterpolation in $[x_{i-1},x_i]$:
   &\leq \frac{1}{8} \underset{\xi(x) \in [x_{i-1},x_i]}{\max}\abs{f''(\xi)} h_{max}^2\\
   &\leq \frac{1}{8} \underset{\xi(x) \in [a,b]}{\max}\abs{f''(\xi)} h_{max}^2\\
 \end{align*}
-\missingfigure{max letzter teil}
+\begin{figure}[htbp]
+  \centering
+  \includegraphics[width=0.3\textwidth]{figures/fehler_letzter_teil.png}
+  \caption{Darstellung des letzten Fehlerterms $(x-x_{i-1})(x-x_i)$}
+\end{figure}
 \para{Einschub: Norm und Skalarprodukt}
 Norm dient als Maß um Fehler bzw. Genaugigkeit zu messen.\\
 \para{Definition:} Sei $V$ ein Vektorraum über $\mathbb{K}\,(\mathbb{K}=\mathbb{R}, \mathbb{K}=\mathbb{C})$.
@@ -495,5 +507,9 @@ Unterschied zwischen $\norm{.}_{\infty}$ und $\norm{.}_{L2}$: Sei
   f:[a,b] & \longrightarrow \mathbb{R} \\
   t &\mapsto f(t) \text{ Verbrauch}
 \end{align*}
-\missingfigure{Maximumnorm vs L2-Norm}
+\begin{figure}[htbp]
+  \centering
+  \includegraphics[width=0.3\textwidth]{figures/norms_l2_vs_infty.png}
+  \caption{L2-Norm vs. $\infty$-Norm}
+\end{figure}
 L2-Norm als Maß für den ``Gesamtverbrauch''
