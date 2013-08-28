@@ -25,4 +25,4 @@ title('Interpolation mit 21 Stuetzstellen');
 legend('Gegebene Funktion', 'Stuetzstellen', ...
     'p_{20}', 'p_{20}^S');
 hold off;
-print(h, '-dpng', '-r250', '../figures/interpolation_stoerung.png');
+print(h, '-dpng', '-r100', '../figures/interpolation_stoerung.png');
