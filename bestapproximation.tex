@@ -8,20 +8,26 @@ Gegeben:
 \end{itemize}
 Gesucht:
 Bestapproximation $g \in U$ von $f$ bezüglich $\norm{.}$, so dass 
-$\norm{f - g} \leq \norm{f - u}\,\forall\,u \in U$
+\begin{align*}
+  \norm{f - g} \leq \norm{f - u}\,\forall\,u \in U
+\end{align*}
 
 \subsection{BA bezgl. einer durch ein Skalarprodukt induzierten Norm}
 \para{Satz} Sei $H$ ein Vektorraum und $\inner{.}{.}$ ein Skalarprodukt auf $H$, das die
 Norm $\norm{.}$ induziere. Weiters sei $U$ ein endlichdimensionaler Unterraum von $H$.
 Dann gilt:
-\begin{enumerate}[(a)]
+\begin{enumerate}[a)]
   \item $g \in U$ ist BA von $f$ bzgl. 
     $\norm{.}\,\Longleftrightarrow\,\inner{f - g}{u} = 0\,\forall\,u \in U$
     (Orthogonalitätseigenschaft)
   \item $\forall f \in H$ gibt es genau eine BA $g \in U$ bzgl. $\norm{.}$
 \end{enumerate}
 Beweis: a) Einsetzen und Umformen
-\missingfigure{Zeichnung mit Ebene und Projektion}
+\begin{figure}[htbp]
+  \centering
+  \includegraphics[width=0.3\textwidth]{figures/ba_ebene.png}
+  \label{Darstellung auf Ebene}
+\end{figure}\\
 Beweis: b) (Wir führen den Bewis für $\mathbb{K} = \mathbb{R}$;
 Analoger Beweis für $\mathbb{K} = \mathbb{C}$)\\
 Konstruktionsbeweis: Sei ${\phi_0,\,\ldots,\,\phi_n}$ eine Basis von $U$ und $f \in H$\\
@@ -116,7 +122,11 @@ Die Hutfunktionen sind ``fast orthogonal'', denn
     \neq0 &\mbox{für } \abs{i-j} \leq 1\\
   \end{cases}
 \end{align*}
-\missingfigure{Hutfunktionen}
+\begin{figure}[htbp]
+  \centering
+  \includegraphics[width=0.3\textwidth]{figures/hutfunktionen2.png}
+  \label{Hutfunktionen}
+\end{figure}
 Berechnung von $s_L$:\\
 Ansatz: $s_L(x)=\sumzn{j}{a_j \phi_j(x)}$, wobei $a_0,\ldots,a_n$ bestimmt werden durch:
 \begin{align*}
