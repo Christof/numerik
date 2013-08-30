@@ -30,7 +30,11 @@ Genauigkeitsgrad einer IQF $I_{[a,b]}^{(n)}$: mindestens $n$
 Sind IQF mit gleichmäßig verteilten Stützstellen $x_i = a + ih$ $i=0,\ldots,n$ $h=\frac{b-a}{n}$.
 (``Geschlossen'', weil $a$ und $b$ als Stützstellen verwendet werden.)\\
 Beispiel: $n=1$ $x_0=a$ $x_1=b$
-\missingfigure{IQF n=1}
+\begin{figure}[htbp]
+  \centering
+  \includegraphics[width=0.3\textwidth]{figures/bsp_g_ncf.png}
+  \caption{Geschlossene Newton-Cotes-Formel für $n=1$}
+\end{figure}
 \begin{align*}
   \int_a^b f(x) \dx \approx \frac{1}{2} (b-a)[f(a)+f(b)] \tag{Trapezregel}\\
   w_0 = w_1 = \frac{1}{2} (b-a)
@@ -48,9 +52,17 @@ Integrationsgewichte ($n$ allgemein)
 \subsubsection{Offene Newton-Cotes-Formeln}
 Sind IQF mit $x_i = a + (i+1)h$ $i=0,\ldots,n \in \mathbb{N}_0$
 $h=\frac{b-a}{n+2}$
-\missingfigure{offene newton-cotes-formeln n=0, n=1}
+\begin{figure}[htbp]
+  \centering
+  \includegraphics[width=0.7\textwidth]{figures/o_ncf.png}
+  \caption{Stützstellen für offene Newton-Cotes-Formel für $n=0$ und $n=1$}
+\end{figure}
+\begin{figure}[htbp]
+  \centering
+  \includegraphics[width=0.3\textwidth]{figures/bsp_o_ncf.png}
+  \caption{Offene Newton-Cotes-Formel für $n=0$}
+\end{figure}
 Beispiel: $n=0$
-\missingfigure{n=1 beispiel}
 \begin{align*}
   \int_a^b f(x) \dx \approx \underbrace{(b-a)}_{w_0} f(\frac{a+b}{2}) \tag{Mittelpunkt-/Rechteckregel}
 \end{align*}
@@ -69,7 +81,11 @@ Unterteile $[a,b]$ in $N$ Teilintervalle der Länge $h=\frac{b-a}{N}$ $x_i := a 
   &= h\left[\frac{1}{2} f(a) + \sum^{N-1}_{i=1} f(x_i) + \frac{1}{2} f(b)\right] =: I_h^{(1)}(f)
 \end{align*}
 \para{Summierte Simpsonregel}
-\missingfigure{summierte simpsonregel}
+\begin{figure}[htbp]
+  \centering
+  \includegraphics[width=0.5\textwidth]{figures/sum_simpson.png}
+  \caption{Summierte Simpsonregel}
+\end{figure}
 \begin{align*}
   \int_a^b f(x) \dx &= \sum^{N}_{i=1} \int_{x_{i-1}}^{x_i} f(x) \dx\\
   &\approx \sum^{N}_{i=1} \frac{h}{6} \left[f(x_{i-1}) + 4f(\frac{x_{i-1}+x_i}{2}) + f(x_i)\right] \\
@@ -117,19 +133,22 @@ Also: Kenne ich $T(h)$ und $T(\frac{h}{2})\rightarrow$ Fehler $\LandauO(h^4)$
 \end{align*}
 Romberg-Schema $T_0(h) := T(h)$
 \begin{align*}
-  \begin{pmatrix}
+  \begin{matrix}
     T_0(h)                & \searrow    & \LandauO(h^4)    &             &               &           &\\
     T_0(\frac{h}{2})      & \rightarrow & T_1(h)           & \searrow    & \LandauO(h^6) &           &\\
     T_0(\frac{h}{4})      & \esearrow & T_1(\frac{h}{2}) & \rightarrow & T_2(h)        &  \ddots     &\\
     \vdots                &             &                  &             &               &           & \LandauO(h^{2m+2})\\
     T_0(\frac{h}{2^m})    & \ldots      & \ldots           & \ldots      &      \ldots   &  \ldots   & T_m(h) \\ % TODO richtig laut mitschrift T_m(m^6)???
-  \end{pmatrix}
+  \end{matrix}
 \end{align*}
 \begin{align*}
   T_k\left(\frac{h}{2^i}\right) = \left( 4^k T_{k-1}\left(\frac{h}{2^{i+1}} \right) - T_{k-1}\left(\frac{h}{2^i} \right) \right) \left(4^k-1\right)^{-1}
 \end{align*}
 \para{Satz:} Sei $f \in C^{2m+2}[a,b] \Rightarrow \abs{I-T_m(h)} = \LandauO\left(\left[\frac{h}{2^m} \right]^{2m+2} \right)$
-\missingfigure{Zussamenfassung der summenformeln}
+\begin{figure}[htbp]
+  \centering
+  \includegraphics[width=\textwidth]{figures/num_int.png}
+\end{figure}
 
 \subsection{Gauß-Quadratur (Interpolatorische QF 2)}
 Ziel: Formeln
@@ -194,7 +213,11 @@ $\omega = \frac{1}{\sqrt{1-x^2}}$  Gauß-Tschebyscheff-Quadratur\\
 Beispiel: Gauß-QF für $[a,b] = [-1,1],\, \omega \equiv 1$\\
 $n=0$: $x_0$ ist Nullstelle von $P_1(x)=x$, Orthogonalpolynom $\in \Pi_1$ bzgl. $\inner{.}{.}_{\omega \equiv 1}$.\\
 $x_0 = 0$ $w_0 = \int_{-1}^1 \underbrace{L_0(x)}_{\equiv 1} \dx = 2$\\
-\missingfigure{TN12}
+\begin{figure}[htbp]
+  \centering
+  \includegraphics[width=0.2\textwidth]{figures/gauss_qf.png}
+  \caption{Gauß-QF}
+\end{figure}
 $\int_{-1}^1 f(x) dx \approx 2 f(0)$ Mittelpunktformel\\
 
 Transformation der Gauß-Legendre QF auf allgemeins Intervall $[a,b]$:\\
@@ -231,7 +254,11 @@ Sei $I_n(g) = \sumizn{w_i g(x_i)}$ QF im Eindimensionalen für $[0,1]$
 Ist $I_m$ exakt vom Grad $M$, dann ist $I_{n \times m}$ exakt für alle Polynome\\
 $p \in \mathrm{span} \{x^{k_1}y^{k_2}: 0 \leq k_1, k_2, \leq M\}$
 \subsubsection{Interpolation über das Einheitsdreieck}
-\missingfigure{Einheitsdreieck}
+\begin{figure}[htbp]
+  \centering
+  \includegraphics[width=0.3\textwidth]{figures/einheitsdreieck.png}
+  \caption{Einheitsdreieck}
+\end{figure}
 Zwei Ansätze:
 \begin{itemize}
   \item Duffy-Transformation: Idee: Transformation von QF für das Einheitsquadrat auf das Einheitsdreieck.
