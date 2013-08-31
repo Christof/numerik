@@ -200,6 +200,11 @@ r &= A\widetilde{x} - b = A\widetilde{x} - Ax = A\left(\widetilde{x} - x\right) 
 \end{aligned}
 \end{equation*}
 
+\begin{figure}[htbp]
+  \centering
+  \includegraphics[width=0.9\textwidth]{figures/stoerungsanalyse_lin_glgns.png}
+\end{figure}
+
 \subsection{Direkte Lösung von Linearen Gleichungssystemen (in n - Schritten exakte Lsg)}
 \subsubsection{Gauß - Algorithmus und LR - Zerlegung}
 Zunächst: Voraussetzung das Gauß - Algorithmus ohne Zeilen verauschen druchführbar sei:
@@ -407,6 +412,11 @@ Diskussion von (*):
         gezeigt haben.
     \end{enumerate}
 \end{enumerate}
+
+\begin{figure}[htbp]
+  \centering
+  \includegraphics[width=\textwidth]{figures/spaltenpivotisierung.png}
+\end{figure}
 % subsubsubsection
 \para{LR-Zerlegung für Bandmatrizen}
 \definition Die Matrix
@@ -421,8 +431,11 @@ Diskussion von (*):
   \end{pmatrix}
 \end{align*}
 beziechnet man als Bandmatrix mit oberer Bandbreite $p$ und unterer Bandbreite $q$.
-\missingfigure{Bandmatrix}
-\missingfigure{Spaltenpivotisierung und numerische Stabilität Handout}
+\begin{figure}[htbp]
+  \centering
+  \includegraphics[width=0.3\textwidth]{figures/bandmatrix.png}
+  \caption{Bandmatrix}
+\end{figure}
 \satz Sei $A \in \mathbb{R}^{n \times n}$ eine Bandmatrix mit oberer Bandbreite $p$
 und unterer Bandbreite $q$. Die LR-Zerlegung sei ohne Zeilenvertauschung durchführbar.
 Dann hat $L$ untere Bandbreite $q$ und $R$ obere Bandbreite $p$.\\
@@ -491,9 +504,15 @@ Ist Matrix nicht s.p.d., dann kommt bei obigem Algorithmus NaN heraus.\\
 \matlab{chol(A)}
 
 \subsubsection{QR-Zerlegung}
-\definition Eine Matrix $A \in \rmxn$ mit $m \geq n$ sei gegeben. Die Faktorisierung $A = QR$, TODO(Matrixformen) wobei $Q$
+\definition Eine Matrix $A \in \rmxn$ mit $m \geq n$ sei gegeben. Die Faktorisierung $A = QR$ (siehe Abbildung~\ref{fig:qr}) wobei $Q$
 eine unitäre Matrix ($Q^*Q=I$) und $R$ eine verallgemeinerte obere Dreiecksmatrix sei, 
 d.h. $r_{ij} = 0$ für $i > j$ heißt QR-Zerlegung von $A$.
+\begin{figure}
+  \centering
+  \includegraphics[width=0.1\textwidth]{figures/qr.png}
+  \caption{Matrixformen der QR-Zerlegung}
+  \label{fig:qr}
+\end{figure}
 \definition $Q \in \raxb{m}{m}$ heißt unitär, wenn $Q^*Q=QQ^*=I$\\
 Es gilt: $Q^*Q=I \Leftrightarrow$ Die Spalten bzw. Zeilen von $Q$ sind orthonormal bzgl. $\inner{.}{.}_2$.\\
 Eigenschaften unitärer Matrizen:
@@ -540,7 +559,11 @@ wobei
   \item $y(t_i) \approx y_i \qquad i=1,\ldots,m$
   \item $m > n$
 \end{itemize}
-\missingfigure{Ausgleichsrechnung}
+\begin{figure}
+  \centering
+  \includegraphics[width=0.4\textwidth]{figures/lineare_ausgleichsrechnung.png}
+  \caption{Lineare Ausgleichsrechnung}
+\end{figure}
 D.h. mehr Messdaten als Unbekannte $(x_1,\ldots,x_n)$\\
 Setze Messdaten in (+) ein:
 \begin{align*}
@@ -567,7 +590,11 @@ Setze Messdaten in (+) ein:
     \norm{a_1 x_1 + \ldots + a_n x_n - b} = \underset{y \in \ra{n}}{\min} \norm{a_1 y_1 + \ldots + a_n x_n - b}
     \end{align*} lässt sich als BA-Aufgabe von $b$ bzgl. $\norm{.}$ im Raum $\mathrm{span}\{a_1, \ldots, a_n\}$ interpretieren,
     wobei $Ax$ die BA ist.
-    \missingfigure{Ebene\ldots}
+    \begin{figure}
+      \centering
+      \includegraphics[width=0.4\textwidth]{figures/ausgleichsrechnung_ba.png}
+      \caption{Bestapproximation}
+    \end{figure}
     \begin{align*}
       \inner{b - Ax}{u}_2 &= 0 \qquad & \forall u \in \mathrm{span}\{a_1,\ldots, a_n\}\\
       &\Updownarrow\\
@@ -613,7 +640,11 @@ SVD ist ein bedeutendes theoretisches und praktisches Hilfsmittel.\\
       \begin{align*}
         A = U \Sigma V^* \tag{SVD}
       \end{align*}
-      \missingfigure{Matrixformen}
+      \begin{figure}[htbp]
+        \centering
+        \includegraphics[width=0.2\textwidth]{figures/svd.png}
+        \caption{Matrixformen SVD}
+      \end{figure}
       wobei
       \begin{align*}
         \Sigma = \begin{pmatrix}
@@ -754,6 +785,10 @@ Bemerkung 2: Je kleiner q umso schneller die Konvergenz. $q = 0.99$\\
   k = 100  & 36,6 \\
   k = 1000 & 0,0043
 \end{tabular}
+\begin{figure}
+  \centering
+  \includegraphics[width=\textwidth]{figures/fixpunktiteration.png}
+\end{figure}
 \para{Splitting-Verfahren für $Ax = b$}
 Sei $A$ regulär. $A = M - N$ ($M$ regulär)
 \begin{align*}
@@ -839,7 +874,11 @@ Der Einfachheit halber: $x^0 = 0$
   &\Updownarrow\\
   x^k - x &\perp_A \mathcal{K}_k(A,r^0) \tag{*}
 \end{align*}
-\missingfigure{Ebene, wie bei BA}
+\begin{figure}[htbp]
+  \centering
+  \includegraphics[width=0.3\textwidth]{figures/cg_ba.png}
+  \caption{BA Ebene}
+\end{figure}
 Sei $p^0, p^1,\ldots,p^{k-1}$ $A$-orthogonale Basis von $\mathcal{K}_k(A,r^0)$\\
 Ansatz: $x = \sum^{k-1}_{l=0} k_l p^l$
 \begin{align*}
@@ -852,8 +891,10 @@ Ansatz: $x = \sum^{k-1}_{l=0} k_l p^l$
       r^k &= Ax^k - b = A(x^{k-1} + \alpha_{k-1}p^{k-1}) - b = r_{k-1} + \alpha_{k-1}Ap^{k-1}
 \end{align*}
 Berechnung von $p^k$: Gram-Schmidt-Verfahren\\
-$\Rightarrow$ CG-Verfahren (siehe Handout)
-\missingfigure{CG-Handout}
+\begin{figure}
+  \centering
+  \includegraphics[width=\textwidth]{figures/cg_handout.png}
+\end{figure}
 \para{$\qquad$Konvergenz des CG-Verfahrens}
 Wir wissen bereits:
 \begin{itemize}
@@ -919,7 +960,10 @@ Literatur: SAAD, frei online verfügbar
       \item \matlab{minres}
     \end{itemize}
 \end{itemize}
-
+\begin{figure}[htbp]
+  \centering
+  \includegraphics[width=\textwidth]{figures/konv_it_l.png}
+\end{figure}
 
 
 
