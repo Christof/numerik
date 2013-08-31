@@ -35,12 +35,20 @@ Abbruchkriterien bei Fixpunktiteration:
   \item bei quadratischer Konvergenz gilt: $\frac{\norm{x^{(k+1)} - x^{(k)}}}{\norm{x^k - x^*}} \underset{k \rightarrow \infty}{\longrightarrow} 1$
     Zähler vom Bruch ist Abbruchkriterium
 \end{enumerate}
-\missingfigure{Abbruchkriterium Fixpunktiteration}
+\begin{figure}[htbp]
+  \centering
+  \includegraphics[width=0.4\textwidth]{figures/abbruchkriterium.png}
+  \caption{Abbruchkriterium Fixpunktiteration}
+\end{figure}
 
 \subsection{Bestimmung von Nullstellen reeller Funktionen}
 Gesucht: $x^* \in [a,b]$ mit $f(x^*) = 0$\\
 Ist $f(a)f(b) < 0$ und $f$ stetig
-\missingfigure{Beispiel}
+\begin{figure}[htbp]
+  \centering
+  \includegraphics[width=0.4\textwidth]{figures/nst_bsp.png}
+  \caption{Beispiel einer Nullstelle}
+\end{figure}
 $\Rightarrow \exists\; x^* \in (a,b):\;f(x^*) = 0$\\
 Einfache (aber langsame) Methode: Bisektionsverfahren\\
 Definiere $(a_k, b_k)_{k \in \mathbb{N}_0}$ induktiv durch
@@ -66,7 +74,11 @@ Ansatz: Sei $x^{(k)}$ gegebene Näherung von $x^*$
 \begin{enumerate}[i)]
   \item Verwende lineare Approximation von $g$ und $f$ in $x^{(k)}$
   \item Bestimme $x^{(k+1)}$ als Nullstelle von $g$
-    \missingfigure{Linearisierte Funktion g}
+  \begin{figure}[htbp]
+    \centering
+    \includegraphics[width=0.4\textwidth]{figures/naeherung_nst.png}
+    \caption{Linearisierte Funktion $g$}
+  \end{figure}
 \end{enumerate}
 Implementierungen:
 \begin{itemize}
